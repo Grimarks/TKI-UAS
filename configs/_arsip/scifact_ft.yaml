@@ -1,0 +1,37 @@
+# SciFact (BEIR): 5.183 abstrak, 300 query uji. Model nyata + keyphrase YAKE (jalan di CPU, tanpa GPU).
+# Persiapan:  hybrid-ir download scifact   ->   hybrid-ir build --config configs/scifact.yaml
+data:
+  path: data/scifact
+  eval_split: test
+  tune_split: train         # alpha ditala di query train, dilaporkan di query test
+  dev_fraction: 0.3
+
+encoder:
+  backend: sentence-transformers
+  model_name: models/encoder_ft/final   # fine-tune KP20k (kp20k_mixed, 150k pasangan) di Kaggle 2xT4
+  # Alternatif (ubah juga prefix bila perlu, lalu build ulang indeks):
+  #   BAAI/bge-small-en-v1.5   query_prefix: "Represent this sentence for searching relevant passages: "
+  #   intfloat/e5-base-v2      query_prefix: "query: "   doc_prefix: "passage: "
+  query_prefix: ""
+  doc_prefix: ""
+  max_seq_length: 256
+  batch_size: 64
+  device: auto              # auto = cuda -> mps (Apple Silicon) -> cpu
+
+keyphrase:
+  method: yake
+  top_n: 10
+  query_top_n: 8
+  language: en
+  unit: both
+  similarity: cosine
+
+retrieval:
+  mode: hybrid
+  fusion: weighted
+  alpha: 0.6                # nilai awal; `evaluate` akan menala alpha di query train
+  candidate_k: 100
+  top_k: 10
+
+index:
+  dir: indexes/scifact_ft

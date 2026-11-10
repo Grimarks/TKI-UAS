@@ -1,0 +1,142 @@
+INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/modules.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2Fmodules.json=&etag=%22952a9b81c0bfd99800fabf352f69c7ccd46c5e43%22 "HTTP/1.1 200 OK"
+INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config_sentence_transformers.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2Fconfig_sentence_transformers.json=&etag=%22fd1b291129c607e5d49799f87cb219b27f98acdf%22 "HTTP/1.1 200 OK"
+INFO Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.
+INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config_sentence_transformers.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2Fconfig_sentence_transformers.json=&etag=%22fd1b291129c607e5d49799f87cb219b27f98acdf%22 "HTTP/1.1 200 OK"
+INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/README.md?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2FREADME.md=&etag=%2244af2e3b0fa3a0b6239e48422972bf755f28fde0%22 "HTTP/1.1 200 OK"
+INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/modules.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2Fmodules.json=&etag=%22952a9b81c0bfd99800fabf352f69c7ccd46c5e43%22 "HTTP/1.1 200 OK"
+INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/sentence_bert_config.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2Fsentence_bert_config.json=&etag=%2259d594003bf59880a884c574bf88ef7555bb0202%22 "HTTP/1.1 200 OK"
+INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+INFO HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+INFO HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 10474.83it/s]
+INFO HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+INFO HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+INFO HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/1_Pooling%2Fconfig.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2F1_Pooling%2Fconfig.json=&etag=%22d1514c3162bbe87b343f565fadc62e6c06f04f03%22 "HTTP/1.1 200 OK"
+INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/2_Normalize/config.json "HTTP/1.1 404 Not Found"
+INFO HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+Batches:   0%|          | 0/18 [00:00<?, ?it/s]Batches:  17%|█▋        | 3/18 [00:00<00:00, 28.25it/s]Batches:  50%|█████     | 9/18 [00:00<00:00, 42.82it/s]Batches:  89%|████████▉ | 16/18 [00:00<00:00, 52.99it/s]Batches: 100%|██████████| 18/18 [00:00<00:00, 50.80it/s]
+# Hasil evaluasi: scifact
+
+- Dokumen: 5183; query tuning: 809 (split:train); query evaluasi: 300 (split `test`)
+- alpha dipilih pada query tuning: **0.9**
+- bobot tiga sinyal dipilih pada query tuning: **sem=0.5, kp=0.0, bm25=0.5**
+
+| Skenario | ndcg@10 | map@100 | recall@10 | recall@100 | precision@10 | mrr@10 |
+|---|---|---|---|---|---|---|
+| BM25 (leksikal) | 0.6834 | 0.6357 | 0.8312 | 0.9193 | 0.0917 | 0.6416 |
+| Semantic-only | 0.6497 | 0.6072 | 0.7883 | 0.9250 | 0.0890 | 0.6097 |
+| Keyphrase-only | 0.4078 | 0.3727 | 0.5346 | 0.7662 | 0.0590 | 0.3749 |
+| Hybrid weighted (alpha=0.9) | 0.6671 | 0.6243 | 0.8073 | 0.9317 | 0.0913 | 0.6241 |
+| Hybrid RRF | 0.5708 | 0.5280 | 0.7222 | 0.9360 | 0.0803 | 0.5340 |
+| Hybrid+BM25 weighted (sem=0.5, kp=0.0, bm25=0.5) | 0.7393 | 0.7001 | 0.8600 | 0.9583 | 0.0967 | 0.7059 |
+| Hybrid+BM25 RRF | 0.6277 | 0.5731 | 0.8062 | 0.9543 | 0.0903 | 0.5833 |
+
+## Uji signifikansi (paired bootstrap, nDCG@10, model dikurangi pembanding)
+
+| Model | Pembanding | selisih rata-rata | CI 95% | p |
+|---|---|---|---|---|
+| hybrid_weighted | semantic | +0.0174 | [+0.0048, +0.0307] | 0.0060 |
+| hybrid_weighted | keyphrase | +0.2593 | [+0.2141, +0.3035] | 0.0001 |
+| hybrid_weighted | bm25 | -0.0163 | [-0.0507, +0.0173] | 0.3538 |
+| hybrid_bm25_weighted | bm25 | +0.0559 | [+0.0394, +0.0734] | 0.0001 |
+| hybrid_bm25_weighted | hybrid_weighted | +0.0722 | [+0.0441, +0.1013] | 0.0001 |
+| hybrid_bm25_weighted | semantic | +0.0896 | [+0.0609, +0.1190] | 0.0001 |
+
+## Sapuan alpha (query evaluasi; hanya untuk analisis, jangan dipakai memilih alpha)
+
+| alpha | nDCG@10 | recall@100 |
+|---|---|---|
+| 0.0 | 0.4091 | 0.8201 |
+| 0.1 | 0.4242 | 0.8459 |
+| 0.2 | 0.4560 | 0.8793 |
+| 0.3 | 0.4906 | 0.9027 |
+| 0.4 | 0.5288 | 0.9293 |
+| 0.5 | 0.5540 | 0.9327 |
+| 0.6 | 0.5983 | 0.9393 |
+| 0.7 | 0.6445 | 0.9450 |
+| 0.8 | 0.6653 | 0.9417 |
+| 0.9 | 0.6671 | 0.9317 |
+| 1.0 | 0.6497 | 0.9250 |
+
+Hasil lengkap disimpan di results/scifact_bart_bm25
+INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/modules.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2Fmodules.json=&etag=%22952a9b81c0bfd99800fabf352f69c7ccd46c5e43%22 "HTTP/1.1 200 OK"
+INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config_sentence_transformers.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2Fconfig_sentence_transformers.json=&etag=%22fd1b291129c607e5d49799f87cb219b27f98acdf%22 "HTTP/1.1 200 OK"
+INFO Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.
+INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config_sentence_transformers.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2Fconfig_sentence_transformers.json=&etag=%22fd1b291129c607e5d49799f87cb219b27f98acdf%22 "HTTP/1.1 200 OK"
+INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/README.md?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2FREADME.md=&etag=%2244af2e3b0fa3a0b6239e48422972bf755f28fde0%22 "HTTP/1.1 200 OK"
+INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/modules.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2Fmodules.json=&etag=%22952a9b81c0bfd99800fabf352f69c7ccd46c5e43%22 "HTTP/1.1 200 OK"
+INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/sentence_bert_config.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2Fsentence_bert_config.json=&etag=%2259d594003bf59880a884c574bf88ef7555bb0202%22 "HTTP/1.1 200 OK"
+INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+INFO HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+INFO HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 24512.78it/s]
+INFO HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+INFO HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+INFO HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/1_Pooling%2Fconfig.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2F1_Pooling%2Fconfig.json=&etag=%22d1514c3162bbe87b343f565fadc62e6c06f04f03%22 "HTTP/1.1 200 OK"
+INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/2_Normalize/config.json "HTTP/1.1 404 Not Found"
+INFO HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+Batches:   0%|          | 0/18 [00:00<?, ?it/s]Batches:  17%|█▋        | 3/18 [00:00<00:00, 29.24it/s]Batches:  44%|████▍     | 8/18 [00:00<00:00, 40.59it/s]Batches:  83%|████████▎ | 15/18 [00:00<00:00, 50.68it/s]Batches: 100%|██████████| 18/18 [00:00<00:00, 49.79it/s]
+# Hasil evaluasi: scifact
+
+- Dokumen: 5183; query tuning: 809 (split:train); query evaluasi: 300 (split `test`)
+- alpha dipilih pada query tuning: **0.9**
+- bobot tiga sinyal dipilih pada query tuning: **sem=0.6, kp=0.0, bm25=0.4**
+
+| Skenario | ndcg@10 | map@100 | recall@10 | recall@100 | precision@10 | mrr@10 |
+|---|---|---|---|---|---|---|
+| BM25 (leksikal) | 0.6834 | 0.6357 | 0.8312 | 0.9193 | 0.0917 | 0.6416 |
+| Semantic-only | 0.6497 | 0.6072 | 0.7883 | 0.9250 | 0.0890 | 0.6097 |
+| Keyphrase-only | 0.2921 | 0.2660 | 0.4017 | 0.6481 | 0.0437 | 0.2624 |
+| Hybrid weighted (alpha=0.9) | 0.6595 | 0.6120 | 0.8117 | 0.9350 | 0.0913 | 0.6146 |
+| Hybrid RRF | 0.4901 | 0.4445 | 0.6597 | 0.9327 | 0.0740 | 0.4433 |
+| Hybrid+BM25 weighted (sem=0.6, kp=0.0, bm25=0.4) | 0.7363 | 0.6964 | 0.8600 | 0.9583 | 0.0967 | 0.7019 |
+| Hybrid+BM25 RRF | 0.5905 | 0.5343 | 0.7814 | 0.9543 | 0.0873 | 0.5357 |
+
+## Uji signifikansi (paired bootstrap, nDCG@10, model dikurangi pembanding)
+
+| Model | Pembanding | selisih rata-rata | CI 95% | p |
+|---|---|---|---|---|
+| hybrid_weighted | semantic | +0.0098 | [-0.0012, +0.0213] | 0.0834 |
+| hybrid_weighted | keyphrase | +0.3674 | [+0.3221, +0.4125] | 0.0001 |
+| hybrid_weighted | bm25 | -0.0238 | [-0.0583, +0.0096] | 0.1682 |
+| hybrid_bm25_weighted | bm25 | +0.0529 | [+0.0345, +0.0719] | 0.0001 |
+| hybrid_bm25_weighted | hybrid_weighted | +0.0767 | [+0.0507, +0.1033] | 0.0001 |
+| hybrid_bm25_weighted | semantic | +0.0866 | [+0.0592, +0.1151] | 0.0001 |
+
+## Sapuan alpha (query evaluasi; hanya untuk analisis, jangan dipakai memilih alpha)
+
+| alpha | nDCG@10 | recall@100 |
+|---|---|---|
+| 0.0 | 0.2932 | 0.6714 |
+| 0.1 | 0.3116 | 0.7381 |
+| 0.2 | 0.3332 | 0.8131 |
+| 0.3 | 0.3742 | 0.8649 |
+| 0.4 | 0.4146 | 0.9067 |
+| 0.5 | 0.4705 | 0.9350 |
+| 0.6 | 0.5288 | 0.9483 |
+| 0.7 | 0.5948 | 0.9450 |
+| 0.8 | 0.6356 | 0.9383 |
+| 0.9 | 0.6595 | 0.9350 |
+| 1.0 | 0.6497 | 0.9250 |
+
+Hasil lengkap disimpan di results/scifact_yake_bm25

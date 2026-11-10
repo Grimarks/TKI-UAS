@@ -1,0 +1,20 @@
+# NFCorpus (BEIR): 3.633 dokumen medis/nutrisi, banyak dokumen relevan per query (metrik lebih stabil).
+data:
+  path: data/nfcorpus
+  eval_split: test
+  tune_split: dev
+
+encoder:
+  backend: sentence-transformers
+  model_name: sentence-transformers/all-MiniLM-L6-v2
+
+keyphrase:
+  method: yake
+  top_n: 10
+  query_top_n: 8
+
+retrieval:
+  alpha: 0.6
+
+index:
+  dir: indexes/nfcorpus_yake

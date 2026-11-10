@@ -1,0 +1,29 @@
+{
+  "model": "taln-ls2n/bart-base-kp20k",
+  "revision": null,
+  "num_beams": 4,
+  "top_n": 10,
+  "entries": 6809,
+  "workers": [
+    {
+      "device": "cuda",
+      "gpu": "Tesla T4",
+      "commit": "674e4b03753c70d23b0c5be504a81043dcb783a7",
+      "torch": "2.11.0+cu128",
+      "transformers": "5.16.1",
+      "processed": 3405,
+      "seconds": 91.4,
+      "items": 3405
+    },
+    {
+      "device": "cuda",
+      "gpu": "Tesla T4",
+      "commit": "674e4b03753c70d23b0c5be504a81043dcb783a7",
+      "torch": "2.11.0+cu128",
+      "transformers": "5.16.1",
+      "processed": 3404,
+      "seconds": 107.6,
+      "items": 3404
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+# SciFact dengan keyphrase GENERATIF (BART-KPG).
+# Keyphrase dokumen dihitung di Kaggle (GPU) -> file JSONL -> dibaca di sini (method: precomputed).
+# Query evaluasi juga ada di berkas itu; query bebas (UI/CLI) yang tidak ada di berkas dibuat lokal oleh
+# model BART yang sama (satu query = cepat, bahkan di CPU).
+data:
+  path: data/scifact
+  eval_split: test
+  tune_split: train
+
+encoder:
+  backend: sentence-transformers
+  model_name: sentence-transformers/all-MiniLM-L6-v2
+  max_seq_length: 256
+  device: auto
+
+keyphrase:
+  method: precomputed
+  query_method: precomputed
+  query_fallback: seq2seq
+  precomputed_files:
+    - artifacts/keyphrases_scifact.jsonl     # hasil kaggle/generate_keyphrases.py (dokumen + query evaluasi)
+  top_n: 10
+  query_top_n: 8
+  language: en
+  unit: both
+  similarity: cosine
+  model_name_or_path: taln-ls2n/bart-base-kp20k
+  revision: 674e4b03753c70d23b0c5be504a81043dcb783a7   # commit dari manifest Kaggle (dipin)
+  require_safetensors: true
+  generation_batch_size: 16
+  num_beams: 4
+  device: auto
+
+retrieval:
+  mode: hybrid
+  alpha: 0.6
+  candidate_k: 100
+  top_k: 10
+
+index:
+  dir: indexes/scifact_bart

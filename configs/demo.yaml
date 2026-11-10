@@ -1,0 +1,33 @@
+# Demo offline: data mini + encoder "hashing" (BUKAN model semantik; hanya untuk uji alur/UI tanpa unduhan).
+# Keyphrase dibaca dari data/demo/keyphrases_demo.jsonl: contoh TULIS TANGAN (bukan keluaran BART) untuk
+# 24 dokumen dan 8 query demo. Tanpa fallback, jadi query bebas (di luar 8 query itu) akan ditolak dengan pesan jelas.
+data:
+  path: data/demo
+  eval_split: test
+  tune_split: null          # tidak ada split train -> 30% query dipakai untuk menala alpha
+  dev_fraction: 0.3
+
+encoder:
+  backend: hashing
+  hashing_dim: 512
+
+keyphrase:
+  method: precomputed
+  query_method: precomputed
+  query_fallback: none      # jangan memuat BART: demo harus jalan tanpa unduhan
+  precomputed_files:
+    - data/demo/keyphrases_demo.jsonl
+  top_n: 8
+  query_top_n: 6
+  language: en
+  unit: both
+  similarity: cosine
+
+retrieval:
+  mode: hybrid
+  alpha: 0.6
+  candidate_k: 50
+  top_k: 5
+
+index:
+  dir: indexes/demo

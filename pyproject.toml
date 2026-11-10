@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hybrid-ir"
+version = "0.1.0"
+description = "Hybrid Semantic-Keyphrase Retrieval untuk dokumen akademik"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "numpy>=1.26,<3",
+  "scipy>=1.11,<2",
+  "pyyaml>=6.0",
+  "snowballstemmer>=2.2",
+  "requests>=2.31",
+  "tqdm>=4.66",
+]
+
+[project.optional-dependencies]
+models = ["sentence-transformers>=3.0,<7", "transformers>=4.44,<6", "torch>=2.2"]
+ui = ["streamlit>=1.35"]
+dev = ["pytest>=8"]
+
+[project.scripts]
+hybrid-ir = "hybrid_ir.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

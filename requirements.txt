@@ -1,0 +1,8 @@
+# Instalasi dasar (cukup untuk demo offline: hashing encoder + keyphrase precomputed):
+#   pip install -e .
+# Model nyata (encoder + generator keyphrase):   pip install -e ".[models]"
+# UI web lokal:                                  pip install -e ".[ui]"
+# Pengembangan / tes:                            pip install -e ".[dev]"
+# Setelah semuanya jalan di komputer kamu, kunci versi persis untuk reproduksibilitas:
+#   pip freeze > requirements.lock.txt
+-e .[models,ui,dev]

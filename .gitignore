@@ -1,0 +1,26 @@
+# --- data & berkas besar (bisa dibangun ulang / diunduh ulang) ---
+# data/demo (24 KB) tetap dicatat karena dipakai tes dan demo offline.
+data/*
+!data/demo/
+indexes/
+models/
+# keyphrase hasil Kaggle (besar); manifest *.manifest.json tetap dicatat
+artifacts/*.jsonl
+kaggle/_build/
+
+# --- rahasia: JANGAN PERNAH di-commit ---
+.env
+*.env
+kaggle.json
+**/kaggle.json
+.kaggle/
+access_token
+
+# --- python & alat ---
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
+.pytest_cache/
+.DS_Store
+.idea/

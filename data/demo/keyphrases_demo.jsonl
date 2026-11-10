@@ -1,0 +1,32 @@
+{"key": "00f54a7776f374ba11678ac4b6a8da513ea2ce87", "keyphrases": [["neural machine translation", 1.0], ["attention mechanism", 0.8], ["encoder-decoder", 0.666667], ["bleu", 0.571429]]}
+{"key": "07a4a95db12be60cc8507abfb00a83bc71abb27a", "keyphrases": [["neural ranking models", 1.0], ["document search", 0.8], ["relevance matching", 0.666667], ["information retrieval", 0.571429]]}
+{"key": "0cbd9a15a61d1f61cab9970ef5a3259aea4baf8f", "keyphrases": [["query expansion", 1.0], ["pseudo relevance feedback", 0.8], ["vocabulary mismatch", 0.666667], ["ad hoc retrieval", 0.571429]]}
+{"key": "0f91b64d891ba4d5d35a29aaa69ad2e2a5b98c6d", "keyphrases": [["dense passage retrieval", 1.0], ["question answering", 0.8], ["dual encoder", 0.666667], ["nearest neighbor search", 0.571429]]}
+{"key": "1d919ffeac616a65fb22081943f8c4336e084cdf", "keyphrases": [["node embeddings", 1.0], ["inductive representation learning", 0.8], ["large graphs", 0.666667], ["neighborhood aggregation", 0.571429]]}
+{"key": "1edc0a02d77ea13dcaa9a39ef01f8f557196a8d8", "keyphrases": [["u-net", 1.0], ["biomedical image segmentation", 0.8], ["convolutional networks", 0.666667], ["medical scans", 0.571429]]}
+{"key": "208ae848965eddaece9b81dc15e0f9b8ff3d0a5c", "keyphrases": [["tumor segmentation", 1.0], ["medical scans", 0.8]]}
+{"key": "3fc3afc0d040b7076156a9c7ef164403ebf839cd", "keyphrases": [["keyphrases", 1.0], ["search", 0.8], ["indexing", 0.666667]]}
+{"key": "418e8f4da7d0619e0020a417d18b4e2a68809b9a", "keyphrases": [["back-translation", 1.0], ["low-resource translation", 0.8], ["parallel data", 0.666667], ["neural machine translation", 0.571429]]}
+{"key": "4365ab1706ab0ef9a47f4f35322f03c2c0711f1e", "keyphrases": [["keyword extraction", 1.0], ["statistical features", 0.8], ["single document", 0.666667], ["unsupervised", 0.571429]]}
+{"key": "46f5a9bcfb5fa88dd6bc01f2bda92e3a2cf52fea", "keyphrases": [["federated learning", 1.0], ["privacy", 0.8]]}
+{"key": "49e324d7487ddb5237ccf6251293dd81563de42f", "keyphrases": [["graph neural networks", 1.0], ["node embeddings", 0.8]]}
+{"key": "4ad41d8a168d226b899411b1a396c663f6dcf22e", "keyphrases": [["graph attention networks", 1.0], ["graph neural networks", 0.8], ["attention coefficients", 0.666667], ["neighboring nodes", 0.571429]]}
+{"key": "51eb054f24768ed369652f00d12c1388a4f905a9", "keyphrases": [["link prediction", 1.0], ["social networks", 0.8], ["network embeddings", 0.666667], ["social graphs", 0.571429]]}
+{"key": "67d404ab7355c660bf1ac26e783d979810fb40d2", "keyphrases": [["federated learning", 1.0], ["poisoning attacks", 0.8], ["privacy leakage", 0.666667], ["collaborative training", 0.571429]]}
+{"key": "6cc3f5f024ba4af7c64c6753e8fb5885076951a7", "keyphrases": [["machine translation evaluation", 1.0], ["bleu", 0.8], ["human judgments", 0.666667], ["translation quality", 0.571429]]}
+{"key": "70663e326844b45ea45e083ac7cf075eae62ed4c", "keyphrases": [["differential privacy", 1.0], ["distributed training", 0.8], ["gradient noise", 0.666667], ["privacy guarantees", 0.571429]]}
+{"key": "71bfb0c0896340dc5ca5c1a59358cba93775b8ee", "keyphrases": [["tumor segmentation", 1.0], ["mri", 0.8], ["deep learning", 0.666667], ["brain tumors", 0.571429]]}
+{"key": "8796ade8ab31458dd8afac44c32a238fd29aced7", "keyphrases": [["data augmentation", 1.0], ["medical datasets", 0.8], ["elastic deformations", 0.666667], ["segmentation", 0.571429]]}
+{"key": "90ad8fd893ac644b6da8bb5b050fc3065d3b1e1b", "keyphrases": [["approximate nearest neighbor search", 1.0], ["indexing", 0.8], ["similarity search", 0.666667], ["embedding vectors", 0.571429]]}
+{"key": "9503f5b4577f544e03405864ba2148e98440587a", "keyphrases": [["neural machine translation", 1.0], ["languages", 0.8]]}
+{"key": "aa48da6a6bb8fdb64ab86be4472b1e7e1fcabab1", "keyphrases": [["dense retrieval", 1.0], ["vector search", 0.8]]}
+{"key": "ac926d5acde60eb38c84c1274a048dca7b3026b9", "keyphrases": [["keyphrases", 1.0], ["document indexing", 0.8], ["search", 0.666667], ["retrieval effectiveness", 0.571429]]}
+{"key": "ae9f89999010004e487b3b2f67be67c04c4d9345", "keyphrases": [["federated learning", 1.0], ["communication efficiency", 0.8], ["deep networks", 0.666667], ["private data", 0.571429]]}
+{"key": "b0b4e090ac076a0e822ade3e2724af687551bccb", "keyphrases": [["keyphrase extraction", 1.0], ["scientific papers", 0.8]]}
+{"key": "b14fba899d5d8f6b27e9c7f7d54caaaadb9f673c", "keyphrases": [["keyphrase generation", 1.0], ["sequence to sequence", 0.8], ["absent keyphrases", 0.666667], ["encoder-decoder", 0.571429]]}
+{"key": "b1dfaf85f121010718f4a956afc97ff4bda94fc9", "keyphrases": [["vocabulary mismatch", 1.0], ["query expansion", 0.8]]}
+{"key": "c21fefd16370f491feb110a0dd182aa85b7bf86b", "keyphrases": [["secure aggregation", 1.0], ["privacy preserving learning", 0.8], ["cryptographic protocols", 0.666667], ["federated learning", 0.571429]]}
+{"key": "dad3775ceef5078d67f91653b77afeff903a4019", "keyphrases": [["segmentation evaluation", 1.0], ["dice coefficient", 0.8], ["hausdorff distance", 0.666667], ["overlap metrics", 0.571429]]}
+{"key": "df884ba1d64eb7201d895989dfaeeb1c1fa10c6d", "keyphrases": [["transformer", 1.0], ["self-attention", 0.8], ["machine translation", 0.666667], ["sequence transduction", 0.571429]]}
+{"key": "f098226f31698456068f93ba970fcce19c1df445", "keyphrases": [["keyphrase extraction", 1.0], ["graph ranking", 0.8], ["random walk", 0.666667], ["unsupervised learning", 0.571429]]}
+{"key": "fb4475a494fbf9deaf6cb263559d06fa317921af", "keyphrases": [["graph convolutional networks", 1.0], ["node classification", 0.8], ["semi-supervised learning", 0.666667], ["citation graphs", 0.571429]]}
