@@ -720,7 +720,7 @@ def gambar_alpha(metrics: dict[str, dict]) -> Path:
 
 def gambar_selisih(per_query: dict[str, dict], msk: dict) -> Path:
     plt = _style()
-    fig, axes = plt.subplots(2, 2, figsize=(6.6, 4.2), sharey=True)
+    fig, axes = plt.subplots(2, 2, figsize=(6.6, 3.6), sharey=True)
     for i, ds in enumerate(per_query):
         for j, other in enumerate(("semantic", "bm25")):
             ax = axes[i][j]

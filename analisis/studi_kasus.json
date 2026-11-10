@@ -116,7 +116,7 @@
       ],
       "s_sem": 0.5917586088180542,
       "peringkat_sem_seluruh_korpus": 3,
-      "s_kp": 0.6674559712409973,
+      "s_kp": 0.6674560308456421,
       "s_bm25": 62.85043716430664,
       "unit_keyphrase_bersama": [
         "p:kidney pair donat",
@@ -479,7 +479,7 @@
       ],
       "s_sem": 0.4517500698566437,
       "peringkat_sem_seluruh_korpus": 12,
-      "s_kp": 0.2960277497768402,
+      "s_kp": 0.2960277795791626,
       "s_bm25": 25.869781494140625,
       "unit_keyphrase_bersama": [
         "p:oxid stress",
@@ -1084,7 +1084,7 @@
       ],
       "s_sem": 0.3697419762611389,
       "peringkat_sem_seluruh_korpus": 2,
-      "s_kp": 0.3988942503929138,
+      "s_kp": 0.3988943099975586,
       "s_bm25": 21.64227294921875,
       "unit_keyphrase_bersama": [
         "t:betel",
