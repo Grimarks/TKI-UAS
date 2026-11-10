@@ -2,9 +2,9 @@
 
 | Skrip | Fungsi | Perlu GPU? |
 |---|---|---|
-| `generate_keyphrases.py` | generate keyphrase (BART-KPG) untuk korpus + query; satu proses per GPU; hasil JSONL. **Bagian dari pipeline.** | ya (T4 x2) |
-| `train_encoder.py` | fine-tune encoder (MNRL, DDP, fp16). **Bukan bagian pipeline yang dilaporkan**; eksperimen terpisah, tidak meningkatkan hasil | ya (T4 x2) |
+| `generate_keyphrases.py` | generate keyphrase (BART-KPG) untuk korpus + query; satu proses per GPU; hasil JSONL. **Bagian dari pipeline (Fase 1 — Jalur B).** | ya (T4 x2) |
 | `build_kernel.py` | menyusun folder siap-push (`script.py` + `kernel-metadata.json`); jalan lokal | tidak |
+| `_arsip/train_encoder.py` | ARSIP: fine-tune encoder (desain lama, bukan bagian desain final). Tesnya ikut diarsipkan di `_arsip/test_train_encoder.py` | ya (T4 x2) |
 
 ## Cara manual (ringkas)
 
@@ -30,8 +30,9 @@ Catatan:
   model sebagai dataset private dan pakai `--model /kaggle/input/<dataset>` dengan `--no-internet`.
 - Format keluaran dibaca `hybrid-ir` lewat `keyphrase.method: precomputed` (kunci = SHA-1 teks ternormalisasi;
   kesamaan fungsi normalisasi dijaga oleh `tests/test_kaggle_scripts.py`).
-- Kedua skrip sudah dijalankan di Kaggle 2×T4 (Oktober 2026); tetap lakukan uji asap dulu (`--max-items 64`,
-  `--max-steps 20`) bila versi library Kaggle berubah.
+- `generate_keyphrases.py` sudah dijalankan di Kaggle 2×T4 (Oktober 2026); hasilnya ada di
+  `artifacts/keyphrases_*.jsonl` + `.manifest.json`. Tetap lakukan uji asap dulu (`--max-items 64`) bila versi library
+  Kaggle berubah.
 - Bug yang dilaporkan pada sebagian versi CLI 2.x: `kaggle datasets create` gagal dengan "dataset slugs and hashlink are
   all null". Jalan keluar: jalankan perintah itu dari venv terpisah berisi `kaggle==1.6.17` (hanya untuk membuat dataset;
   `kernels push --accelerator` butuh CLI yang lebih baru), atau unggah folder dataset lewat browser.

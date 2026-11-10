@@ -1,11 +1,21 @@
 """Encoder embedding: mengubah teks menjadi vektor ternormalisasi (norma L2 = 1).
 
+Peran di pipeline (Gambar 1)
+    Fase 1 — Jalur A: "A. Encoder SBERT" (all-MiniLM-L6-v2, 1 vektor per dokumen) → "Vector index".
+    Fase 2 — Jalur A: "A. Encode query" (encoder yang sama) → "Skor semantik".
+
+Masukan  : daftar teks (dokumen 'judul. abstrak' atau query).
+Keluaran : matriks float32 berbentuk (jumlah teks, d), tiap baris bernorma L2 = 1 (d = 384 untuk MiniLM).
+
+Rumus
+    Normalisasi L2: e ← e / ‖e‖. Karena itu cosine pada persamaan (1),
+        s_sem(q, d) = cos(e_q, e_d) = (e_q · e_d) / (‖e_q‖ ‖e_d‖),
+    cukup dihitung sebagai perkalian dalam e_q · e_d (lihat `indexes.DenseIndex.scores`).
+
 Dua backend:
-  * SentenceTransformerEncoder : model sungguhan (default all-MiniLM-L6-v2). Dipakai untuk hasil nyata.
+  * SentenceTransformerEncoder : model sungguhan (bawaan all-MiniLM-L6-v2). Dipakai untuk hasil nyata.
   * HashingEncoder             : pengganti deterministik tanpa unduhan/GPU. BUKAN model semantik;
                                  hanya untuk tes otomatis dan demo offline.
-
-Karena vektor sudah ternormalisasi, cosine similarity = dot product.
 """
 from __future__ import annotations
 
@@ -25,14 +35,25 @@ class EncoderUnavailable(RuntimeError):
 
 
 class Encoder(Protocol):
+    """Antarmuka bersama semua encoder."""
+
     dim: int
 
-    def encode_documents(self, texts: Sequence[str]) -> np.ndarray: ...
-    def encode_queries(self, texts: Sequence[str]) -> np.ndarray: ...
-    def fingerprint(self) -> dict: ...
+    def encode_documents(self, texts: Sequence[str]) -> np.ndarray:
+        """Vektor dokumen bernorma L2 = 1, bentuk (N, dim)."""
+        ...
+
+    def encode_queries(self, texts: Sequence[str]) -> np.ndarray:
+        """Vektor query bernorma L2 = 1, bentuk (Q, dim)."""
+        ...
+
+    def fingerprint(self) -> dict:
+        """Identitas encoder untuk meta.json."""
+        ...
 
 
 def _l2_normalize(arr: np.ndarray) -> np.ndarray:
+    """Bagi tiap baris dengan normanya (batas bawah 1e-12 agar vektor nol tidak membuat pembagian nol)."""
     arr = np.asarray(arr, dtype=np.float32)
     norms = np.linalg.norm(arr, axis=1, keepdims=True)
     return arr / np.maximum(norms, 1e-12)
@@ -82,10 +103,13 @@ class HashingEncoder:
     encode_queries = _encode
 
     def fingerprint(self) -> dict:
+        """Identitas encoder hashing (untuk pemeriksaan kecocokan indeks)."""
         return {"backend": "hashing", "dim": self.dim, "language": self.language}
 
 
 class SentenceTransformerEncoder:
+    """Encoder SBERT (bi-encoder): dokumen dan query dienkode terpisah dengan model yang sama."""
+
     def __init__(self, cfg: EncoderConfig) -> None:
         try:
             from sentence_transformers import SentenceTransformer
@@ -119,12 +143,15 @@ class SentenceTransformerEncoder:
         return _l2_normalize(emb)
 
     def encode_documents(self, texts: Sequence[str]) -> np.ndarray:
+        """Vektor dokumen (Fase 1). Bentuk (N, dim)."""
         return self._encode(texts, self.cfg.doc_prefix)
 
     def encode_queries(self, texts: Sequence[str]) -> np.ndarray:
+        """Vektor query (Fase 2). Bentuk (Q, dim)."""
         return self._encode(texts, self.cfg.query_prefix)
 
     def fingerprint(self) -> dict:
+        """Identitas encoder; disimpan di meta.json supaya indeks tidak dipakai dengan encoder lain."""
         return {
             "backend": "sentence-transformers",
             "model_name": self.cfg.model_name,
@@ -137,6 +164,7 @@ class SentenceTransformerEncoder:
 
 
 def build_encoder(cfg: EncoderConfig, language: str = "en") -> Encoder:
+    """Buat encoder sesuai `encoder.backend` di konfigurasi."""
     if cfg.backend == "hashing":
         return HashingEncoder(cfg, language)
     return SentenceTransformerEncoder(cfg)

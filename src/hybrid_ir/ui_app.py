@@ -1,5 +1,12 @@
 """Antarmuka web lokal (Streamlit) untuk mencoba pencarian hibrida.
 
+Peran di pipeline (Gambar 1)
+    Fase 2 — kotak "Ranking top-k" (hasil di UI Streamlit). Tab "Pencarian" menjalankan satu mode;
+    tab "Bandingkan mode" menampilkan BM25 | Semantic | Keyphrase | Hybrid berdampingan (empat skenario).
+
+Masukan  : query dari pengguna, mode, α (slider; bawaan = retrieval.alpha di konfigurasi), jumlah hasil.
+Keluaran : daftar dokumen dengan skor tiap jalur, keyphrase dokumen, dan keyphrase yang cocok dengan query.
+
 Dijalankan lewat `hybrid-ir ui --config <yaml>` (yang meneruskan lokasi konfigurasi lewat variabel
 lingkungan HYBRID_IR_CONFIG). Pertimbangan keamanan:
   * Server hanya mendengarkan 127.0.0.1 (lihat cli.py), tidak terbuka ke jaringan.
@@ -17,7 +24,7 @@ import streamlit as st
 
 from hybrid_ir.config import ConfigError, load_config
 from hybrid_ir.keyphrases import MissingPrecomputed
-from hybrid_ir.retriever import HybridRetriever, IndexMismatchError, QueryError
+from hybrid_ir.retriever import Hit, HybridRetriever, IndexMismatchError, QueryError, SearchResult
 
 MODE_TITLES = {"hybrid": "Hybrid", "semantic": "Semantic saja", "keyphrase": "Keyphrase saja", "bm25": "BM25 saja"}
 COMPARE_MODES = ("bm25", "semantic", "keyphrase", "hybrid")
@@ -30,11 +37,13 @@ def esc(text: str) -> str:
 
 
 def chips(items: list[str]) -> str:
+    """Tampilkan daftar keyphrase sebagai `kode` dipisah koma."""
     return ", ".join(f"`{i.replace('`', '')}`" for i in items) if items else "-"
 
 
 @st.cache_resource(show_spinner="Memuat indeks dan model ...")
 def load_retriever(config_path: str) -> HybridRetriever:
+    """Muat indeks dan model SEKALI untuk semua sesi (di-cache oleh Streamlit)."""
     cfg = load_config(config_path)
     return HybridRetriever.load(cfg)
 
@@ -46,12 +55,14 @@ def model_lock() -> threading.Lock:
     return threading.Lock()
 
 
-def search(retriever: HybridRetriever, query: str, **kwargs):
+def search(retriever: HybridRetriever, query: str, **kwargs) -> SearchResult:
+    """Pencarian yang dijaga lock (lihat `model_lock`)."""
     with model_lock():
         return retriever.search(query, **kwargs)
 
 
-def render_hit(hit, show_bm25: bool) -> None:
+def render_hit(hit: Hit, show_bm25: bool) -> None:
+    """Satu kartu hasil: judul, skor tiap jalur, cuplikan, keyphrase dokumen, dan keyphrase yang cocok."""
     with st.container(border=True):
         st.markdown(f"**{hit.rank}. {esc(hit.title or hit.doc_id)}**  \nID: `{hit.doc_id.replace('`', '')}`")
         bm = f" | bm25 {hit.bm25_score:.4f}" if show_bm25 else ""   # BM25 hanya dihitung di mode bm25
@@ -63,6 +74,7 @@ def render_hit(hit, show_bm25: bool) -> None:
 
 
 def main() -> None:
+    """Susun halaman: sidebar pengaturan, tab Pencarian, dan tab Bandingkan mode."""
     st.set_page_config(page_title="Hybrid Semantic-Keyphrase Retrieval", layout="wide")
     st.title("Hybrid Semantic-Keyphrase Retrieval")
     st.caption("Pencarian dokumen akademik: embedding (semantik) + keyphrase dengan bobot alpha yang bisa diatur. "

@@ -1,4 +1,11 @@
-"""Pengunduh dataset BEIR yang aman.
+"""Pengunduh dataset BEIR yang aman (perintah `hybrid-ir download`).
+
+Peran di pipeline (Gambar 1)
+    Persiapan sebelum Fase 1: mengisi `data/<nama>/` yang menjadi kotak "Korpus dokumen" dan "Data uji BEIR".
+    Tidak ikut dijalankan saat build/search/evaluate.
+
+Masukan  : nama dataset pada daftar putih (scifact, nfcorpus, scidocs).
+Keluaran : folder `data/<nama>/` berisi corpus.jsonl, queries.jsonl, dan qrels/.
 
 Pengamanan yang diterapkan:
   * Hanya dataset pada daftar putih (allowlist) dan hanya satu host resmi (HTTPS).
@@ -35,10 +42,11 @@ MAX_ZIP_ENTRIES = 200
 
 
 class DownloadError(RuntimeError):
-    pass
+    """Unduhan atau ekstraksi gagal, atau melanggar batas keamanan."""
 
 
 def verify_md5(path: Path, expected: str) -> None:
+    """Hentikan proses bila MD5 berkas berbeda dari nilai resmi BEIR."""
     h = hashlib.md5()  # noqa: S324 - pemeriksaan keutuhan terhadap nilai terbitan BEIR
     with path.open("rb") as fh:
         for chunk in iter(lambda: fh.read(1 << 20), b""):

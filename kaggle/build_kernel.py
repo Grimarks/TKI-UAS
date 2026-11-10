@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 """Susun folder siap-push untuk `kaggle kernels push` (dijalankan LOKAL; tidak memanggil jaringan).
 
+Peran di pipeline: alat bantu Fase 1 — Jalur B. Membungkus `generate_keyphrases.py` (BART-KPG)
+supaya bisa dijalankan di Kaggle 2×T4. Satu-satunya job adalah `generate`; job `train` (fine-tune
+encoder, desain lama) sudah diarsipkan ke `kaggle/_arsip/`.
+
 Kaggle "script kernel" tidak bisa menerima argumen baris perintah, jadi kita menyisipkan
 `sys.argv` di bagian atas salinan skrip. Contoh:
 
@@ -23,7 +27,7 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-JOBS = {"generate": "generate_keyphrases.py", "train": "train_encoder.py"}
+JOBS = {"generate": "generate_keyphrases.py"}
 SLUG = re.compile(r"^[a-z0-9][a-z0-9-]{2,49}$")
 USER = re.compile(r"^[a-z0-9][a-z0-9_-]{1,49}$")
 DATASET = re.compile(r"^[a-z0-9][a-z0-9_-]{1,49}/[a-z0-9][a-z0-9_-]{2,49}$")
@@ -31,6 +35,10 @@ DATASET = re.compile(r"^[a-z0-9][a-z0-9_-]{1,49}/[a-z0-9][a-z0-9_-]{2,49}$")
 
 def build(job: str, username: str, slug: str, dataset_sources: list[str], internet: bool,
           script_args: list[str], out_root: Path) -> Path:
+    """Tulis `<out_root>/<slug>/script.py` dan `kernel-metadata.json`; kembalikan folder tersebut.
+
+    Masukan divalidasi dengan regex ketat supaya nama yang aneh (mis. berisi '/') tidak lolos ke metadata.
+    """
     if job not in JOBS:
         raise ValueError(f"job tidak dikenal: {job}")
     if not USER.match(username):
@@ -76,6 +84,7 @@ def build(job: str, username: str, slug: str, dataset_sources: list[str], intern
 
 
 def main(argv: list[str] | None = None) -> int:
+    """Titik masuk CLI. Argumen setelah `--` diteruskan apa adanya ke skrip job."""
     argv = list(sys.argv[1:] if argv is None else argv)
     script_args: list[str] = []
     if "--" in argv:

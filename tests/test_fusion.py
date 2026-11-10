@@ -53,13 +53,13 @@ def test_unknown_mode():
     with pytest.raises(ValueError):
         rank_documents(np.zeros(2), np.zeros(2), "x", 0.5, 5, 2)
     with pytest.raises(ValueError, match="tidak dikenal"):
-        rank_documents(np.zeros(2), np.zeros(2), "hybrid_bm25", 0.5, 5, 2, bm=np.zeros(2))
+        rank_documents(np.zeros(2), np.zeros(2), "hybrid_bm25", 0.5, 5, 2, bm25=np.zeros(2))
 
 
 def test_bm25_mode_ranks_only_bm25_matches():
     sem = np.array([0.9, 0.5, 0.1])
     bm = np.array([0.0, 2.0, 5.0])
-    idx, vals = rank_documents(sem, np.zeros(3), "bm25", 0.5, 10, 5, bm=bm)
+    idx, vals = rank_documents(sem, np.zeros(3), "bm25", 0.5, 10, 5, bm25=bm)
     assert list(idx) == [2, 1] and list(vals) == [5.0, 2.0]
     with pytest.raises(ValueError, match="BM25"):
         rank_documents(sem, np.zeros(3), "bm25", 0.5, 10, 5)
@@ -69,7 +69,7 @@ def test_hybrid_mode_ignores_bm25():
     rng = np.random.default_rng(0)
     sem, kp, bm = rng.random(30), rng.random(30), rng.random(30)
     a = rank_documents(sem, kp, "hybrid", 0.6, 10, 10)
-    b = rank_documents(sem, kp, "hybrid", 0.6, 10, 10, bm=bm)
+    b = rank_documents(sem, kp, "hybrid", 0.6, 10, 10, bm25=bm)
     assert np.array_equal(a[0], b[0]) and np.array_equal(a[1], b[1])
 
 

@@ -73,8 +73,8 @@ dilaporkan di query uji (test) yang tidak pernah dipakai untuk memilih α. Ini s
 | Keyphrase saja | 0,4078 | 0,2321 |
 | **Hybrid (semantik + keyphrase), α = 0,9** | **0,6671** | **0,3219** |
 
-Eksperimen terpisah (bukan bagian pipeline): fine-tune encoder dengan data KP20k di Kaggle **tidak** meningkatkan
-hasil (SciFact semantik 0,6497 → 0,6506, tidak signifikan), jadi tidak dipakai.
+Eksperimen dari desain lama (YAKE, RRF, fine-tune encoder) tidak termasuk desain final; hasilnya diarsipkan di
+`results/_arsip/`.
 
 ## 8. Kesimpulan (apa adanya)
 
@@ -106,7 +106,7 @@ Tab "Bandingkan mode" menampilkan hasil keempat mode berdampingan.
 |---|---|
 | `src/hybrid_ir/` | kode utama (encoder, keyphrase, index, fusi, evaluasi, CLI, UI) |
 | `configs/` | pengaturan per dataset (`scifact_bart.yaml`, `nfcorpus_bart.yaml`, `demo.yaml`); `_arsip/` = desain lama |
-| `kaggle/` | skrip GPU: generate keyphrase BART (pipeline) dan fine-tune encoder (eksperimen, bukan pipeline) |
+| `kaggle/` | skrip GPU: generate keyphrase BART-KPG (pipeline); `_arsip/` = skrip desain lama |
 | `artifacts/` | keyphrase BART hasil Kaggle |
 | `indexes/` | index hasil `build` |
 | `results/` | hasil evaluasi (`metrics.md`, `metrics.json`, skor per query) |

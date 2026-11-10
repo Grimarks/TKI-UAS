@@ -1,4 +1,7 @@
-"""Tes skrip Kaggle tanpa GPU/jaringan: paritas kontrak, shard/merge/resume, pasangan data, pembuat kernel."""
+"""Tes skrip Kaggle tanpa GPU/jaringan: paritas kontrak, shard/merge/resume, pembuat kernel.
+
+Tes untuk skrip fine-tune (desain lama) diarsipkan bersama skripnya di kaggle/_arsip/.
+"""
 import importlib.util
 import json
 import py_compile
@@ -22,11 +25,6 @@ def _load(root, name):
 @pytest.fixture(scope="module")
 def gen(root):
     return _load(root, "generate_keyphrases")
-
-
-@pytest.fixture(scope="module")
-def train(root):
-    return _load(root, "train_encoder")
 
 
 @pytest.fixture(scope="module")
@@ -55,7 +53,7 @@ def test_contract_parse_and_weights(gen, raw):
 
 
 def test_all_scripts_compile(root, tmp_path):
-    for f in ("generate_keyphrases.py", "train_encoder.py", "build_kernel.py"):
+    for f in ("generate_keyphrases.py", "build_kernel.py"):
         py_compile.compile(str(root / "kaggle" / f), cfile=str(tmp_path / (f + "c")), doraise=True)
 
 
@@ -106,33 +104,6 @@ def test_output_is_readable_by_precomputed_backend(gen, tmp_path):
     gen.run_worker([{"key": key, "title": item.title, "body": item.body}], lambda s: ["foo bar; baz"], tmp_path / "p.jsonl", 4, 5, log=lambda m: None)
     got = PrecomputedKeyphrases([tmp_path / "p.jsonl"]).extract([item], 5)
     assert [k for k, _ in got[0]] == ["foo bar", "baz"]
-
-
-def test_kp20k_pairs_modes_and_filters(train):
-    recs = [{"title": f"A long enough title {i}", "abstract": "word " * 60, "keyphrases": ["kp a", "kp b"]} for i in range(10)]
-    recs.append({"title": "short", "abstract": "tiny", "keyphrases": []})
-    assert len(train.kp20k_pairs(recs, "kp20k_title", 100, 1)) == 10
-    assert len(train.kp20k_pairs(recs, "kp20k_mixed", 100, 1)) == 20
-    kp = train.kp20k_pairs(recs, "kp20k_keyphrase", 100, 1)
-    assert all(a == "kp a; kp b" and p.startswith("A long enough title") for a, p in kp)
-    assert len(train.kp20k_pairs(recs, "kp20k_mixed", 5, 1)) == 5
-    assert train.kp20k_pairs(recs, "kp20k_mixed", 100, 7) == train.kp20k_pairs(recs, "kp20k_mixed", 100, 7)
-
-
-def test_json_reader_array_and_lines(train, tmp_path):
-    (tmp_path / "a.json").write_text(json.dumps([{"x": 1}, {"x": 2}]))
-    (tmp_path / "b.jsonl").write_text('{"x": 1}\n\n{"x": 2}\n')
-    assert list(train.iter_json_records(tmp_path / "a.json")) == list(train.iter_json_records(tmp_path / "b.jsonl"))
-
-
-def test_beir_train_pairs(train, tmp_path, root):
-    d = tmp_path / "ds"
-    (d / "qrels").mkdir(parents=True)
-    for f in ("corpus.jsonl", "queries.jsonl"):
-        (d / f).write_text((root / "data" / "demo" / f).read_text())
-    (d / "qrels" / "train.tsv").write_text((root / "data" / "demo" / "qrels" / "test.tsv").read_text())
-    pairs = train.beir_train_pairs(d, "train", 1000, 1)
-    assert len(pairs) == 24 and all(isinstance(a, str) and isinstance(p, str) for a, p in pairs)
 
 
 def test_build_kernel_output(build_kernel, tmp_path):
@@ -201,16 +172,14 @@ def test_precomputed_docs_are_strict(demo_cfg, demo_dataset, tmp_path):
         HybridRetriever.build(demo_cfg, demo_dataset.documents)
 
 
-def test_resolve_data_dir(gen, train, tmp_path):
-    for mod in (gen, train):
-        base = tmp_path / mod.__name__
-        direct = base / "direct"
-        direct.mkdir(parents=True)
-        (direct / "corpus.jsonl").write_text("{}")
-        assert mod.resolve_data_dir(direct) == direct
-        nested = base / "input" / "datasets" / "alice" / "hybrid-ir-scifact"
-        nested.mkdir(parents=True)
-        (nested / "corpus.jsonl").write_text("{}")
-        assert mod.resolve_data_dir("/kaggle/input/hybrid-ir-scifact", search_root=base / "input") == nested
-        with pytest.raises(SystemExit):
-            mod.resolve_data_dir("/nope", search_root=base / "kosong")
+def test_resolve_data_dir(gen, tmp_path):
+    direct = tmp_path / "direct"
+    direct.mkdir(parents=True)
+    (direct / "corpus.jsonl").write_text("{}")
+    assert gen.resolve_data_dir(direct) == direct
+    nested = tmp_path / "input" / "datasets" / "alice" / "hybrid-ir-scifact"
+    nested.mkdir(parents=True)
+    (nested / "corpus.jsonl").write_text("{}")
+    assert gen.resolve_data_dir("/kaggle/input/hybrid-ir-scifact", search_root=tmp_path / "input") == nested
+    with pytest.raises(SystemExit):
+        gen.resolve_data_dir("/nope", search_root=tmp_path / "kosong")

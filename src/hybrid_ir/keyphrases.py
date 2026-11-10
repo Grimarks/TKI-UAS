@@ -1,12 +1,21 @@
-"""Ekstraksi dan generasi keyphrase.
+"""Pembangkitan keyphrase dengan BART-KPG, langsung (seq2seq) atau dari hasil Kaggle (precomputed).
 
-Setiap extractor menerima daftar TextItem (judul + isi) dan mengembalikan, untuk tiap item,
-daftar (keyphrase, bobot) dengan bobot di (0, 1]; bobot lebih besar = lebih penting.
+Peran di pipeline (Gambar 1)
+    Fase 1 — Jalur B: "B. Keyphrase + bobot (BART-KPG)" untuk tiap dokumen (paling banyak 10 frasa).
+    Fase 2 — Jalur B: "B. Keyphrase query" dengan metode yang sama (paling banyak 8 frasa).
+
+Masukan  : daftar `TextItem` (judul + isi; query hanya punya judul).
+Keluaran : untuk tiap item, daftar (keyphrase, bobot) dengan bobot di (0, 1]; lebih besar = lebih penting.
+
+Rumus
+    Bobot menurut urutan keluaran generator (i dihitung dari 0):  b_i = 1 / (1 + 0.25·i).
+    Bobot ini menjadi b_{d,u} pada persamaan (3) di `indexes.KeyphraseIndex`.
 
 Dua metode (keduanya dari generator BART-KPG yang sama):
-  seq2seq     : generatif (mis. BART-KPG). Bisa menghasilkan keyphrase yang TIDAK muncul di teks
-                ("absent keyphrase"). Berat; di CPU lambat, sebaiknya dijalankan di GPU.
-  precomputed : membaca hasil generasi yang sudah dihitung (mis. di Kaggle) dari berkas JSONL.
+  seq2seq     : generatif. Bisa menghasilkan keyphrase yang TIDAK muncul di teks ("absent keyphrase").
+                Berat; di CPU lambat, sebaiknya dijalankan di GPU.
+  precomputed : membaca hasil generasi yang sudah dihitung di Kaggle (artifacts/keyphrases_*.jsonl).
+                Konfigurasi final memakai ini, ditambah fallback seq2seq untuk query bebas di UI/CLI.
 """
 from __future__ import annotations
 
@@ -15,7 +24,7 @@ import logging
 import math
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Protocol, Sequence
+from typing import Callable, Protocol, Sequence
 
 from .config import KeyphraseConfig
 from .encoders import resolve_device
@@ -36,19 +45,29 @@ class MissingPrecomputed(KeyError):
 
 @dataclass(frozen=True)
 class TextItem:
+    """Teks yang akan dibangkitkan keyphrase-nya: judul + isi (query: hanya `title`)."""
+
     title: str
     body: str = ""
 
     @property
     def full(self) -> str:
+        """Teks gabungan; SHA-1-nya menjadi kunci cache precomputed."""
         return make_full_text(self.title, self.body)
 
 
 class KeyphraseExtractor(Protocol):
+    """Antarmuka bersama semua sumber keyphrase."""
+
     name: str
 
-    def extract(self, items: Sequence[TextItem], top_n: int) -> list[list[Keyphrase]]: ...
-    def fingerprint(self) -> dict: ...
+    def extract(self, items: Sequence[TextItem], top_n: int) -> list[list[Keyphrase]]:
+        """Paling banyak `top_n` (keyphrase, bobot) per item, urutan sama dengan `items`."""
+        ...
+
+    def fingerprint(self) -> dict:
+        """Identitas sumber keyphrase untuk meta.json."""
+        ...
 
 
 # --------------------------------------------------------------------------------------
@@ -117,6 +136,7 @@ class Seq2SeqKeyphraseGenerator:
         self.commit_hash = getattr(self.model.config, "_commit_hash", None)
 
     def extract(self, items: Sequence[TextItem], top_n: int) -> list[list[Keyphrase]]:
+        """Bangkitkan keyphrase per batch dengan beam search; urutan keluaran sama dengan `items`."""
         n = len(items)
         out: list[list[Keyphrase]] = [[] for _ in range(n)]
         order = sorted(range(n), key=lambda i: -len(items[i].full))   # panjang dulu: kurangi padding
@@ -134,6 +154,7 @@ class Seq2SeqKeyphraseGenerator:
         return out
 
     def fingerprint(self) -> dict:
+        """Identitas generator (model, revisi, beam, top_n) untuk meta.json indeks."""
         c = self.cfg
         return {"method": "seq2seq", "model": c.model_name_or_path, "revision": c.revision,
                 "commit": self.commit_hash, "num_beams": c.num_beams, "top_n": c.top_n}
@@ -142,6 +163,35 @@ class Seq2SeqKeyphraseGenerator:
 # --------------------------------------------------------------------------------------
 # Precomputed (hasil Kaggle)
 # --------------------------------------------------------------------------------------
+def _parse_precomputed_line(line: str, where: str) -> tuple[str, list[Keyphrase]]:
+    """Validasi satu baris JSONL precomputed: kunci SHA-1 40 heks, bobot positif dan berhingga."""
+    try:
+        obj = json.loads(line)
+        key = obj["key"]
+        kps = [(str(k), float(w)) for k, w in obj["keyphrases"]]
+    except (json.JSONDecodeError, KeyError, TypeError, ValueError) as exc:
+        raise ValueError(f"{where}: format tidak valid") from exc
+    if not (isinstance(key, str) and len(key) == 40):
+        raise ValueError(f"{where}: 'key' harus SHA-1 (40 heks)")
+    if any(not math.isfinite(w) or w <= 0 for _, w in kps):
+        raise ValueError(f"{where}: bobot harus bilangan positif")
+    return key, kps
+
+
+def _read_precomputed_file(path: Path) -> dict[str, list[Keyphrase]]:
+    """Baca satu berkas keyphrase hasil Kaggle menjadi {sha1 teks: [(frasa, bobot), ...]}."""
+    if not path.is_file():
+        raise FileNotFoundError(f"berkas keyphrase precomputed tidak ditemukan: {path}")
+    table: dict[str, list[Keyphrase]] = {}
+    with path.open("r", encoding="utf-8") as fh:
+        for lineno, line in enumerate(fh, 1):
+            line = line.strip()
+            if line:
+                key, kps = _parse_precomputed_line(line, f"{path.name} baris {lineno}")
+                table[key] = kps
+    return table
+
+
 class PrecomputedKeyphrases:
     """Membaca JSONL: {"key": <sha1 teks>, "keyphrases": [["frasa", bobot], ...]} per baris."""
 
@@ -151,31 +201,14 @@ class PrecomputedKeyphrases:
         self.paths = [str(p) for p in paths]
         self.table: dict[str, list[Keyphrase]] = {}
         for p in paths:
-            path = Path(p)
-            if not path.is_file():
-                raise FileNotFoundError(f"berkas keyphrase precomputed tidak ditemukan: {path}")
-            with path.open("r", encoding="utf-8") as fh:
-                for lineno, line in enumerate(fh, 1):
-                    line = line.strip()
-                    if not line:
-                        continue
-                    try:
-                        obj = json.loads(line)
-                        key = obj["key"]
-                        kps = [(str(k), float(w)) for k, w in obj["keyphrases"]]
-                    except (json.JSONDecodeError, KeyError, TypeError, ValueError) as exc:
-                        raise ValueError(f"{path.name} baris {lineno}: format tidak valid") from exc
-                    if not (isinstance(key, str) and len(key) == 40):
-                        raise ValueError(f"{path.name} baris {lineno}: 'key' harus SHA-1 (40 heks)")
-                    if any(not math.isfinite(w) or w <= 0 for _, w in kps):
-                        raise ValueError(f"{path.name} baris {lineno}: bobot harus bilangan positif")
-                    self.table[key] = kps
+            self.table.update(_read_precomputed_file(Path(p)))
 
     def lookup(self, item: TextItem) -> list[Keyphrase] | None:
         """Keyphrase tersimpan untuk teks ini, atau None bila tidak ada."""
         return self.table.get(text_fingerprint(item.full))
 
     def extract(self, items: Sequence[TextItem], top_n: int) -> list[list[Keyphrase]]:
+        """Ambil keyphrase tersimpan; bila ada teks yang tidak ditemukan, hentikan dengan `MissingPrecomputed`."""
         out: list[list[Keyphrase]] = []
         missing = 0
         for item in items:
@@ -194,6 +227,7 @@ class PrecomputedKeyphrases:
         return out
 
     def fingerprint(self) -> dict:
+        """Identitas sumber precomputed (jumlah entri)."""
         return {"method": "precomputed", "entries": len(self.table)}
 
 
@@ -205,12 +239,13 @@ class FallbackExtractor:
 
     name = "precomputed+fallback"
 
-    def __init__(self, primary: PrecomputedKeyphrases, make_fallback) -> None:
+    def __init__(self, primary: PrecomputedKeyphrases, make_fallback: Callable[[], KeyphraseExtractor]) -> None:
         self.primary = primary
         self._make_fallback = make_fallback
         self._fallback: KeyphraseExtractor | None = None
 
     def extract(self, items: Sequence[TextItem], top_n: int) -> list[list[Keyphrase]]:
+        """Precomputed lebih dulu; sisanya dibangkitkan oleh extractor cadangan (BART lokal)."""
         out: list[list[Keyphrase] | None] = [None] * len(items)
         missing: list[int] = []
         for i, item in enumerate(items):
@@ -227,6 +262,7 @@ class FallbackExtractor:
         return [o or [] for o in out]
 
     def fingerprint(self) -> dict:
+        """Identitas extractor gabungan."""
         return {"method": "precomputed+fallback", "primary": self.primary.fingerprint()}
 
 

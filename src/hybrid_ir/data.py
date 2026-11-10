@@ -1,12 +1,16 @@
-"""Pemuat dataset format BEIR.
+"""Pemuat dataset format BEIR (korpus, query, qrels) dan pembagian query tuning/evaluasi.
 
-Struktur folder yang diharapkan:
+Peran di pipeline (Gambar 1)
+    Fase 1 — kotak "Korpus dokumen" (judul + abstrak SciFact/NFCorpus).
+    Fase 3 — kotak "Data uji BEIR" (query + qrels) dan pemilihan query untuk "Tuning α".
 
+Masukan  : folder BEIR:
     <folder>/corpus.jsonl      {"_id": "...", "title": "...", "text": "..."}   satu objek per baris
     <folder>/queries.jsonl     {"_id": "...", "text": "..."}
     <folder>/qrels/<split>.tsv kolom: query-id <TAB> corpus-id <TAB> score   (baris pertama = header)
+Keluaran : objek `Dataset` (dokumen, query, qrels per split).
 
-Format ini dipakai SciFact, NFCorpus, SCIDOCS (BEIR), dan juga mudah dibuat untuk korpus sendiri
+Format ini dipakai SciFact, NFCorpus, dan SCIDOCS (BEIR), dan juga mudah dibuat untuk korpus sendiri
 (misalnya korpus berbahasa Indonesia).
 """
 from __future__ import annotations
@@ -27,17 +31,22 @@ class DataError(ValueError):
 
 @dataclass(frozen=True)
 class Document:
+    """Satu dokumen korpus. `full_text` = 'judul. abstrak', teks yang diindeks oleh semua jalur."""
+
     id: str
     title: str
     text: str
 
     @property
     def full_text(self) -> str:
+        """Judul dan abstrak digabung dengan aturan `text.make_full_text`."""
         return make_full_text(self.title, self.text)
 
 
 @dataclass
 class Dataset:
+    """Satu koleksi BEIR yang sudah dimuat ke memori."""
+
     name: str
     documents: list[Document]
     queries: dict[str, str]                       # qid -> teks query
@@ -45,12 +54,14 @@ class Dataset:
     splits: list[str] = field(default_factory=list)
 
     def qrels_for(self, split: str) -> dict[str, dict[str, int]]:
+        """Penilaian relevansi untuk satu split: qid -> {doc_id: tingkat relevansi}."""
         if split not in self.qrels:
             raise DataError(f"split qrels '{split}' tidak ada. Split yang tersedia: {sorted(self.qrels)}")
         return self.qrels[split]
 
 
 def iter_jsonl(path: Path) -> Iterator[dict]:
+    """Baca berkas JSONL baris demi baris; baris kosong dilewati, baris rusak menjadi `DataError`."""
     with path.open("r", encoding="utf-8") as fh:
         for lineno, line in enumerate(fh, 1):
             line = line.strip()
@@ -66,6 +77,7 @@ def iter_jsonl(path: Path) -> Iterator[dict]:
 
 
 def load_corpus(path: Path, max_docs: int | None = None) -> list[Document]:
+    """Muat corpus.jsonl; _id ganda ditolak dan dokumen tanpa judul maupun isi dilewati."""
     docs: list[Document] = []
     seen: set[str] = set()
     for obj in iter_jsonl(path):
@@ -88,6 +100,7 @@ def load_corpus(path: Path, max_docs: int | None = None) -> list[Document]:
 
 
 def load_queries(path: Path) -> dict[str, str]:
+    """Muat queries.jsonl menjadi qid -> teks query ternormalisasi."""
     queries: dict[str, str] = {}
     for obj in iter_jsonl(path):
         if "_id" not in obj or "text" not in obj:
@@ -101,6 +114,7 @@ def load_queries(path: Path) -> dict[str, str]:
 
 
 def load_qrels_file(path: Path) -> dict[str, dict[str, int]]:
+    """Muat satu berkas qrels TSV; baris header dilewati."""
     qrels: dict[str, dict[str, int]] = {}
     with path.open("r", encoding="utf-8", newline="") as fh:
         for row in csv.reader(fh, delimiter="\t"):
@@ -118,6 +132,7 @@ def load_qrels_file(path: Path) -> dict[str, dict[str, int]]:
 
 
 def load_beir_dir(path: str | Path, max_docs: int | None = None) -> Dataset:
+    """Muat satu folder BEIR lengkap; nama dataset = nama folder (mis. 'scifact')."""
     root = Path(path)
     if not root.is_dir():
         raise DataError(

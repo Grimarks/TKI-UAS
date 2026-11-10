@@ -1,5 +1,12 @@
-"""Antarmuka baris perintah.
+"""Antarmuka baris perintah: lapisan tipis yang memanggil HybridRetriever dan evaluation.
 
+Peran di pipeline (Gambar 1): titik masuk ketiga fase.
+    build    → Fase 1 (indexing dokumen, offline)
+    search   → Fase 2 (query & retrieval, online); hasilnya = kotak "Ranking top-k" di CLI
+    ui       → Fase 2 lewat antarmuka Streamlit (ui_app.py)
+    evaluate → Fase 3 (evaluasi), menulis results/<dataset>/
+
+Contoh:
     hybrid-ir download scifact
     hybrid-ir build    --config configs/scifact_bart.yaml
     hybrid-ir search   --config configs/scifact_bart.yaml "query saya"
@@ -28,6 +35,7 @@ USER_ERRORS = (ConfigError, DataError, DownloadError, IndexMismatchError, QueryE
 
 
 def _parser() -> argparse.ArgumentParser:
+    """Definisi subperintah dan argumennya (nama perintah dan opsi tidak boleh diubah: dipakai README/modul)."""
     p = argparse.ArgumentParser(prog="hybrid-ir", description="Hybrid Semantic-Keyphrase Retrieval")
     p.add_argument("-v", "--verbose", action="store_true", help="tampilkan log rinci")
     sub = p.add_subparsers(dest="command", required=True)
@@ -59,23 +67,26 @@ def _parser() -> argparse.ArgumentParser:
 
 
 def _print_result(res: SearchResult) -> None:
+    """Cetak hasil dalam bentuk teks. Skor BM25 hanya ditampilkan di mode bm25 (mode lain tidak menghitungnya)."""
     kps = ", ".join(f"{k} ({w:.2f})" for k, w in res.query_keyphrases) or "-"
     print(f"Query     : {res.query}\nMode      : {res.mode}\nKeyphrase : {kps}\n")
     for h in res.hits:
         print(f"{h.rank:>2}. [{h.doc_id}] {h.title}")
-        print(f"    skor={h.score:.4f}  semantik={h.semantic_score:.4f}  keyphrase={h.keyphrase_score:.4f}"
-              f"  bm25={h.bm25_score:.4f}")
+        bm25 = f"  bm25={h.bm25_score:.4f}" if res.mode == "bm25" else ""
+        print(f"    skor={h.score:.4f}  semantik={h.semantic_score:.4f}  keyphrase={h.keyphrase_score:.4f}{bm25}")
         if h.matched_keyphrases:
             print(f"    cocok: {', '.join(h.matched_keyphrases)}")
 
 
-def _cmd_download(args) -> int:
+def _cmd_download(args: argparse.Namespace) -> int:
+    """`hybrid-ir download <nama>`: unduh dataset BEIR ke data/<nama>/."""
     path = download_beir(args.name, args.dest)
     print(f"Dataset siap di: {path}")
     return 0
 
 
-def _cmd_build(args) -> int:
+def _cmd_build(args: argparse.Namespace) -> int:
+    """Fase 1: muat korpus, bangun kedua indeks, simpan ke `index.dir`."""
     cfg = load_config(args.config)
     dataset = load_beir_dir(cfg.data.path, cfg.data.max_docs)
     retriever = HybridRetriever.build(cfg, dataset.documents)
@@ -84,7 +95,8 @@ def _cmd_build(args) -> int:
     return 0
 
 
-def _cmd_search(args) -> int:
+def _cmd_search(args: argparse.Namespace) -> int:
+    """Fase 2: muat indeks lalu cari satu query (opsi --mode/--alpha/--top-k menimpa konfigurasi)."""
     cfg = load_config(args.config)
     retriever = HybridRetriever.load(cfg)
     res = retriever.search(args.query, mode=args.mode, alpha=args.alpha, top_k=args.top_k)
@@ -96,7 +108,8 @@ def _cmd_search(args) -> int:
     return 0
 
 
-def _cmd_evaluate(args) -> int:
+def _cmd_evaluate(args: argparse.Namespace) -> int:
+    """Fase 3: jalankan empat skenario, tala alpha, tulis metrics.json/.md dan per_query_ndcg10.csv."""
     cfg = load_config(args.config)
     dataset = load_beir_dir(cfg.data.path, cfg.data.max_docs)
     retriever = HybridRetriever.load(cfg)
@@ -109,7 +122,8 @@ def _cmd_evaluate(args) -> int:
     return 0
 
 
-def _cmd_ui(args) -> int:
+def _cmd_ui(args: argparse.Namespace) -> int:
+    """Fase 2 lewat UI: jalankan Streamlit hanya di 127.0.0.1, konfigurasi diteruskan lewat env HYBRID_IR_CONFIG."""
     load_config(args.config)  # validasi dini
     try:
         import streamlit  # noqa: F401
@@ -128,7 +142,8 @@ def _cmd_ui(args) -> int:
     return subprocess.call(cmd, env=env)
 
 
-def _cmd_demo(_args) -> int:
+def _cmd_demo(_args: argparse.Namespace) -> int:
+    """Demo offline: data mini + encoder hashing (bukan model semantik), tanpa unduhan."""
     root = Path(__file__).resolve().parents[2]
     cfg_path = root / "configs" / "demo.yaml"
     cfg: AppConfig = load_config(cfg_path if cfg_path.is_file() else "configs/demo.yaml")
@@ -143,8 +158,13 @@ def _cmd_demo(_args) -> int:
 
 
 def main(argv: list[str] | None = None) -> int:
+    """Titik masuk `hybrid-ir`. Galat pengguna dicetak rapi dengan kode keluar 2 (tanpa traceback)."""
     args = _parser().parse_args(argv)
     logging.basicConfig(level=logging.DEBUG if args.verbose else logging.INFO, format="%(levelname)s %(message)s")
+    if not args.verbose:
+        # log tiap permintaan HTTP ke Hugging Face hanya mengganggu keluaran (mis. saat demo); tampil dengan -v
+        for noisy in ("httpx", "httpcore", "huggingface_hub", "urllib3"):
+            logging.getLogger(noisy).setLevel(logging.WARNING)
     handlers = {"download": _cmd_download, "build": _cmd_build, "search": _cmd_search,
                 "evaluate": _cmd_evaluate, "ui": _cmd_ui, "demo": _cmd_demo}
     try:

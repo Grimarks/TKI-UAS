@@ -33,7 +33,7 @@ keyphrase:
 
 retrieval:
   mode: hybrid
-  alpha: 0.6
+  alpha: 0.9               # alpha hasil penalaan di split tune (results/nfcorpus_bart/metrics.json: alpha_selected); dipakai search/ui. evaluate menala sendiri.
   candidate_k: 100
   top_k: 10
 

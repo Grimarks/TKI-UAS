@@ -1,9 +1,9 @@
 # Hybrid Semantic-Keyphrase Retrieval
 
 Sistem pencarian dokumen akademik yang menggabungkan **embedding (semantik)** dan **keyphrase generatif (BART-KPG)**,
-dengan **BM25** sebagai pembanding (baseline). Mengikuti diagram draw.io
-`../Pipeline_Hybrid_Semantic_Keyphrase_Retrieval_V2.xml`: indexing (offline) → query & retrieval (online) → evaluasi.
-Penjelasan sederhana untuk pembaca awam: `docs/PENJELASAN_PROYEK.md`.
+dengan **BM25** sebagai pembanding (baseline). Mengikuti Gambar 1 laporan (diagram draw.io
+`../../Sumber/Referensi_UTS/Pipeline_V2_laporan.drawio`): indexing (offline) → query & retrieval (online) → evaluasi.
+Penjelasan sederhana untuk pembaca awam: `docs/PENJELASAN_PROYEK.md`. Kotak diagram → kode: `docs/PETA_KODE.md`.
 
 ## Pipeline
 
@@ -26,10 +26,11 @@ Rujukan: **A1** = Sharma & Kumar (2023), **A2** = Sarwar, Noor & Miah (2022). Pe
 configs/            demo.yaml (offline), scifact_bart.yaml, nfcorpus_bart.yaml; _arsip/ = konfigurasi desain lama
 data/               demo/ (korpus mini 24 dokumen, 8 query, keyphrases_demo.jsonl); scifact/, nfcorpus/ (BEIR)
 src/hybrid_ir/      paket Python (lihat docs/PETA_KODE.md)
-kaggle/             skrip GPU (generate keyphrase; fine-tune encoder = eksperimen, bukan pipeline) + pembuat kernel
+kaggle/             skrip GPU generate keyphrase BART-KPG + pembuat kernel; _arsip/ = skrip desain lama
 artifacts/          keyphrase BART hasil Kaggle (keyphrases_scifact.jsonl, keyphrases_nfcorpus.jsonl + manifest)
 indexes/, results/  index hasil `build` dan hasil `evaluate`; _arsip/ = hasil desain lama
-docs/               PENJELASAN_PROYEK.md (ringkasan sederhana), PETA_KODE.md
+docs/               PENJELASAN_PROYEK.md (ringkasan sederhana), PETA_KODE.md (kotak → kode)
+scripts/            peta_kode.py (membangkitkan tabel di PETA_KODE.md dari kode)
 tests/              156 tes otomatis (153 bila Streamlit belum terpasang; 3 tes UI dilewati)
 ```
 
@@ -90,7 +91,9 @@ yang sama (`query_fallback: seq2seq`).
 hybrid-ir search --config configs/scifact_bart.yaml "vitamin D receptor rickets" --mode hybrid --alpha 0.9
 ```
 
-Mode bawaan diatur di `retrieval.mode` pada YAML. Index BM25 tidak perlu `build` ulang: dibangun di memori saat
+Mode bawaan diatur di `retrieval.mode` pada YAML. `retrieval.alpha` di `configs/*_bart.yaml` sudah diisi 0.9, yaitu
+α hasil penalaan (`alpha_selected` di `results/*/metrics.json`), sehingga `search` dan `ui` langsung memakai Hybrid
+yang dilaporkan. `evaluate` tidak memakai nilai ini karena menala α sendiri pada split tune. Index BM25 tidak perlu `build` ulang: dibangun di memori saat
 pertama dipakai, dan hanya dihitung di mode `bm25`. Di UI, mode dan α diatur di sidebar; tab "Bandingkan mode"
 menampilkan keempat mode berdampingan.
 
@@ -141,8 +144,8 @@ Apache-2.0). Model ini **generatif**: bisa menghasilkan keyphrase yang tidak mun
 (2×T4), dan hasilnya dibaca lokal lewat `keyphrase.method: precomputed`. Lihat `kaggle/README.md`.
 
 - `kaggle/generate_keyphrases.py`: generate keyphrase dokumen + query, satu proses per GPU. **Bagian dari pipeline.**
-- `kaggle/train_encoder.py`: fine-tune encoder dengan DDP di 2 GPU. **Bukan bagian pipeline yang dilaporkan**; hanya
-  eksperimen terpisah (tidak meningkatkan nDCG@10: 0,6497 → 0,6506, tidak signifikan). Skripnya tetap disimpan.
+- `kaggle/_arsip/train_encoder.py`: ARSIP fine-tune encoder (desain lama, bukan bagian desain final; hasilnya di
+  `results/_arsip/scifact_ft/`).
 
 Pakai hasilnya: taruh berkas JSONL di `artifacts/keyphrases_<dataset>.jsonl`, lalu
 `hybrid-ir build --config configs/<dataset>_bart.yaml` dan `hybrid-ir evaluate ...`.
@@ -198,21 +201,22 @@ Hasil dari desain penelitian sebelumnya disimpan di `results/_arsip/` (tidak dil
   commit, notebook, atau log. Simpan di `~/.kaggle/` (macOS/Linux: `chmod 600`) atau environment variable sesi terminal.
   Bila token pernah bocor, cabut di pengaturan akun Kaggle dan buat baru.
 
-## 9. Pemetaan ke pipeline (diagram V2) dan artikel
+## 9. Pemetaan ke pipeline (Gambar 1) dan artikel
 
-| Kotak di diagram | Kode | Rujukan |
+Tabel rinci kotak → berkas → fungsi → baris ada di `docs/PETA_KODE.md`. Ringkasan beserta rujukannya:
+
+| Kotak di Gambar 1 | Kode | Rujukan |
 |---|---|---|
 | Pra-pemrosesan | `text.py` (`normalize_text`, `tokenize`, stemming) | A1, A2 |
-| Embedding encoder + Vector index | `encoders.py`, `indexes.DenseIndex` | [R] (A1/A2 memakai embedding kata; di sini embedding kalimat) |
-| Generasi keyphrase | `keyphrases.py` (seq2seq BART-KPG, precomputed) | A2 (keyphrase + bobot), [R] BART-KPG |
-| Keyphrase index (keyphrase + bobot) | `indexes.KeyphraseIndex` | A2 |
+| A. Encoder SBERT → Vector index | `encoders.py`, `indexes.DenseIndex` | [R] (A1/A2 memakai embedding kata; di sini embedding kalimat) |
+| B. Keyphrase + bobot (BART-KPG) | `kaggle/generate_keyphrases.py`, `keyphrases.py` (precomputed, seq2seq) | A2 (keyphrase + bobot), [R] BART-KPG |
+| Keyphrase index (bobot × IDF) | `indexes.KeyphraseIndex`, `indexes.unit_weights` | A2 |
 | Query diproses seperti dokumen | `retriever.score_matrices` | A1 (Bab 7), A2 |
-| Semantic retrieval / Keyphrase matching | `DenseIndex.scores`, `KeyphraseIndex.scores` (cosine, Jaccard) | A2 |
+| Skor semantik / Skor keyphrase | `DenseIndex.scores`, `KeyphraseIndex.scores` (cosine; Jaccard tersedia) | A2 |
 | Pembanding BM25 | `bm25.py`, `HybridRetriever.bm25` / `bm25_scores` | [R] |
-| Normalisasi skor & fusi | `fusion.py` (`minmax`, `candidate_set`, `fuse_weighted`) | terinspirasi Relwt (A1) |
+| Normalisasi + Fusi | `fusion.py` (`minmax`, `candidate_set`, `fuse_weighted`) | terinspirasi Relwt (A1) |
 | Ranking top-k | `fusion.rank_documents` → CLI `search`, `ui_app.py` | A2 |
-| Skenario, metrik, tuning alpha, analisis | `evaluation.py` | A1 (P@k, MAP), A2 (NDCG) |
-| Opsional: Kaggle GPU | `kaggle/` | [R] |
+| Skenario, Tuning α, Metrik, Analisis | `evaluation.py` | A1 (P@k, MAP), A2 (NDCG) |
 
 [R] = rancangan kelompok, bukan diambil dari artikel. Tidak ada klaim bahwa fusi atau encoder ini berasal dari A1/A2.
 

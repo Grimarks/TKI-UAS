@@ -1,8 +1,16 @@
-"""Utilitas teks: normalisasi, tokenisasi, stemming, dan sidik jari (fingerprint).
+"""Utilitas teks: normalisasi, tokenisasi, stemming, unit pencocokan keyphrase, dan sidik jari teks.
 
-Modul ini sengaja dibuat kecil dan tanpa efek samping supaya mudah dipahami dan diuji.
-Semua bagian lain (indeks keyphrase, BM25, cache keyphrase dari Kaggle) memakai
-fungsi di sini, sehingga hasilnya konsisten.
+Peran di pipeline (Gambar 1)
+    Fase 1 dan Fase 2 — kotak "Pra-pemrosesan" (sama untuk dokumen dan query).
+    Fase 1 — Jalur B: bagian "Keyphrase index" (`phrase_units` memecah keyphrase menjadi unit).
+    Pembanding BM25: kotak "Token + stemming" / "Token query" (`content_tokens`).
+
+Masukan  : teks mentah (judul, abstrak, query, atau satu keyphrase).
+Keluaran : teks ternormalisasi, daftar token, himpunan unit pencocokan, atau SHA-1 teks.
+
+Modul ini sengaja kecil dan tanpa efek samping supaya mudah dipahami dan diuji. Semua bagian lain
+(indeks keyphrase, BM25, cache keyphrase dari Kaggle) memakai fungsi di sini, sehingga
+pemrosesan dokumen dan query dijamin sama.
 """
 from __future__ import annotations
 
@@ -30,11 +38,12 @@ _EN_STOP = frozenset(
 _ID_STOP = frozenset(
     """yang dan di ke dari pada untuk dengan atau ini itu adalah ialah dalam oleh sebagai juga akan telah
     sudah belum tidak bukan saya kami kita mereka dia ia anda para sebuah suatu satu dua tiga karena
-    sehingga agar supaya jika bila apabila maka namun tetapi tetapi serta bahwa hanya dapat bisa lebih
+    sehingga agar supaya jika bila apabila maka namun tetapi serta bahwa hanya dapat bisa lebih
     sangat sering antara terhadap secara pun lah kah nya""".split()
 )
 
 
+# ------------------------------------------------------------------ Pra-pemrosesan (Fase 1 & 2)
 def normalize_text(text: str | None) -> str:
     """Normalisasi dasar: Unicode NFKC, buang karakter kontrol, ratakan spasi."""
     if not text:
@@ -63,7 +72,9 @@ def text_fingerprint(text: str) -> str:
     return hashlib.sha1(normalize_text(text).encode("utf-8")).hexdigest()
 
 
+# ------------------------------------------------------------------ token, stopword, stemming
 def get_stopwords(lang: str) -> frozenset[str]:
+    """Daftar stopword untuk bahasa `lang` ('id' = Indonesia; selain itu Inggris)."""
     return _ID_STOP if lang == "id" else _EN_STOP
 
 
@@ -84,6 +95,7 @@ def _stem_word(lang: str, word: str) -> str:
 
 
 def stem(word: str, lang: str) -> str:
+    """Stem Snowball satu kata ('networks' -> 'network'); `lang='none'` mengembalikan kata apa adanya."""
     return _stem_word(lang, word)
 
 
@@ -93,7 +105,10 @@ def tokenize(text: str) -> list[str]:
 
 
 def content_tokens(text: str, lang: str = "en", stemmed: bool = True) -> list[str]:
-    """Token bermakna: bukan stopword, mengandung huruf, panjang >= 2, (opsional) di-stem."""
+    """Token bermakna: bukan stopword, mengandung huruf, panjang >= 2, (opsional) di-stem.
+
+    Dipakai BM25 (pembanding) dan unit token keyphrase, sehingga keduanya memakai aturan yang sama.
+    """
     stop = get_stopwords(lang)
     out: list[str] = []
     for tok in tokenize(text):
@@ -103,6 +118,7 @@ def content_tokens(text: str, lang: str = "en", stemmed: bool = True) -> list[st
     return out
 
 
+# ------------------------------------------------------------------ unit pencocokan keyphrase (Jalur B)
 def normalize_phrase(phrase: str, lang: str = "en") -> str:
     """Bentuk kanonik sebuah frasa: huruf kecil, stopword di tepi dibuang, tiap kata di-stem.
 
@@ -118,11 +134,13 @@ def normalize_phrase(phrase: str, lang: str = "en") -> str:
 
 
 def phrase_units(phrase: str, lang: str, unit: str) -> set[str]:
-    """Unit pencocokan sebuah keyphrase.
+    """Unit pencocokan sebuah keyphrase (dasar dari u pada persamaan (2) dan (3)).
 
     unit='phrase' -> {'p:<frasa ternormalisasi>'}
     unit='token'  -> {'t:<kata>' ...} untuk tiap kata bermakna
-    unit='both'   -> gabungan keduanya
+    unit='both'   -> gabungan keduanya (konfigurasi final)
+
+    Contoh (unit='both'): 'heart attacks' -> {'p:heart attack', 't:heart', 't:attack'}.
     """
     units: set[str] = set()
     if unit in ("phrase", "both"):
@@ -133,4 +151,3 @@ def phrase_units(phrase: str, lang: str, unit: str) -> set[str]:
         for tok in content_tokens(phrase, lang):
             units.add("t:" + tok)
     return units
-
