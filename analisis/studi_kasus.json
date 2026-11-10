@@ -1,0 +1,1654 @@
+[
+  {
+    "dataset": "scifact",
+    "qid": "1185",
+    "jenis": "hybrid_menolong",
+    "query": "The US health care system can save up to $750 million if 7% of patients waiting for kidney transplants participate in the optimized national kidney paired donation program.",
+    "keyphrase_query": [
+      [
+        "kidney paired donation",
+        1.0
+      ],
+      [
+        "optimized national kidney transplantation program",
+        0.8
+      ]
+    ],
+    "n_relevan": 1,
+    "selisih_hybrid_semantic": 0.5,
+    "selisih_hybrid_bm25": 0.0,
+    "skenario": {
+      "bm25": {
+        "ndcg10": 1.0,
+        "peringkat_relevan_pertama": 1,
+        "top3": [
+          {
+            "doc_id": "16737210",
+            "judul": "Kidney paired donation and optimizing the use of live donor organs.",
+            "relevansi": 1
+          },
+          {
+            "doc_id": "21859699",
+            "judul": "Successful three-way kidney paired donation with cross-country live donor allograft transport.",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "41774099",
+            "judul": "Call to Develop a Standard Acquisition Charge Model for Kidney Paired Donation",
+            "relevansi": 0
+          }
+        ]
+      },
+      "semantic": {
+        "ndcg10": 0.5,
+        "peringkat_relevan_pertama": 3,
+        "top3": [
+          {
+            "doc_id": "21203899",
+            "judul": "Managing finances of shipping living donor kidneys for donor exchanges.",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "41774099",
+            "judul": "Call to Develop a Standard Acquisition Charge Model for Kidney Paired Donation",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "16737210",
+            "judul": "Kidney paired donation and optimizing the use of live donor organs.",
+            "relevansi": 1
+          }
+        ]
+      },
+      "keyphrase": {
+        "ndcg10": 0.63093,
+        "peringkat_relevan_pertama": 2,
+        "top3": [
+          {
+            "doc_id": "21859699",
+            "judul": "Successful three-way kidney paired donation with cross-country live donor allograft transport.",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "16737210",
+            "judul": "Kidney paired donation and optimizing the use of live donor organs.",
+            "relevansi": 1
+          },
+          {
+            "doc_id": "41774099",
+            "judul": "Call to Develop a Standard Acquisition Charge Model for Kidney Paired Donation",
+            "relevansi": 0
+          }
+        ]
+      },
+      "hybrid_weighted": {
+        "ndcg10": 1.0,
+        "peringkat_relevan_pertama": 1,
+        "top3": [
+          {
+            "doc_id": "16737210",
+            "judul": "Kidney paired donation and optimizing the use of live donor organs.",
+            "relevansi": 1
+          },
+          {
+            "doc_id": "21859699",
+            "judul": "Successful three-way kidney paired donation with cross-country live donor allograft transport.",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "41774099",
+            "judul": "Call to Develop a Standard Acquisition Charge Model for Kidney Paired Donation",
+            "relevansi": 0
+          }
+        ]
+      }
+    },
+    "dokumen_relevan_utama": {
+      "doc_id": "16737210",
+      "judul": "Kidney paired donation and optimizing the use of live donor organs.",
+      "relevansi": 1,
+      "keyphrase_dokumen": [
+        "kidney paired donation",
+        "optimization",
+        "matching algorithms",
+        "end-stage renal disease",
+        "renal transplantation"
+      ],
+      "s_sem": 0.5917586088180542,
+      "peringkat_sem_seluruh_korpus": 3,
+      "s_kp": 0.6674559712409973,
+      "s_bm25": 62.85043716430664,
+      "unit_keyphrase_bersama": [
+        "p:kidney pair donat",
+        "t:donat",
+        "t:kidney",
+        "t:optim",
+        "t:pair",
+        "t:transplant"
+      ],
+      "term_bm25_bersama": [
+        "care",
+        "donat",
+        "health",
+        "kidney",
+        "million",
+        "nation",
+        "optim",
+        "pair",
+        "particip",
+        "patient",
+        "program",
+        "save",
+        "system",
+        "transplant"
+      ],
+      "peringkat": {
+        "bm25": 1,
+        "semantic": 3,
+        "keyphrase": 2,
+        "hybrid_weighted": 1
+      }
+    },
+    "penjelasan": "Dokumen relevan [16737210] ada di peringkat #3 pada Semantic-only dan naik ke #1 pada Hybrid. Unit keyphrase yang sama dengan query: p:kidney pair donat, t:donat, t:kidney, t:optim, t:pair, t:transplant (s_kp = 0.667); skor semantiknya 0.592. Sinyal keyphrase menambah skor dokumen ini setelah normalisasi min-max, sehingga peringkatnya naik.",
+    "utama": true
+  },
+  {
+    "dataset": "scifact",
+    "qid": "295",
+    "jenis": "hybrid_menolong",
+    "query": "Crosstalk between dendritic cells (DCs) and innate lymphoid cells (ILCs) is important in the regulation of intestinal homeostasis.",
+    "keyphrase_query": [
+      [
+        "crosstalk",
+        1.0
+      ],
+      [
+        "dendritic cells",
+        0.8
+      ],
+      [
+        "innate lymphoid cells",
+        0.67
+      ],
+      [
+        "intestinal homeostasis",
+        0.57
+      ]
+    ],
+    "n_relevan": 1,
+    "selisih_hybrid_semantic": 0.5,
+    "selisih_hybrid_bm25": 0.0,
+    "skenario": {
+      "bm25": {
+        "ndcg10": 1.0,
+        "peringkat_relevan_pertama": 1,
+        "top3": [
+          {
+            "doc_id": "20310709",
+            "judul": "The Transcription Factor T-bet Regulates Intestinal Inflammation Mediated by Interleukin-7 Receptor+ Innate Lymphoid Cells",
+            "relevansi": 1
+          },
+          {
+            "doc_id": "1022115",
+            "judul": "IL-23–responsive innate lymphoid cells are increased in inflammatory bowel disease",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "29423324",
+            "judul": "Interleukin-12 and -23 Control Plasticity of CD127(+) Group 1 and Group 3 Innate Lymphoid Cells in the Intestinal Lamina Propria.",
+            "relevansi": 0
+          }
+        ]
+      },
+      "semantic": {
+        "ndcg10": 0.5,
+        "peringkat_relevan_pertama": 3,
+        "top3": [
+          {
+            "doc_id": "1022115",
+            "judul": "IL-23–responsive innate lymphoid cells are increased in inflammatory bowel disease",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "29423324",
+            "judul": "Interleukin-12 and -23 Control Plasticity of CD127(+) Group 1 and Group 3 Innate Lymphoid Cells in the Intestinal Lamina Propria.",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "20310709",
+            "judul": "The Transcription Factor T-bet Regulates Intestinal Inflammation Mediated by Interleukin-7 Receptor+ Innate Lymphoid Cells",
+            "relevansi": 1
+          }
+        ]
+      },
+      "keyphrase": {
+        "ndcg10": 0.430677,
+        "peringkat_relevan_pertama": 4,
+        "top3": [
+          {
+            "doc_id": "34066665",
+            "judul": "Crosstalk between the estrogen receptor and the HER tyrosine kinase receptor family: molecular mechanism and clinical implications for endocrine therapy resistance.",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "24044977",
+            "judul": "Innate lymphoid cells: emerging insights in development, lineage relationships, and function.",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "696006",
+            "judul": "Innate lymphoid cells mediate influenza-induced airway hyper-reactivity independently of adaptive immunity",
+            "relevansi": 0
+          }
+        ]
+      },
+      "hybrid_weighted": {
+        "ndcg10": 1.0,
+        "peringkat_relevan_pertama": 1,
+        "top3": [
+          {
+            "doc_id": "20310709",
+            "judul": "The Transcription Factor T-bet Regulates Intestinal Inflammation Mediated by Interleukin-7 Receptor+ Innate Lymphoid Cells",
+            "relevansi": 1
+          },
+          {
+            "doc_id": "1022115",
+            "judul": "IL-23–responsive innate lymphoid cells are increased in inflammatory bowel disease",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "29423324",
+            "judul": "Interleukin-12 and -23 Control Plasticity of CD127(+) Group 1 and Group 3 Innate Lymphoid Cells in the Intestinal Lamina Propria.",
+            "relevansi": 0
+          }
+        ]
+      }
+    },
+    "dokumen_relevan_utama": {
+      "doc_id": "20310709",
+      "judul": "The Transcription Factor T-bet Regulates Intestinal Inflammation Mediated by Interleukin-7 Receptor+ Innate Lymphoid Cells",
+      "relevansi": 1,
+      "keyphrase_dokumen": [
+        "t-bet",
+        "inflammation",
+        "innate lymphoid cells",
+        "colitis",
+        "dendritic cells",
+        "helicobacter typhlonius"
+      ],
+      "s_sem": 0.6513460278511047,
+      "peringkat_sem_seluruh_korpus": 3,
+      "s_kp": 0.34057214856147766,
+      "s_bm25": 53.0000114440918,
+      "unit_keyphrase_bersama": [
+        "p:dendrit cell",
+        "p:innat lymphoid cell",
+        "t:cell",
+        "t:dendrit",
+        "t:innat",
+        "t:lymphoid"
+      ],
+      "term_bm25_bersama": [
+        "cell",
+        "crosstalk",
+        "dendrit",
+        "homeostasi",
+        "ilc",
+        "import",
+        "innat",
+        "intestin",
+        "lymphoid",
+        "regul"
+      ],
+      "peringkat": {
+        "bm25": 1,
+        "semantic": 3,
+        "keyphrase": 4,
+        "hybrid_weighted": 1
+      }
+    },
+    "penjelasan": "Dokumen relevan [20310709] ada di peringkat #3 pada Semantic-only dan naik ke #1 pada Hybrid. Unit keyphrase yang sama dengan query: p:dendrit cell, p:innat lymphoid cell, t:cell, t:dendrit, t:innat, t:lymphoid (s_kp = 0.341); skor semantiknya 0.651. Sinyal keyphrase menambah skor dokumen ini setelah normalisasi min-max, sehingga peringkatnya naik.",
+    "utama": false
+  },
+  {
+    "dataset": "scifact",
+    "qid": "527",
+    "jenis": "hybrid_menolong",
+    "query": "Homozygous deletion of murine Sbds gene from osterix-expressing mesenchymal stem and progenitor cells (MPCs) prevents oxidative stress.",
+    "keyphrase_query": [
+      [
+        "mesenchymal stem and progenitor cells",
+        1.0
+      ],
+      [
+        "oxidative stress",
+        0.8
+      ],
+      [
+        "osteoporosis",
+        0.67
+      ]
+    ],
+    "n_relevan": 1,
+    "selisih_hybrid_semantic": 0.386853,
+    "selisih_hybrid_bm25": -0.244077,
+    "skenario": {
+      "bm25": {
+        "ndcg10": 0.63093,
+        "peringkat_relevan_pertama": 2,
+        "top3": [
+          {
+            "doc_id": "1617327",
+            "judul": "Bone progenitor dysfunction induces myelodysplasia and secondary leukemia",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "3863543",
+            "judul": "Mesenchymal Inflammation Drives Genotoxic Stress in Hematopoietic Stem Cells and Predicts Disease Evolution in Human Pre-leukemia.",
+            "relevansi": 1
+          },
+          {
+            "doc_id": "3758260",
+            "judul": "Parathyroid Hormone Directs Bone Marrow Mesenchymal Cell Fate.",
+            "relevansi": 0
+          }
+        ]
+      },
+      "semantic": {
+        "ndcg10": 0.0,
+        "peringkat_relevan_pertama": 12,
+        "top3": [
+          {
+            "doc_id": "1617327",
+            "judul": "Bone progenitor dysfunction induces myelodysplasia and secondary leukemia",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "7506409",
+            "judul": "Senescent growth arrest in mesenchymal stem cells is bypassed by Wip1-mediated downregulation of intrinsic stress signaling pathways.",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "27822315",
+            "judul": "Liver receptor homolog-1 regulates the transcription of steroidogenic enzymes and induces the differentiation of mesenchymal stem cells into steroidogenic cells.",
+            "relevansi": 0
+          }
+        ]
+      },
+      "keyphrase": {
+        "ndcg10": 0.63093,
+        "peringkat_relevan_pertama": 2,
+        "top3": [
+          {
+            "doc_id": "26121646",
+            "judul": "Targeting oxidative stress to treat endometriosis.",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "3863543",
+            "judul": "Mesenchymal Inflammation Drives Genotoxic Stress in Hematopoietic Stem Cells and Predicts Disease Evolution in Human Pre-leukemia.",
+            "relevansi": 1
+          },
+          {
+            "doc_id": "24349992",
+            "judul": "Oxidative stress in cancer associated fibroblasts drives tumor-stroma co-evolution: A new paradigm for understanding tumor metabolism, the field effect and genomic instability in cancer cells.",
+            "relevansi": 0
+          }
+        ]
+      },
+      "hybrid_weighted": {
+        "ndcg10": 0.386853,
+        "peringkat_relevan_pertama": 5,
+        "top3": [
+          {
+            "doc_id": "1617327",
+            "judul": "Bone progenitor dysfunction induces myelodysplasia and secondary leukemia",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "7506409",
+            "judul": "Senescent growth arrest in mesenchymal stem cells is bypassed by Wip1-mediated downregulation of intrinsic stress signaling pathways.",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "9412420",
+            "judul": "Endogenous bone marrow MSCs are dynamic, fate-restricted participants in bone maintenance and regeneration.",
+            "relevansi": 0
+          }
+        ]
+      }
+    },
+    "dokumen_relevan_utama": {
+      "doc_id": "3863543",
+      "judul": "Mesenchymal Inflammation Drives Genotoxic Stress in Hematopoietic Stem Cells and Predicts Disease Evolution in Human Pre-leukemia.",
+      "relevansi": 1,
+      "keyphrase_dokumen": [
+        "mesenchymal niche cells",
+        "shwachman-diamond syndrome",
+        "oxidative stress",
+        "myelodysplastic syndrome",
+        "leukemia predisposition syndrome"
+      ],
+      "s_sem": 0.4517500698566437,
+      "peringkat_sem_seluruh_korpus": 12,
+      "s_kp": 0.2960277795791626,
+      "s_bm25": 25.869781494140625,
+      "unit_keyphrase_bersama": [
+        "p:oxid stress",
+        "t:cell",
+        "t:mesenchym",
+        "t:oxid",
+        "t:stress"
+      ],
+      "term_bm25_bersama": [
+        "cell",
+        "mesenchym",
+        "oxid",
+        "progenitor",
+        "stem",
+        "stress"
+      ],
+      "peringkat": {
+        "bm25": 2,
+        "semantic": 12,
+        "keyphrase": 2,
+        "hybrid_weighted": 5
+      }
+    },
+    "penjelasan": "Dokumen relevan [3863543] ada di peringkat #12 pada Semantic-only dan naik ke #5 pada Hybrid. Unit keyphrase yang sama dengan query: p:oxid stress, t:cell, t:mesenchym, t:oxid, t:stress (s_kp = 0.296); skor semantiknya 0.452. Sinyal keyphrase menambah skor dokumen ini setelah normalisasi min-max, sehingga peringkatnya naik.",
+    "utama": false
+  },
+  {
+    "dataset": "scifact",
+    "qid": "1024",
+    "jenis": "hybrid_kalah_bm25",
+    "query": "Recurrent mutations occur frequently within CTCF anchor sites adjacent to oncogenes.",
+    "keyphrase_query": [
+      [
+        "recurrent mutations",
+        1.0
+      ],
+      [
+        "ctcf anchor sites",
+        0.8
+      ],
+      [
+        "oncogenes",
+        0.67
+      ]
+    ],
+    "n_relevan": 1,
+    "selisih_hybrid_semantic": 0.0,
+    "selisih_hybrid_bm25": -1.0,
+    "skenario": {
+      "bm25": {
+        "ndcg10": 1.0,
+        "peringkat_relevan_pertama": 1,
+        "top3": [
+          {
+            "doc_id": "5373138",
+            "judul": "3D Chromosome Regulatory Landscape of Human Pluripotent Cells.",
+            "relevansi": 1
+          },
+          {
+            "doc_id": "24995939",
+            "judul": "Specific sites in the C terminus of CTCF interact with the SA2 subunit of the cohesin complex and are required for cohesin-dependent insulation activity.",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "8494570",
+            "judul": "Characterization of constitutive CTCF/cohesin loci: a possible role in establishing topological domains in mammalian genomes",
+            "relevansi": 0
+          }
+        ]
+      },
+      "semantic": {
+        "ndcg10": 0.0,
+        "peringkat_relevan_pertama": 41,
+        "top3": [
+          {
+            "doc_id": "8494570",
+            "judul": "Characterization of constitutive CTCF/cohesin loci: a possible role in establishing topological domains in mammalian genomes",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "36713289",
+            "judul": "Genome architecture, rearrangements and genomic disorders.",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "4926049",
+            "judul": "TRF2 Recruits RTEL1 to Telomeres in S Phase to Promote T-Loop Unwinding",
+            "relevansi": 0
+          }
+        ]
+      },
+      "keyphrase": {
+        "ndcg10": 0.0,
+        "peringkat_relevan_pertama": null,
+        "top3": [
+          {
+            "doc_id": "2762601",
+            "judul": "Reflecting on 25 years with MYC",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "5271210",
+            "judul": "MicroRNAs: new tools for diagnosis, prognosis, and therapy in hepatocellular carcinoma?",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "1921218",
+            "judul": "Detecting and targeting tumor relapse by its resistance to innate effectors at early recurrence",
+            "relevansi": 0
+          }
+        ]
+      },
+      "hybrid_weighted": {
+        "ndcg10": 0.0,
+        "peringkat_relevan_pertama": 49,
+        "top3": [
+          {
+            "doc_id": "8494570",
+            "judul": "Characterization of constitutive CTCF/cohesin loci: a possible role in establishing topological domains in mammalian genomes",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "2762601",
+            "judul": "Reflecting on 25 years with MYC",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "6078882",
+            "judul": "Colorectal Cancers from Distinct Ancestral Populations Show Variations in BRAF Mutation Frequency",
+            "relevansi": 0
+          }
+        ]
+      }
+    },
+    "dokumen_relevan_utama": {
+      "doc_id": "5373138",
+      "judul": "3D Chromosome Regulatory Landscape of Human Pluripotent Cells.",
+      "relevansi": 1,
+      "keyphrase_dokumen": [
+        "pluripotent cells",
+        "transcriptional enhancer",
+        "insulator",
+        "chia-pet",
+        "chromosome structure",
+        "gene regulation"
+      ],
+      "s_sem": 0.43407824635505676,
+      "peringkat_sem_seluruh_korpus": 41,
+      "s_kp": 0.0,
+      "s_bm25": 28.839811325073242,
+      "unit_keyphrase_bersama": [],
+      "term_bm25_bersama": [
+        "anchor",
+        "ctcf",
+        "frequent",
+        "mutat",
+        "occur",
+        "site"
+      ],
+      "peringkat": {
+        "bm25": 1,
+        "semantic": 41,
+        "keyphrase": null,
+        "hybrid_weighted": 49
+      }
+    },
+    "penjelasan": "Dokumen relevan [5373138] ada di peringkat #1 pada BM25 tetapi #49 pada Hybrid (#41 pada Semantic-only). Term query yang cocok persis dengan dokumen: anchor, ctcf, frequent, mutat, occur, site. Unit keyphrase bersama: tidak ada (s_kp = 0.000). BM25 memberi bobot tinggi pada kecocokan kata yang langka, sedangkan embedding (s_sem = 0.434, peringkat 41 di seluruh korpus) dan keyphrase tidak menangkapnya cukup kuat.",
+    "utama": true
+  },
+  {
+    "dataset": "scifact",
+    "qid": "1337",
+    "jenis": "hybrid_kalah_bm25",
+    "query": "Ubiquitin ligase UBC13 generates a K63-linked polyubiquitin moiety at PCNA K164.",
+    "keyphrase_query": [
+      [
+        "ubiquitin ligase ubc13",
+        1.0
+      ],
+      [
+        "pcna",
+        0.8
+      ],
+      [
+        "k63-linked polyubiquin moiety",
+        0.67
+      ]
+    ],
+    "n_relevan": 1,
+    "selisih_hybrid_semantic": -0.289065,
+    "selisih_hybrid_bm25": -1.0,
+    "skenario": {
+      "bm25": {
+        "ndcg10": 1.0,
+        "peringkat_relevan_pertama": 1,
+        "top3": [
+          {
+            "doc_id": "20231138",
+            "judul": "Replication Fork Slowing and Reversal upon DNA Damage Require PCNA Polyubiquitination and ZRANB3 DNA Translocase Activity",
+            "relevansi": 1
+          },
+          {
+            "doc_id": "7820043",
+            "judul": "Key role of Ubc5 and lysine-63 polyubiquitination in viral activation of IRF3.",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "1635872",
+            "judul": "PCNA functions as a molecular platform to trigger Cdt1 destruction and prevent re-replication",
+            "relevansi": 0
+          }
+        ]
+      },
+      "semantic": {
+        "ndcg10": 0.289065,
+        "peringkat_relevan_pertama": 10,
+        "top3": [
+          {
+            "doc_id": "29557235",
+            "judul": "Evolution and function of ubiquitin-like protein-conjugation systems",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "6422576",
+            "judul": "Ubiquitin-dependent protein degradation.",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "13277623",
+            "judul": "FBW7 ubiquitin ligase: a tumour suppressor at the crossroads of cell division, growth and differentiation",
+            "relevansi": 0
+          }
+        ]
+      },
+      "keyphrase": {
+        "ndcg10": 0.0,
+        "peringkat_relevan_pertama": null,
+        "top3": [
+          {
+            "doc_id": "1635872",
+            "judul": "PCNA functions as a molecular platform to trigger Cdt1 destruction and prevent re-replication",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "6268106",
+            "judul": "The ubiquitin ligase Drosophila Mind bomb promotes Notch signaling by regulating the localization and activity of Serrate and Delta.",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "12225214",
+            "judul": "Ubiquitination on nonlysine residues by a viral E3 ubiquitin ligase.",
+            "relevansi": 0
+          }
+        ]
+      },
+      "hybrid_weighted": {
+        "ndcg10": 0.0,
+        "peringkat_relevan_pertama": 12,
+        "top3": [
+          {
+            "doc_id": "29557235",
+            "judul": "Evolution and function of ubiquitin-like protein-conjugation systems",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "13277623",
+            "judul": "FBW7 ubiquitin ligase: a tumour suppressor at the crossroads of cell division, growth and differentiation",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "6422576",
+            "judul": "Ubiquitin-dependent protein degradation.",
+            "relevansi": 0
+          }
+        ]
+      }
+    },
+    "dokumen_relevan_utama": {
+      "doc_id": "20231138",
+      "judul": "Replication Fork Slowing and Reversal upon DNA Damage Require PCNA Polyubiquitination and ZRANB3 DNA Translocase Activity",
+      "relevansi": 1,
+      "keyphrase_dokumen": [
+        "dna damage",
+        "polyubiquitination",
+        "zranb3",
+        "dna translocase",
+        "fork remodeling",
+        "breast cancer"
+      ],
+      "s_sem": 0.47792795300483704,
+      "peringkat_sem_seluruh_korpus": 10,
+      "s_kp": 0.0,
+      "s_bm25": 48.13783645629883,
+      "unit_keyphrase_bersama": [],
+      "term_bm25_bersama": [
+        "k63",
+        "link",
+        "pcna",
+        "polyubiquitin",
+        "ubc13",
+        "ubiquitin"
+      ],
+      "peringkat": {
+        "bm25": 1,
+        "semantic": 10,
+        "keyphrase": null,
+        "hybrid_weighted": 12
+      }
+    },
+    "penjelasan": "Dokumen relevan [20231138] ada di peringkat #1 pada BM25 tetapi #12 pada Hybrid (#10 pada Semantic-only). Term query yang cocok persis dengan dokumen: k63, link, pcna, polyubiquitin, ubc13, ubiquitin. Unit keyphrase bersama: tidak ada (s_kp = 0.000). BM25 memberi bobot tinggi pada kecocokan kata yang langka, sedangkan embedding (s_sem = 0.478, peringkat 10 di seluruh korpus) dan keyphrase tidak menangkapnya cukup kuat.",
+    "utama": false
+  },
+  {
+    "dataset": "scifact",
+    "qid": "1363",
+    "jenis": "hybrid_kalah_bm25",
+    "query": "Venules have a thinner or absent smooth layer compared to arterioles.",
+    "keyphrase_query": [
+      [
+        "Venules",
+        1.0
+      ],
+      [
+        "smoothness",
+        0.8
+      ],
+      [
+        "arterioles",
+        0.67
+      ]
+    ],
+    "n_relevan": 1,
+    "selisih_hybrid_semantic": 0.0,
+    "selisih_hybrid_bm25": -1.0,
+    "skenario": {
+      "bm25": {
+        "ndcg10": 1.0,
+        "peringkat_relevan_pertama": 1,
+        "top3": [
+          {
+            "doc_id": "8290953",
+            "judul": "Scaffold-based three-dimensional human fibroblast culture provides a structural matrix that supports angiogenesis in infarcted heart tissue.",
+            "relevansi": 1
+          },
+          {
+            "doc_id": "1122279",
+            "judul": "Endothelium-mediated relaxation of porcine collateral-dependent arterioles is improved by exercise training.",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "23513718",
+            "judul": "Role of soluble guanylate cyclase in dilator responses of the cerebral microcirculation.",
+            "relevansi": 0
+          }
+        ]
+      },
+      "semantic": {
+        "ndcg10": 0.0,
+        "peringkat_relevan_pertama": 62,
+        "top3": [
+          {
+            "doc_id": "25175997",
+            "judul": "Pulmonary vascular lesions in end-stage idiopathic pulmonary fibrosis: Histopathologic study on lung explant specimens and correlations with pulmonary hemodynamics.",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "2593298",
+            "judul": "Vascular endothelial cadherin controls VEGFR-2 internalization and signaling from intracellular compartments",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "79447",
+            "judul": "Arteriolar function in visceral adipose tissue is impaired in human obesity.",
+            "relevansi": 0
+          }
+        ]
+      },
+      "keyphrase": {
+        "ndcg10": 0.0,
+        "peringkat_relevan_pertama": null,
+        "top3": [
+          {
+            "doc_id": "22080671",
+            "judul": "KLF4-dependent phenotypic modulation of smooth muscle cells has a key role in atherosclerotic plaque pathogenesis",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "32797183",
+            "judul": "Smooth muscle lineage diversity in the chick embryo. Two types of aortic smooth muscle cell differ in growth and receptor-mediated transcriptional responses to transforming growth factor-beta.",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "2260571",
+            "judul": "Vascular smooth muscle cell calcification is mediated by regulated exosome secretion.",
+            "relevansi": 0
+          }
+        ]
+      },
+      "hybrid_weighted": {
+        "ndcg10": 0.0,
+        "peringkat_relevan_pertama": 63,
+        "top3": [
+          {
+            "doc_id": "25175997",
+            "judul": "Pulmonary vascular lesions in end-stage idiopathic pulmonary fibrosis: Histopathologic study on lung explant specimens and correlations with pulmonary hemodynamics.",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "2593298",
+            "judul": "Vascular endothelial cadherin controls VEGFR-2 internalization and signaling from intracellular compartments",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "79447",
+            "judul": "Arteriolar function in visceral adipose tissue is impaired in human obesity.",
+            "relevansi": 0
+          }
+        ]
+      }
+    },
+    "dokumen_relevan_utama": {
+      "doc_id": "8290953",
+      "judul": "Scaffold-based three-dimensional human fibroblast culture provides a structural matrix that supports angiogenesis in infarcted heart tissue.",
+      "relevansi": 1,
+      "keyphrase_dokumen": [
+        "angiogenesis",
+        "cardiac infarction",
+        "3d human fibroblast culture (3dfc)"
+      ],
+      "s_sem": 0.2578040063381195,
+      "peringkat_sem_seluruh_korpus": 62,
+      "s_kp": 0.0,
+      "s_bm25": 15.110984802246094,
+      "unit_keyphrase_bersama": [],
+      "term_bm25_bersama": [
+        "arteriol",
+        "compar",
+        "venul"
+      ],
+      "peringkat": {
+        "bm25": 1,
+        "semantic": 62,
+        "keyphrase": null,
+        "hybrid_weighted": 63
+      }
+    },
+    "penjelasan": "Dokumen relevan [8290953] ada di peringkat #1 pada BM25 tetapi #63 pada Hybrid (#62 pada Semantic-only). Term query yang cocok persis dengan dokumen: arteriol, compar, venul. Unit keyphrase bersama: tidak ada (s_kp = 0.000). BM25 memberi bobot tinggi pada kecocokan kata yang langka, sedangkan embedding (s_sem = 0.258, peringkat 62 di seluruh korpus) dan keyphrase tidak menangkapnya cukup kuat.",
+    "utama": false
+  },
+  {
+    "dataset": "nfcorpus",
+    "qid": "PLAIN-681",
+    "jenis": "hybrid_menolong",
+    "query": "betel nuts",
+    "keyphrase_query": [
+      [
+        "betel nuts",
+        1.0
+      ]
+    ],
+    "n_relevan": 1,
+    "selisih_hybrid_semantic": 0.36907,
+    "selisih_hybrid_bm25": 0.0,
+    "skenario": {
+      "bm25": {
+        "ndcg10": 1.0,
+        "peringkat_relevan_pertama": 1,
+        "top3": [
+          {
+            "doc_id": "MED-5017",
+            "judul": "Association between betel-nut chewing and chronic kidney disease in men.",
+            "relevansi": 1
+          },
+          {
+            "doc_id": "MED-4030",
+            "judul": "Diet and prevention of oral cancer: strategies for clinical practice.",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "MED-1381",
+            "judul": "Nut consumption, vegetarian diets, ischemic heart disease risk, and all-cause mortality: evidence from epidemiologic studies.",
+            "relevansi": 0
+          }
+        ]
+      },
+      "semantic": {
+        "ndcg10": 0.63093,
+        "peringkat_relevan_pertama": 2,
+        "top3": [
+          {
+            "doc_id": "MED-2383",
+            "judul": "The role of nuts in the optimal diet: time for a critical appraisal?",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "MED-5017",
+            "judul": "Association between betel-nut chewing and chronic kidney disease in men.",
+            "relevansi": 1
+          },
+          {
+            "doc_id": "MED-4314",
+            "judul": "Nuts: anti-atherogenic food?",
+            "relevansi": 0
+          }
+        ]
+      },
+      "keyphrase": {
+        "ndcg10": 1.0,
+        "peringkat_relevan_pertama": 1,
+        "top3": [
+          {
+            "doc_id": "MED-5017",
+            "judul": "Association between betel-nut chewing and chronic kidney disease in men.",
+            "relevansi": 1
+          },
+          {
+            "doc_id": "MED-4030",
+            "judul": "Diet and prevention of oral cancer: strategies for clinical practice.",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "MED-4292",
+            "judul": "A review of the evidence: nuts and body weight.",
+            "relevansi": 0
+          }
+        ]
+      },
+      "hybrid_weighted": {
+        "ndcg10": 1.0,
+        "peringkat_relevan_pertama": 1,
+        "top3": [
+          {
+            "doc_id": "MED-5017",
+            "judul": "Association between betel-nut chewing and chronic kidney disease in men.",
+            "relevansi": 1
+          },
+          {
+            "doc_id": "MED-2383",
+            "judul": "The role of nuts in the optimal diet: time for a critical appraisal?",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "MED-4314",
+            "judul": "Nuts: anti-atherogenic food?",
+            "relevansi": 0
+          }
+        ]
+      }
+    },
+    "dokumen_relevan_utama": {
+      "doc_id": "MED-5017",
+      "judul": "Association between betel-nut chewing and chronic kidney disease in men.",
+      "relevansi": 1,
+      "keyphrase_dokumen": [
+        "betel-nut chewing",
+        "chronic kidney disease",
+        "men"
+      ],
+      "s_sem": 0.3697419762611389,
+      "peringkat_sem_seluruh_korpus": 2,
+      "s_kp": 0.3988943099975586,
+      "s_bm25": 21.64227294921875,
+      "unit_keyphrase_bersama": [
+        "t:betel",
+        "t:nut"
+      ],
+      "term_bm25_bersama": [
+        "betel",
+        "nut"
+      ],
+      "peringkat": {
+        "bm25": 1,
+        "semantic": 2,
+        "keyphrase": 1,
+        "hybrid_weighted": 1
+      }
+    },
+    "penjelasan": "Dokumen relevan [MED-5017] ada di peringkat #2 pada Semantic-only dan naik ke #1 pada Hybrid. Unit keyphrase yang sama dengan query: t:betel, t:nut (s_kp = 0.399); skor semantiknya 0.370. Sinyal keyphrase menambah skor dokumen ini setelah normalisasi min-max, sehingga peringkatnya naik.",
+    "utama": true
+  },
+  {
+    "dataset": "nfcorpus",
+    "qid": "PLAIN-383",
+    "jenis": "hybrid_menolong",
+    "query": "What do you think of Dr. Jenkins' take on paleolithic diets?",
+    "keyphrase_query": [
+      [
+        "paleolithic diets",
+        1.0
+      ],
+      [
+        "dietary studies",
+        0.8
+      ]
+    ],
+    "n_relevan": 5,
+    "selisih_hybrid_semantic": 0.20795500000000003,
+    "selisih_hybrid_bm25": 0.16958,
+    "skenario": {
+      "bm25": {
+        "ndcg10": 0.16958,
+        "peringkat_relevan_pertama": 3,
+        "top3": [
+          {
+            "doc_id": "MED-1479",
+            "judul": "BEYOND THE PALEOLITHIC PRESCRIPTION: INCORPORATING DIVERSITY AND FLEXIBILITY IN THE STUDY OF HUMAN DIET EVOLUTION",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "MED-4469",
+            "judul": "Paleolithic vs. modern diets--selected pathophysiological implications.",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "MED-4299",
+            "judul": "Evolution of the human diet: linking our ancestral diet to modern functional foods as a means of chronic disease prevention.",
+            "relevansi": 1
+          }
+        ]
+      },
+      "semantic": {
+        "ndcg10": 0.131205,
+        "peringkat_relevan_pertama": 5,
+        "top3": [
+          {
+            "doc_id": "MED-1479",
+            "judul": "BEYOND THE PALEOLITHIC PRESCRIPTION: INCORPORATING DIVERSITY AND FLEXIBILITY IN THE STUDY OF HUMAN DIET EVOLUTION",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "MED-4469",
+            "judul": "Paleolithic vs. modern diets--selected pathophysiological implications.",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "MED-1478",
+            "judul": "Paleolithic nutrition: twenty-five years later.",
+            "relevansi": 0
+          }
+        ]
+      },
+      "keyphrase": {
+        "ndcg10": 0.33916,
+        "peringkat_relevan_pertama": 1,
+        "top3": [
+          {
+            "doc_id": "MED-4299",
+            "judul": "Evolution of the human diet: linking our ancestral diet to modern functional foods as a means of chronic disease prevention.",
+            "relevansi": 1
+          },
+          {
+            "doc_id": "MED-4469",
+            "judul": "Paleolithic vs. modern diets--selected pathophysiological implications.",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "MED-1478",
+            "judul": "Paleolithic nutrition: twenty-five years later.",
+            "relevansi": 0
+          }
+        ]
+      },
+      "hybrid_weighted": {
+        "ndcg10": 0.33916,
+        "peringkat_relevan_pertama": 1,
+        "top3": [
+          {
+            "doc_id": "MED-4299",
+            "judul": "Evolution of the human diet: linking our ancestral diet to modern functional foods as a means of chronic disease prevention.",
+            "relevansi": 1
+          },
+          {
+            "doc_id": "MED-4469",
+            "judul": "Paleolithic vs. modern diets--selected pathophysiological implications.",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "MED-1478",
+            "judul": "Paleolithic nutrition: twenty-five years later.",
+            "relevansi": 0
+          }
+        ]
+      }
+    },
+    "dokumen_relevan_utama": {
+      "doc_id": "MED-4299",
+      "judul": "Evolution of the human diet: linking our ancestral diet to modern functional foods as a means of chronic disease prevention.",
+      "relevansi": 1,
+      "keyphrase_dokumen": [
+        "evolution of the human diet",
+        "functional foods",
+        "chronic disease prevention",
+        "paleolithic diet",
+        "obesity",
+        "diabetes"
+      ],
+      "s_sem": 0.3953588604927063,
+      "peringkat_sem_seluruh_korpus": 5,
+      "s_kp": 0.36688974499702454,
+      "s_bm25": 12.807144165039062,
+      "unit_keyphrase_bersama": [
+        "p:paleolith diet",
+        "t:diet",
+        "t:paleolith"
+      ],
+      "term_bm25_bersama": [
+        "diet",
+        "paleolith"
+      ],
+      "peringkat": {
+        "bm25": 3,
+        "semantic": 5,
+        "keyphrase": 1,
+        "hybrid_weighted": 1
+      }
+    },
+    "penjelasan": "Dokumen relevan [MED-4299] ada di peringkat #5 pada Semantic-only dan naik ke #1 pada Hybrid. Unit keyphrase yang sama dengan query: p:paleolith diet, t:diet, t:paleolith (s_kp = 0.367); skor semantiknya 0.395. Sinyal keyphrase menambah skor dokumen ini setelah normalisasi min-max, sehingga peringkatnya naik.",
+    "utama": false
+  },
+  {
+    "dataset": "nfcorpus",
+    "qid": "PLAIN-3191",
+    "jenis": "hybrid_menolong",
+    "query": "Is Distilled Fish Oil Toxin-Free?",
+    "keyphrase_query": [
+      [
+        "distilled fish oil",
+        1.0
+      ],
+      [
+        "toxin-free",
+        0.8
+      ]
+    ],
+    "n_relevan": 16,
+    "selisih_hybrid_semantic": 0.16018899999999997,
+    "selisih_hybrid_bm25": 0.062633,
+    "skenario": {
+      "bm25": {
+        "ndcg10": 0.370284,
+        "peringkat_relevan_pertama": 1,
+        "top3": [
+          {
+            "doc_id": "MED-4730",
+            "judul": "Simultaneous quantitation of multiple classes of organohalogen compounds in fish oils with direct sample introduction comprehensive two-dimensional...",
+            "relevansi": 2
+          },
+          {
+            "doc_id": "MED-1831",
+            "judul": "Children's daily exposure to polychlorinated biphenyls from dietary supplements containing fish oils.",
+            "relevansi": 1
+          },
+          {
+            "doc_id": "MED-928",
+            "judul": "Incorporation of EPA and DHA into plasma phospholipids in response to different omega-3 fatty acid formulations - a comparative bioavailability study of fish oil vs. krill oil",
+            "relevansi": 0
+          }
+        ]
+      },
+      "semantic": {
+        "ndcg10": 0.272728,
+        "peringkat_relevan_pertama": 2,
+        "top3": [
+          {
+            "doc_id": "MED-4943",
+            "judul": "Persistent organic pollutants in fish oil supplements on the Canadian market: polychlorinated biphenyls and organochlorine insecticides.",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "MED-4730",
+            "judul": "Simultaneous quantitation of multiple classes of organohalogen compounds in fish oils with direct sample introduction comprehensive two-dimensional...",
+            "relevansi": 2
+          },
+          {
+            "doc_id": "MED-1098",
+            "judul": "Intake of dioxins and related compounds from food in the U.S. population.",
+            "relevansi": 0
+          }
+        ]
+      },
+      "keyphrase": {
+        "ndcg10": 0.514729,
+        "peringkat_relevan_pertama": 1,
+        "top3": [
+          {
+            "doc_id": "MED-4730",
+            "judul": "Simultaneous quantitation of multiple classes of organohalogen compounds in fish oils with direct sample introduction comprehensive two-dimensional...",
+            "relevansi": 2
+          },
+          {
+            "doc_id": "MED-2412",
+            "judul": "Fish oil supplementation in type 2 diabetes: a quantitative systematic review.",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "MED-4731",
+            "judul": "No effect of fish oil supplementation on serum inflammatory markers and their interrelationships: a randomized controlled trial in healthy, middle-...",
+            "relevansi": 2
+          }
+        ]
+      },
+      "hybrid_weighted": {
+        "ndcg10": 0.432917,
+        "peringkat_relevan_pertama": 1,
+        "top3": [
+          {
+            "doc_id": "MED-4730",
+            "judul": "Simultaneous quantitation of multiple classes of organohalogen compounds in fish oils with direct sample introduction comprehensive two-dimensional...",
+            "relevansi": 2
+          },
+          {
+            "doc_id": "MED-4943",
+            "judul": "Persistent organic pollutants in fish oil supplements on the Canadian market: polychlorinated biphenyls and organochlorine insecticides.",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "MED-5102",
+            "judul": "Simulated impact of a fish based shift in the population n--3 fatty acids intake on exposure to dioxins and dioxin-like compounds.",
+            "relevansi": 0
+          }
+        ]
+      }
+    },
+    "dokumen_relevan_utama": {
+      "doc_id": "MED-4730",
+      "judul": "Simultaneous quantitation of multiple classes of organohalogen compounds in fish oils with direct sample introduction comprehensive two-dimensional...",
+      "relevansi": 2,
+      "keyphrase_dokumen": [
+        "fish oil",
+        "gel permeation chromatography",
+        "time-of-flight mass spectrometry",
+        "organic pollutants",
+        "halogenated natural products",
+        "molecular distillation"
+      ],
+      "s_sem": 0.5631070137023926,
+      "peringkat_sem_seluruh_korpus": 2,
+      "s_kp": 0.2759544849395752,
+      "s_bm25": 18.567684173583984,
+      "unit_keyphrase_bersama": [
+        "t:distil",
+        "t:fish",
+        "t:oil"
+      ],
+      "term_bm25_bersama": [
+        "distil",
+        "fish",
+        "free",
+        "oil"
+      ],
+      "peringkat": {
+        "bm25": 1,
+        "semantic": 2,
+        "keyphrase": 1,
+        "hybrid_weighted": 1
+      }
+    },
+    "penjelasan": "Dokumen relevan [MED-4730] ada di peringkat #2 pada Semantic-only dan naik ke #1 pada Hybrid. Unit keyphrase yang sama dengan query: t:distil, t:fish, t:oil (s_kp = 0.276); skor semantiknya 0.563. Sinyal keyphrase menambah skor dokumen ini setelah normalisasi min-max, sehingga peringkatnya naik.",
+    "utama": false
+  },
+  {
+    "dataset": "nfcorpus",
+    "qid": "PLAIN-1473",
+    "jenis": "hybrid_kalah_bm25",
+    "query": "kohlrabi",
+    "keyphrase_query": [
+      [
+        "kohlrabi",
+        1.0
+      ]
+    ],
+    "n_relevan": 1,
+    "selisih_hybrid_semantic": 0.0,
+    "selisih_hybrid_bm25": -1.0,
+    "skenario": {
+      "bm25": {
+        "ndcg10": 1.0,
+        "peringkat_relevan_pertama": 1,
+        "top3": [
+          {
+            "doc_id": "MED-4455",
+            "judul": "Glucoraphanin and 4-hydroxyglucobrassicin contents in seeds of 59 cultivars of broccoli, raab, kohlrabi, radish, cauliflower, brussels sprouts, kal...",
+            "relevansi": 1
+          }
+        ]
+      },
+      "semantic": {
+        "ndcg10": 0.0,
+        "peringkat_relevan_pertama": null,
+        "top3": [
+          {
+            "doc_id": "MED-3947",
+            "judul": "Hibiscus anthocyanins rich extract-induced apoptotic cell death in human promyelocytic leukemia cells.",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "MED-4660",
+            "judul": "Variability of iodine content in common commercially available edible seaweeds.",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "MED-3441",
+            "judul": "Marine edible algae as disease preventers.",
+            "relevansi": 0
+          }
+        ]
+      },
+      "keyphrase": {
+        "ndcg10": 0.0,
+        "peringkat_relevan_pertama": null,
+        "top3": []
+      },
+      "hybrid_weighted": {
+        "ndcg10": 0.0,
+        "peringkat_relevan_pertama": null,
+        "top3": [
+          {
+            "doc_id": "MED-3947",
+            "judul": "Hibiscus anthocyanins rich extract-induced apoptotic cell death in human promyelocytic leukemia cells.",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "MED-4660",
+            "judul": "Variability of iodine content in common commercially available edible seaweeds.",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "MED-3441",
+            "judul": "Marine edible algae as disease preventers.",
+            "relevansi": 0
+          }
+        ]
+      }
+    },
+    "dokumen_relevan_utama": {
+      "doc_id": "MED-4455",
+      "judul": "Glucoraphanin and 4-hydroxyglucobrassicin contents in seeds of 59 cultivars of broccoli, raab, kohlrabi, radish, cauliflower, brussels sprouts, kal...",
+      "relevansi": 1,
+      "keyphrase_dokumen": [
+        "glucoraphanin",
+        "4-hydroxyglucobrassicin",
+        "seeds"
+      ],
+      "s_sem": 0.11166353523731232,
+      "peringkat_sem_seluruh_korpus": 119,
+      "s_kp": 0.0,
+      "s_bm25": 11.53160572052002,
+      "unit_keyphrase_bersama": [],
+      "term_bm25_bersama": [
+        "kohlrabi"
+      ],
+      "peringkat": {
+        "bm25": 1,
+        "semantic": null,
+        "keyphrase": null,
+        "hybrid_weighted": null
+      }
+    },
+    "penjelasan": "Dokumen relevan [MED-4455] ada di peringkat #1 pada BM25 tetapi di luar 100 besar pada Hybrid (di luar 100 besar pada Semantic-only). Term query yang cocok persis dengan dokumen: kohlrabi. Unit keyphrase bersama: tidak ada (s_kp = 0.000). BM25 memberi bobot tinggi pada kecocokan kata yang langka, sedangkan embedding (s_sem = 0.112, peringkat 119 di seluruh korpus) dan keyphrase tidak menangkapnya cukup kuat.",
+    "utama": true
+  },
+  {
+    "dataset": "nfcorpus",
+    "qid": "PLAIN-2081",
+    "jenis": "hybrid_kalah_bm25",
+    "query": "shelf life",
+    "keyphrase_query": [
+      [
+        "life",
+        1.0
+      ]
+    ],
+    "n_relevan": 1,
+    "selisih_hybrid_semantic": 0.0,
+    "selisih_hybrid_bm25": -1.0,
+    "skenario": {
+      "bm25": {
+        "ndcg10": 1.0,
+        "peringkat_relevan_pertama": 1,
+        "top3": [
+          {
+            "doc_id": "MED-4303",
+            "judul": "Oxidative stability and shelf-life evaluation of selected culinary oils.",
+            "relevansi": 1
+          },
+          {
+            "doc_id": "MED-1182",
+            "judul": "Fruit and Soil Quality of Organic and Conventional Strawberry Agroecosystems",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "MED-2700",
+            "judul": "The effect of blood removal on oxidation and shelf life of broiler breast meat.",
+            "relevansi": 0
+          }
+        ]
+      },
+      "semantic": {
+        "ndcg10": 0.0,
+        "peringkat_relevan_pertama": 14,
+        "top3": [
+          {
+            "doc_id": "MED-1378",
+            "judul": "Longevity and diet. Myth or pragmatism?",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "MED-2422",
+            "judul": "A statistical regression model for the estimation of acrylamide concentrations in French fries for excess lifetime cancer risk assessment.",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "MED-2510",
+            "judul": "Comparative and meta-analytic insights into life extension via dietary restriction.",
+            "relevansi": 0
+          }
+        ]
+      },
+      "keyphrase": {
+        "ndcg10": 0.0,
+        "peringkat_relevan_pertama": null,
+        "top3": [
+          {
+            "doc_id": "MED-3595",
+            "judul": "Heavy Metals and Couple Fecundity, the LIFE Study",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "MED-2510",
+            "judul": "Comparative and meta-analytic insights into life extension via dietary restriction.",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "MED-2769",
+            "judul": "Milk Intake in Early Life and Risk of Advanced Prostate Cancer",
+            "relevansi": 0
+          }
+        ]
+      },
+      "hybrid_weighted": {
+        "ndcg10": 0.0,
+        "peringkat_relevan_pertama": 15,
+        "top3": [
+          {
+            "doc_id": "MED-1378",
+            "judul": "Longevity and diet. Myth or pragmatism?",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "MED-2510",
+            "judul": "Comparative and meta-analytic insights into life extension via dietary restriction.",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "MED-2422",
+            "judul": "A statistical regression model for the estimation of acrylamide concentrations in French fries for excess lifetime cancer risk assessment.",
+            "relevansi": 0
+          }
+        ]
+      }
+    },
+    "dokumen_relevan_utama": {
+      "doc_id": "MED-4303",
+      "judul": "Oxidative stability and shelf-life evaluation of selected culinary oils.",
+      "relevansi": 1,
+      "keyphrase_dokumen": [
+        "oxidative stability",
+        "herbal oils",
+        "monounsaturated fatty acids"
+      ],
+      "s_sem": 0.33511030673980713,
+      "peringkat_sem_seluruh_korpus": 14,
+      "s_kp": 0.0,
+      "s_bm25": 14.627992630004883,
+      "unit_keyphrase_bersama": [],
+      "term_bm25_bersama": [
+        "life",
+        "shelf"
+      ],
+      "peringkat": {
+        "bm25": 1,
+        "semantic": 14,
+        "keyphrase": null,
+        "hybrid_weighted": 15
+      }
+    },
+    "penjelasan": "Dokumen relevan [MED-4303] ada di peringkat #1 pada BM25 tetapi #15 pada Hybrid (#14 pada Semantic-only). Term query yang cocok persis dengan dokumen: life, shelf. Unit keyphrase bersama: tidak ada (s_kp = 0.000). BM25 memberi bobot tinggi pada kecocokan kata yang langka, sedangkan embedding (s_sem = 0.335, peringkat 14 di seluruh korpus) dan keyphrase tidak menangkapnya cukup kuat.",
+    "utama": false
+  },
+  {
+    "dataset": "nfcorpus",
+    "qid": "PLAIN-1288",
+    "jenis": "hybrid_kalah_bm25",
+    "query": "grapes",
+    "keyphrase_query": [
+      [
+        "grapes",
+        1.0
+      ]
+    ],
+    "n_relevan": 196,
+    "selisih_hybrid_semantic": 0.0,
+    "selisih_hybrid_bm25": -0.775337,
+    "skenario": {
+      "bm25": {
+        "ndcg10": 0.905212,
+        "peringkat_relevan_pertama": 1,
+        "top3": [
+          {
+            "doc_id": "MED-2668",
+            "judul": "Concord grape juice supplementation and neurocognitive function in human aging.",
+            "relevansi": 1
+          },
+          {
+            "doc_id": "MED-2669",
+            "judul": "Concord grape juice supplementation improves memory function in older adults with mild cognitive impairment.",
+            "relevansi": 1
+          },
+          {
+            "doc_id": "MED-1538",
+            "judul": "A premeal snack of raisins decreases mealtime food intake more than grapes in young children.",
+            "relevansi": 1
+          }
+        ]
+      },
+      "semantic": {
+        "ndcg10": 0.129875,
+        "peringkat_relevan_pertama": 9,
+        "top3": [
+          {
+            "doc_id": "MED-3200",
+            "judul": "Prospective study of grapefruit intake and risk of breast cancer in postmenopausal women: the Multiethnic Cohort Study",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "MED-3210",
+            "judul": "The effects of daily consumption of grapefruit on body weight, lipids, and blood pressure in healthy, overweight adults.",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "MED-398",
+            "judul": "The grapefruit: an old wine in a new glass? Metabolic and cardiovascular perspectives",
+            "relevansi": 0
+          }
+        ]
+      },
+      "keyphrase": {
+        "ndcg10": 0.538886,
+        "peringkat_relevan_pertama": 1,
+        "top3": [
+          {
+            "doc_id": "MED-1538",
+            "judul": "A premeal snack of raisins decreases mealtime food intake more than grapes in young children.",
+            "relevansi": 1
+          },
+          {
+            "doc_id": "MED-2669",
+            "judul": "Concord grape juice supplementation improves memory function in older adults with mild cognitive impairment.",
+            "relevansi": 1
+          },
+          {
+            "doc_id": "MED-2083",
+            "judul": "Grape juice, but not orange juice or grapefruit juice, inhibits human platelet aggregation.",
+            "relevansi": 0
+          }
+        ]
+      },
+      "hybrid_weighted": {
+        "ndcg10": 0.129875,
+        "peringkat_relevan_pertama": 9,
+        "top3": [
+          {
+            "doc_id": "MED-2083",
+            "judul": "Grape juice, but not orange juice or grapefruit juice, inhibits human platelet aggregation.",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "MED-3200",
+            "judul": "Prospective study of grapefruit intake and risk of breast cancer in postmenopausal women: the Multiethnic Cohort Study",
+            "relevansi": 0
+          },
+          {
+            "doc_id": "MED-3210",
+            "judul": "The effects of daily consumption of grapefruit on body weight, lipids, and blood pressure in healthy, overweight adults.",
+            "relevansi": 0
+          }
+        ]
+      }
+    },
+    "dokumen_relevan_utama": {
+      "doc_id": "MED-2668",
+      "judul": "Concord grape juice supplementation and neurocognitive function in human aging.",
+      "relevansi": 1,
+      "keyphrase_dokumen": [
+        "concord grape juice",
+        "aging",
+        "memory",
+        "fmri"
+      ],
+      "s_sem": 0.34607410430908203,
+      "peringkat_sem_seluruh_korpus": 15,
+      "s_kp": 0.2664070129394531,
+      "s_bm25": 9.304681777954102,
+      "unit_keyphrase_bersama": [
+        "t:grape"
+      ],
+      "term_bm25_bersama": [
+        "grape"
+      ],
+      "peringkat": {
+        "bm25": 1,
+        "semantic": 15,
+        "keyphrase": 5,
+        "hybrid_weighted": 13
+      }
+    },
+    "penjelasan": "Dokumen relevan [MED-2668] ada di peringkat #1 pada BM25 tetapi #13 pada Hybrid (#15 pada Semantic-only). Term query yang cocok persis dengan dokumen: grape. Unit keyphrase bersama: t:grape (s_kp = 0.266). BM25 memberi bobot tinggi pada kecocokan kata yang langka, sedangkan embedding (s_sem = 0.346, peringkat 15 di seluruh korpus) dan keyphrase tidak menangkapnya cukup kuat.",
+    "utama": false
+  }
+]

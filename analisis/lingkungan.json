@@ -1,0 +1,77 @@
+{
+  "pustaka": {
+    "python": "3.14.4",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "torch": "2.14.1",
+    "transformers": "5.18.0",
+    "sentence-transformers": "6.1.0",
+    "snowballstemmer": "3.1.1",
+    "streamlit": "1.65.0",
+    "matplotlib": "3.11.2"
+  },
+  "perangkat": {
+    "Model Name": "MacBook Pro",
+    "Chip": "Apple M4 Pro",
+    "Total Number of Cores": "12 (8 Performance and 4 Efficiency)",
+    "Memory": "24 GB",
+    "macOS": "26.5.1",
+    "RAM (sysctl, GB)": "24",
+    "CPU (sysctl)": "Apple M4 Pro",
+    "device torch": "mps"
+  },
+  "kaggle": {
+    "scifact": {
+      "model": "taln-ls2n/bart-base-kp20k",
+      "num_beams": 4,
+      "top_n": 10,
+      "entries": 6288,
+      "workers": [
+        {
+          "gpu": "Tesla T4",
+          "device": "cuda",
+          "torch": "2.11.0+cu128",
+          "transformers": "5.16.1",
+          "commit": "674e4b03753c70d23b0c5be504a81043dcb783a7",
+          "items": 3144,
+          "seconds": 130.1
+        },
+        {
+          "gpu": "Tesla T4",
+          "device": "cuda",
+          "torch": "2.11.0+cu128",
+          "transformers": "5.16.1",
+          "commit": "674e4b03753c70d23b0c5be504a81043dcb783a7",
+          "items": 3144,
+          "seconds": 132.0
+        }
+      ]
+    },
+    "nfcorpus": {
+      "model": "taln-ls2n/bart-base-kp20k",
+      "num_beams": 4,
+      "top_n": 10,
+      "entries": 6809,
+      "workers": [
+        {
+          "gpu": "Tesla T4",
+          "device": "cuda",
+          "torch": "2.11.0+cu128",
+          "transformers": "5.16.1",
+          "commit": "674e4b03753c70d23b0c5be504a81043dcb783a7",
+          "items": 3405,
+          "seconds": 91.4
+        },
+        {
+          "gpu": "Tesla T4",
+          "device": "cuda",
+          "torch": "2.11.0+cu128",
+          "transformers": "5.16.1",
+          "commit": "674e4b03753c70d23b0c5be504a81043dcb783a7",
+          "items": 3404,
+          "seconds": 107.6
+        }
+      ]
+    }
+  }
+}

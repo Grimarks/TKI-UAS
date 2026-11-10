@@ -1,0 +1,629 @@
+{
+  "tabel_utama": {
+    "scifact": {
+      "bm25": {
+        "ndcg@10": 0.6833772959553094,
+        "map@100": 0.6357220440712144,
+        "recall@10": 0.8311666666666666,
+        "recall@100": 0.9193333333333333,
+        "precision@10": 0.09166666666666666,
+        "mrr@10": 0.6415925925925925
+      },
+      "semantic": {
+        "ndcg@10": 0.6497065394218359,
+        "map@100": 0.6072109234296704,
+        "recall@10": 0.7883333333333333,
+        "recall@100": 0.925,
+        "precision@10": 0.08899999999999998,
+        "mrr@10": 0.6097208994708995
+      },
+      "keyphrase": {
+        "ndcg@10": 0.40780183566373307,
+        "map@100": 0.37274440570254197,
+        "recall@10": 0.534611111111111,
+        "recall@100": 0.7661666666666668,
+        "precision@10": 0.059,
+        "mrr@10": 0.3748822751322751
+      },
+      "hybrid_weighted": {
+        "ndcg@10": 0.6670594170960734,
+        "map@100": 0.6242682587504558,
+        "recall@10": 0.8073333333333333,
+        "recall@100": 0.9316666666666666,
+        "precision@10": 0.09133333333333332,
+        "mrr@10": 0.624096560846561
+      }
+    },
+    "nfcorpus": {
+      "bm25": {
+        "ndcg@10": 0.32777702368164596,
+        "map@100": 0.14627028642138398,
+        "recall@10": 0.15200077664587663,
+        "recall@100": 0.24839755017244136,
+        "precision@10": 0.23869969040247677,
+        "mrr@10": 0.5313750061428081
+      },
+      "semantic": {
+        "ndcg@10": 0.3173907139540095,
+        "map@100": 0.14310599874115,
+        "recall@10": 0.15694399459801384,
+        "recall@100": 0.3110590684354253,
+        "precision@10": 0.24365325077399377,
+        "mrr@10": 0.5082989336085311
+      },
+      "keyphrase": {
+        "ndcg@10": 0.23207699159400805,
+        "map@100": 0.08573418302164612,
+        "recall@10": 0.10042956785249209,
+        "recall@100": 0.17050783406691422,
+        "precision@10": 0.17244582043343654,
+        "mrr@10": 0.4199899257948793
+      },
+      "hybrid_weighted": {
+        "ndcg@10": 0.3219495136355941,
+        "map@100": 0.14664589723753294,
+        "recall@10": 0.15754044340150508,
+        "recall@100": 0.31368804644570736,
+        "precision@10": 0.2430340557275542,
+        "mrr@10": 0.5225342768686422
+      }
+    }
+  },
+  "signifikansi": [
+    {
+      "dataset": "scifact",
+      "a": "hybrid_weighted",
+      "b": "semantic",
+      "mean_diff": 0.017352877674237554,
+      "ci95": [
+        0.004757825875038791,
+        0.03074956482263075
+      ],
+      "p_value": 0.006,
+      "n": 300,
+      "signifikan": true
+    },
+    {
+      "dataset": "scifact",
+      "a": "hybrid_weighted",
+      "b": "keyphrase",
+      "mean_diff": 0.2592575814323403,
+      "ci95": [
+        0.21412061741288266,
+        0.30354566076193806
+      ],
+      "p_value": 0.0001,
+      "n": 300,
+      "signifikan": true
+    },
+    {
+      "dataset": "scifact",
+      "a": "hybrid_weighted",
+      "b": "bm25",
+      "mean_diff": -0.016317878859236037,
+      "ci95": [
+        -0.05066489637396647,
+        0.017332741271050077
+      ],
+      "p_value": 0.3538,
+      "n": 300,
+      "signifikan": false
+    },
+    {
+      "dataset": "nfcorpus",
+      "a": "hybrid_weighted",
+      "b": "semantic",
+      "mean_diff": 0.0045587996815846825,
+      "ci95": [
+        0.0003460270574670626,
+        0.009196682333706248
+      ],
+      "p_value": 0.035,
+      "n": 323,
+      "signifikan": true
+    },
+    {
+      "dataset": "nfcorpus",
+      "a": "hybrid_weighted",
+      "b": "keyphrase",
+      "mean_diff": 0.0898725220415861,
+      "ci95": [
+        0.06799586801157537,
+        0.11212979422578231
+      ],
+      "p_value": 0.0001,
+      "n": 323,
+      "signifikan": true
+    },
+    {
+      "dataset": "nfcorpus",
+      "a": "hybrid_weighted",
+      "b": "bm25",
+      "mean_diff": -0.005827510046051831,
+      "ci95": [
+        -0.027993573796501765,
+        0.015420415397993572
+      ],
+      "p_value": 0.5902,
+      "n": 323,
+      "signifikan": false
+    }
+  ],
+  "alpha": {
+    "scifact": {
+      "alpha_selected": 0.9,
+      "tune_split": "split:train",
+      "n_tune": 809,
+      "n_eval": 300,
+      "ndcg_tune_at_selected": 0.6698523446714394,
+      "alpha_terbaik_posthoc_test": 0.9,
+      "ndcg_test_terbaik_posthoc": 0.6670594170960734
+    },
+    "nfcorpus": {
+      "alpha_selected": 0.9,
+      "tune_split": "split:dev",
+      "n_tune": 324,
+      "n_eval": 323,
+      "ndcg_tune_at_selected": 0.30761155004127666,
+      "alpha_terbaik_posthoc_test": 0.9,
+      "ndcg_test_terbaik_posthoc": 0.3219495136355941
+    }
+  },
+  "menang_seri_kalah": {
+    "scifact": {
+      "semantic": {
+        "n": 300,
+        "menang": 41,
+        "seri": 231,
+        "kalah": 28,
+        "seri_keduanya_nol": 52,
+        "rata_selisih": 0.01735287
+      },
+      "bm25": {
+        "n": 300,
+        "menang": 65,
+        "seri": 171,
+        "kalah": 64,
+        "seri_keduanya_nol": 29,
+        "rata_selisih": -0.01631789
+      },
+      "keyphrase": {
+        "n": 300,
+        "menang": 151,
+        "seri": 127,
+        "kalah": 22,
+        "seri_keduanya_nol": 50,
+        "rata_selisih": 0.25925758666666665
+      }
+    },
+    "nfcorpus": {
+      "semantic": {
+        "n": 323,
+        "menang": 75,
+        "seri": 191,
+        "kalah": 57,
+        "seri_keduanya_nol": 97,
+        "rata_selisih": 0.004558770897832817
+      },
+      "bm25": {
+        "n": 323,
+        "menang": 107,
+        "seri": 109,
+        "kalah": 107,
+        "seri_keduanya_nol": 75,
+        "rata_selisih": -0.005827517027863781
+      },
+      "keyphrase": {
+        "n": 323,
+        "menang": 156,
+        "seri": 111,
+        "kalah": 56,
+        "seri_keduanya_nol": 85,
+        "rata_selisih": 0.08987251083591331
+      }
+    }
+  },
+  "dataset": {
+    "scifact": {
+      "n_docs": 5183,
+      "test": {
+        "query_qrels": 300,
+        "query_terpakai": 300,
+        "pasangan_qrels": 339,
+        "rata_relevan_per_query": 1.13
+      },
+      "train": {
+        "query_qrels": 809,
+        "query_terpakai": 809,
+        "pasangan_qrels": 919,
+        "rata_relevan_per_query": 1.1359703337453646
+      }
+    },
+    "nfcorpus": {
+      "n_docs": 3633,
+      "dev": {
+        "query_qrels": 324,
+        "query_terpakai": 324,
+        "pasangan_qrels": 11385,
+        "rata_relevan_per_query": 35.138888888888886
+      },
+      "test": {
+        "query_qrels": 323,
+        "query_terpakai": 323,
+        "pasangan_qrels": 12334,
+        "rata_relevan_per_query": 38.18575851393189
+      },
+      "train": {
+        "query_qrels": 2590,
+        "query_terpakai": 2590,
+        "pasangan_qrels": 110575,
+        "rata_relevan_per_query": 42.69305019305019
+      }
+    }
+  },
+  "keyphrase": {
+    "scifact": {
+      "dok_rata_keyphrase": 4.440478487362531,
+      "dok_median_keyphrase": 4.0,
+      "dok_min_keyphrase": 2,
+      "dok_maks_keyphrase": 10,
+      "dok_tanpa_keyphrase": 0,
+      "dok_present": 21780,
+      "dok_absent": 1234,
+      "dok_frasa_kosong": 1,
+      "dok_proporsi_absent": 0.05361953593464847,
+      "dok_proporsi_absent_per_urutan": {
+        "1": 0.03260659849508007,
+        "2": 0.03299247540034729,
+        "3": 0.05172078553373517,
+        "4": 0.08619091751621873,
+        "5": 0.07551487414187644,
+        "6": 0.08664772727272728,
+        "7": 0.10526315789473684,
+        "8": 0.030303030303030304,
+        "9": 0.2222222222222222,
+        "10": 0.11764705882352941
+      },
+      "dok_jumlah_frasa_per_urutan": {
+        "1": 5183,
+        "2": 5183,
+        "3": 5143,
+        "4": 4316,
+        "5": 2185,
+        "6": 704,
+        "7": 190,
+        "8": 66,
+        "9": 27,
+        "10": 17
+      },
+      "query_n": 300,
+      "query_rata_keyphrase": 2.92,
+      "query_median_keyphrase": 3.0,
+      "query_tanpa_keyphrase": 0,
+      "query_present": 746,
+      "query_absent": 129,
+      "query_proporsi_absent": 0.14742857142857144,
+      "query_skor_kp_nol_semua_dok": 1,
+      "query_proporsi_skor_kp_nol": 0.0033333333333333335,
+      "median_dok_skor_kp_positif_per_query": 155.0,
+      "query_ndcg_keyphrase_nol": 132,
+      "query_proporsi_ndcg_keyphrase_nol": 0.44,
+      "query_ndcg_semantic_nol": 60,
+      "pasangan_relevan_skor_kp_positif": 273,
+      "pasangan_relevan_total": 339,
+      "proporsi_pasangan_relevan_skor_kp_positif": 0.8053097345132744
+    },
+    "nfcorpus": {
+      "dok_rata_keyphrase": 4.330305532617671,
+      "dok_median_keyphrase": 4.0,
+      "dok_min_keyphrase": 2,
+      "dok_maks_keyphrase": 10,
+      "dok_tanpa_keyphrase": 0,
+      "dok_present": 15031,
+      "dok_absent": 701,
+      "dok_frasa_kosong": 0,
+      "dok_proporsi_absent": 0.044558860920416984,
+      "dok_proporsi_absent_per_urutan": {
+        "1": 0.02477291494632535,
+        "2": 0.02972749793559042,
+        "3": 0.04747277296844457,
+        "4": 0.07204301075268817,
+        "5": 0.0665646518745218,
+        "6": 0.06040268456375839,
+        "7": 0.07386363636363637,
+        "8": 0.023809523809523808,
+        "9": 0.03773584905660377,
+        "10": 0.03571428571428571
+      },
+      "dok_jumlah_frasa_per_urutan": {
+        "1": 3633,
+        "2": 3633,
+        "3": 3581,
+        "4": 2790,
+        "5": 1307,
+        "6": 447,
+        "7": 176,
+        "8": 84,
+        "9": 53,
+        "10": 28
+      },
+      "query_n": 323,
+      "query_rata_keyphrase": 1.888544891640867,
+      "query_median_keyphrase": 2.0,
+      "query_tanpa_keyphrase": 0,
+      "query_present": 436,
+      "query_absent": 174,
+      "query_proporsi_absent": 0.28524590163934427,
+      "query_skor_kp_nol_semua_dok": 32,
+      "query_proporsi_skor_kp_nol": 0.09907120743034056,
+      "median_dok_skor_kp_positif_per_query": 38.0,
+      "query_ndcg_keyphrase_nol": 133,
+      "query_proporsi_ndcg_keyphrase_nol": 0.4117647058823529,
+      "query_ndcg_semantic_nol": 100,
+      "pasangan_relevan_skor_kp_positif": 1721,
+      "pasangan_relevan_total": 12334,
+      "proporsi_pasangan_relevan_skor_kp_positif": 0.13953299821631263
+    }
+  },
+  "studi_kasus": [
+    {
+      "dataset": "scifact",
+      "qid": "1185",
+      "jenis": "hybrid_menolong",
+      "utama": true,
+      "selisih_hybrid_semantic": 0.5,
+      "selisih_hybrid_bm25": 0.0
+    },
+    {
+      "dataset": "scifact",
+      "qid": "295",
+      "jenis": "hybrid_menolong",
+      "utama": false,
+      "selisih_hybrid_semantic": 0.5,
+      "selisih_hybrid_bm25": 0.0
+    },
+    {
+      "dataset": "scifact",
+      "qid": "527",
+      "jenis": "hybrid_menolong",
+      "utama": false,
+      "selisih_hybrid_semantic": 0.386853,
+      "selisih_hybrid_bm25": -0.244077
+    },
+    {
+      "dataset": "scifact",
+      "qid": "1024",
+      "jenis": "hybrid_kalah_bm25",
+      "utama": true,
+      "selisih_hybrid_semantic": 0.0,
+      "selisih_hybrid_bm25": -1.0
+    },
+    {
+      "dataset": "scifact",
+      "qid": "1337",
+      "jenis": "hybrid_kalah_bm25",
+      "utama": false,
+      "selisih_hybrid_semantic": -0.289065,
+      "selisih_hybrid_bm25": -1.0
+    },
+    {
+      "dataset": "scifact",
+      "qid": "1363",
+      "jenis": "hybrid_kalah_bm25",
+      "utama": false,
+      "selisih_hybrid_semantic": 0.0,
+      "selisih_hybrid_bm25": -1.0
+    },
+    {
+      "dataset": "nfcorpus",
+      "qid": "PLAIN-681",
+      "jenis": "hybrid_menolong",
+      "utama": true,
+      "selisih_hybrid_semantic": 0.36907,
+      "selisih_hybrid_bm25": 0.0
+    },
+    {
+      "dataset": "nfcorpus",
+      "qid": "PLAIN-383",
+      "jenis": "hybrid_menolong",
+      "utama": false,
+      "selisih_hybrid_semantic": 0.20795500000000003,
+      "selisih_hybrid_bm25": 0.16958
+    },
+    {
+      "dataset": "nfcorpus",
+      "qid": "PLAIN-3191",
+      "jenis": "hybrid_menolong",
+      "utama": false,
+      "selisih_hybrid_semantic": 0.16018899999999997,
+      "selisih_hybrid_bm25": 0.062633
+    },
+    {
+      "dataset": "nfcorpus",
+      "qid": "PLAIN-1473",
+      "jenis": "hybrid_kalah_bm25",
+      "utama": true,
+      "selisih_hybrid_semantic": 0.0,
+      "selisih_hybrid_bm25": -1.0
+    },
+    {
+      "dataset": "nfcorpus",
+      "qid": "PLAIN-2081",
+      "jenis": "hybrid_kalah_bm25",
+      "utama": false,
+      "selisih_hybrid_semantic": 0.0,
+      "selisih_hybrid_bm25": -1.0
+    },
+    {
+      "dataset": "nfcorpus",
+      "qid": "PLAIN-1288",
+      "jenis": "hybrid_kalah_bm25",
+      "utama": false,
+      "selisih_hybrid_semantic": 0.0,
+      "selisih_hybrid_bm25": -0.775337
+    }
+  ],
+  "waktu": [
+    {
+      "dataset": "scifact",
+      "langkah": "Bangun indeks BM25 di memori (5183 dokumen, sekali)",
+      "n": 1,
+      "rata_ms": 692.3388749128208,
+      "median_ms": null
+    },
+    {
+      "dataset": "scifact",
+      "langkah": "BM25",
+      "n": 300,
+      "rata_ms": 0.5677082627597783,
+      "median_ms": 0.5642084870487452
+    },
+    {
+      "dataset": "scifact",
+      "langkah": "Semantic",
+      "n": 300,
+      "rata_ms": 3.8054343027114452,
+      "median_ms": 3.58850002521649
+    },
+    {
+      "dataset": "scifact",
+      "langkah": "Keyphrase",
+      "n": 300,
+      "rata_ms": 0.37552190052034956,
+      "median_ms": 0.37404149770736694
+    },
+    {
+      "dataset": "scifact",
+      "langkah": "Hybrid",
+      "n": 300,
+      "rata_ms": 4.246954457937843,
+      "median_ms": 3.9370210142806172
+    },
+    {
+      "dataset": "scifact",
+      "langkah": "BART-KPG query bebas (mps)",
+      "n": 20,
+      "rata_ms": 116.41426460701041,
+      "median_ms": 121.7228124733083
+    },
+    {
+      "dataset": "nfcorpus",
+      "langkah": "Bangun indeks BM25 di memori (3633 dokumen, sekali)",
+      "n": 1,
+      "rata_ms": 527.1743749035522,
+      "median_ms": null
+    },
+    {
+      "dataset": "nfcorpus",
+      "langkah": "BM25",
+      "n": 323,
+      "rata_ms": 0.3765937552659535,
+      "median_ms": 0.40625000838190317
+    },
+    {
+      "dataset": "nfcorpus",
+      "langkah": "Semantic",
+      "n": 323,
+      "rata_ms": 4.111720073532786,
+      "median_ms": 3.731332952156663
+    },
+    {
+      "dataset": "nfcorpus",
+      "langkah": "Keyphrase",
+      "n": 323,
+      "rata_ms": 0.26212031044781026,
+      "median_ms": 0.2986670006066561
+    },
+    {
+      "dataset": "nfcorpus",
+      "langkah": "Hybrid",
+      "n": 323,
+      "rata_ms": 4.274916497416702,
+      "median_ms": 3.956542001105845
+    },
+    {
+      "dataset": "nfcorpus",
+      "langkah": "BART-KPG query bebas (mps)",
+      "n": 20,
+      "rata_ms": 83.11740010394715,
+      "median_ms": 86.86158299678937
+    }
+  ],
+  "lingkungan": {
+    "pustaka": {
+      "python": "3.14.4",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "torch": "2.14.1",
+      "transformers": "5.18.0",
+      "sentence-transformers": "6.1.0",
+      "snowballstemmer": "3.1.1",
+      "streamlit": "1.65.0",
+      "matplotlib": "3.11.2"
+    },
+    "perangkat": {
+      "Model Name": "MacBook Pro",
+      "Chip": "Apple M4 Pro",
+      "Total Number of Cores": "12 (8 Performance and 4 Efficiency)",
+      "Memory": "24 GB",
+      "macOS": "26.5.1",
+      "RAM (sysctl, GB)": "24",
+      "CPU (sysctl)": "Apple M4 Pro",
+      "device torch": "mps"
+    },
+    "kaggle": {
+      "scifact": {
+        "model": "taln-ls2n/bart-base-kp20k",
+        "num_beams": 4,
+        "top_n": 10,
+        "entries": 6288,
+        "workers": [
+          {
+            "gpu": "Tesla T4",
+            "device": "cuda",
+            "torch": "2.11.0+cu128",
+            "transformers": "5.16.1",
+            "commit": "674e4b03753c70d23b0c5be504a81043dcb783a7",
+            "items": 3144,
+            "seconds": 130.1
+          },
+          {
+            "gpu": "Tesla T4",
+            "device": "cuda",
+            "torch": "2.11.0+cu128",
+            "transformers": "5.16.1",
+            "commit": "674e4b03753c70d23b0c5be504a81043dcb783a7",
+            "items": 3144,
+            "seconds": 132.0
+          }
+        ]
+      },
+      "nfcorpus": {
+        "model": "taln-ls2n/bart-base-kp20k",
+        "num_beams": 4,
+        "top_n": 10,
+        "entries": 6809,
+        "workers": [
+          {
+            "gpu": "Tesla T4",
+            "device": "cuda",
+            "torch": "2.11.0+cu128",
+            "transformers": "5.16.1",
+            "commit": "674e4b03753c70d23b0c5be504a81043dcb783a7",
+            "items": 3405,
+            "seconds": 91.4
+          },
+          {
+            "gpu": "Tesla T4",
+            "device": "cuda",
+            "torch": "2.11.0+cu128",
+            "transformers": "5.16.1",
+            "commit": "674e4b03753c70d23b0c5be504a81043dcb783a7",
+            "items": 3404,
+            "seconds": 107.6
+          }
+        ]
+      }
+    }
+  }
+}

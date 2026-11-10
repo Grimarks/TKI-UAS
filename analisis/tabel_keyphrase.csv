@@ -1,0 +1,14 @@
+statistik,scifact,nfcorpus
+dok_rata_keyphrase,4.440478487362531,4.330305532617671
+dok_tanpa_keyphrase,0,0
+dok_proporsi_absent,0.05361953593464847,0.044558860920416984
+query_rata_keyphrase,2.92,1.888544891640867
+query_tanpa_keyphrase,0,0
+query_proporsi_absent,0.14742857142857144,0.28524590163934427
+query_skor_kp_nol_semua_dok,1,32
+query_proporsi_skor_kp_nol,0.0033333333333333335,0.09907120743034056
+median_dok_skor_kp_positif_per_query,155.0,38.0
+query_ndcg_keyphrase_nol,132,133
+query_proporsi_ndcg_keyphrase_nol,0.44,0.4117647058823529
+query_ndcg_semantic_nol,60,100
+proporsi_pasangan_relevan_skor_kp_positif,0.8053097345132744,0.13953299821631263

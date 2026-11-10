@@ -1,0 +1,43 @@
+dataset,doc_id,judul,urutan,keyphrase,bobot,status
+scifact,6517267,Barriers and facilitators to implement shared decision making in multidisciplinary sciatica care: a qualitative study,1,barriers,1.0,present
+scifact,6517267,Barriers and facilitators to implement shared decision making in multidisciplinary sciatica care: a qualitative study,2,facilitators,0.8,present
+scifact,6517267,Barriers and facilitators to implement shared decision making in multidisciplinary sciatica care: a qualitative study,3,shared decision making,0.67,present
+scifact,6517267,Barriers and facilitators to implement shared decision making in multidisciplinary sciatica care: a qualitative study,4,sciatica,0.57,present
+scifact,6517267,Barriers and facilitators to implement shared decision making in multidisciplinary sciatica care: a qualitative study,5,qualitative study,0.5,present
+scifact,8551160,"Mitochondria: Dynamic Organelles in Disease, Aging, and Development",1,mitochondria,1.0,present
+scifact,8551160,"Mitochondria: Dynamic Organelles in Disease, Aging, and Development",2,disease,0.8,present
+scifact,8551160,"Mitochondria: Dynamic Organelles in Disease, Aging, and Development",3,aging,0.67,present
+scifact,8551160,"Mitochondria: Dynamic Organelles in Disease, Aging, and Development",4,development,0.57,present
+scifact,8551160,"Mitochondria: Dynamic Organelles in Disease, Aging, and Development",5,fusion,0.5,present
+scifact,8551160,"Mitochondria: Dynamic Organelles in Disease, Aging, and Development",6,fission,0.44,present
+scifact,11244195,STAR: ultrafast universal RNA-seq aligner.,1,rna-seq,1.0,present
+scifact,11244195,STAR: ultrafast universal RNA-seq aligner.,2,alignment,0.8,present
+scifact,11244195,STAR: ultrafast universal RNA-seq aligner.,3,splicing,0.67,present
+scifact,11244195,STAR: ultrafast universal RNA-seq aligner.,4,canonical junctions,0.57,present
+scifact,11244195,STAR: ultrafast universal RNA-seq aligner.,5,intergenic splices,0.5,present
+scifact,12948892,Ca2+-permeable AMPA receptors regulate growth of human glioblastoma via Akt activation.,1,ca2+-permeable ampa receptor,1.0,present
+scifact,12948892,Ca2+-permeable AMPA receptors regulate growth of human glioblastoma via Akt activation.,2,human glioblastoma,0.8,present
+scifact,12948892,Ca2+-permeable AMPA receptors regulate growth of human glioblastoma via Akt activation.,3,akt activation,0.67,present
+scifact,14437255,Congruent Visual Speech Enhances Cortical Entrainment to Continuous Auditory Speech in Noise-Free Conditions.,1,continuous speech,1.0,present
+scifact,14437255,Congruent Visual Speech Enhances Cortical Entrainment to Continuous Auditory Speech in Noise-Free Conditions.,2,audiovisual speech,0.8,present
+scifact,14437255,Congruent Visual Speech Enhances Cortical Entrainment to Continuous Auditory Speech in Noise-Free Conditions.,3,multisensory integration,0.67,present
+scifact,14437255,Congruent Visual Speech Enhances Cortical Entrainment to Continuous Auditory Speech in Noise-Free Conditions.,4,electroencephalography,0.57,present
+scifact,14437255,Congruent Visual Speech Enhances Cortical Entrainment to Continuous Auditory Speech in Noise-Free Conditions.,5,speech perception,0.5,absent
+nfcorpus,MED-2056,Cow's Milk Allergy Is a Major Contributor in Recurrent Perianal Dermatitis of Infants,1,cow's milk allergy,1.0,present
+nfcorpus,MED-2056,Cow's Milk Allergy Is a Major Contributor in Recurrent Perianal Dermatitis of Infants,2,recurrent perianal dermatitis,0.8,present
+nfcorpus,MED-2056,Cow's Milk Allergy Is a Major Contributor in Recurrent Perianal Dermatitis of Infants,3,infant,0.67,present
+nfcorpus,MED-2207,Growth inhibition and induction of apoptosis in NB4 promyelocytic leukemia cells by trypsin inhibitor from sweet potato storage roots.,1,growth inhibition,1.0,present
+nfcorpus,MED-2207,Growth inhibition and induction of apoptosis in NB4 promyelocytic leukemia cells by trypsin inhibitor from sweet potato storage roots.,2,apoptosis,0.8,present
+nfcorpus,MED-2207,Growth inhibition and induction of apoptosis in NB4 promyelocytic leukemia cells by trypsin inhibitor from sweet potato storage roots.,3,NB4 promyelocytic leukemia cells,0.67,present
+nfcorpus,MED-2207,Growth inhibition and induction of apoptosis in NB4 promyelocytic leukemia cells by trypsin inhibitor from sweet potato storage roots.,4,trypsin inhibitor,0.57,present
+nfcorpus,MED-4479,Long-term exposure to sodium nitrite and risk of esophageal carcinoma: a cohort study for 30 years.,1,long-term exposure,1.0,present
+nfcorpus,MED-4479,Long-term exposure to sodium nitrite and risk of esophageal carcinoma: a cohort study for 30 years.,2,sodium nitrite,0.8,present
+nfcorpus,MED-4479,Long-term exposure to sodium nitrite and risk of esophageal carcinoma: a cohort study for 30 years.,3,esophageal carcinoma,0.67,present
+nfcorpus,MED-4479,Long-term exposure to sodium nitrite and risk of esophageal carcinoma: a cohort study for 30 years.,4,occupational exposure,0.57,present
+nfcorpus,MED-4484,"Salt, processed meat and the risk of cancer.",1,salt,1.0,present
+nfcorpus,MED-4484,"Salt, processed meat and the risk of cancer.",2,processed meat,0.8,present
+nfcorpus,MED-4484,"Salt, processed meat and the risk of cancer.",3,cancer,0.67,present
+nfcorpus,MED-5031,Sleep Habits and Susceptibility to the Common Cold,1,sleep,1.0,present
+nfcorpus,MED-5031,Sleep Habits and Susceptibility to the Common Cold,2,susceptibility,0.8,present
+nfcorpus,MED-5031,Sleep Habits and Susceptibility to the Common Cold,3,common cold,0.67,present
+nfcorpus,MED-5031,Sleep Habits and Susceptibility to the Common Cold,4,rhinovirus,0.57,present
