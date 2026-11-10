@@ -34,7 +34,7 @@ potongan kode diambil dari proyek yang sebenarnya:
 
 Semua anggota **wajib** membaca 01, 02, dan 09 (gambaran besar dan hasil), lalu bab tanggung jawabnya sendiri.
 Bab 12 dibaca semua orang, terutama pertanyaan yang ditandai dengan namanya. Pembagian lengkap ada di
-`PEMBAGIAN_TUGAS.md`.
+dokumen pembagian tugas kelompok (dibagikan terpisah oleh ketua).
 
 | Anggota | Bab wajib |
 |---|---|

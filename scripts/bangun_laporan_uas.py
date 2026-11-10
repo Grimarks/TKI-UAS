@@ -876,8 +876,13 @@ def bagian_b(b: Builder, D: dict) -> None:
 
 def bagian_c(b: Builder) -> None:
     d = b.d
-    # Kontribusi tiap tim: satu sumber kebenaran di PEMBAGIAN_TUGAS.md (antara penanda kontribusi:mulai/selesai)
-    sumber = (ROOT / "PEMBAGIAN_TUGAS.md").read_text(encoding="utf-8")
+    # Kontribusi tiap tim: satu sumber kebenaran di PEMBAGIAN_TUGAS.md (antara penanda kontribusi:mulai/selesai).
+    # Berkas itu sengaja TIDAK ikut repositori (lihat .gitignore); hanya ada di komputer ketua.
+    berkas = ROOT / "PEMBAGIAN_TUGAS.md"
+    if not berkas.is_file():
+        raise SystemExit("GALAT: PEMBAGIAN_TUGAS.md tidak ada. Berkas ini tidak ikut repositori; "
+                         "minta ke ketua kelompok untuk membangun ulang laporan.")
+    sumber = berkas.read_text(encoding="utf-8")
     m = re.search(r"<!-- kontribusi:mulai -->\n(.+?)\n<!-- kontribusi:selesai -->", sumber, re.S)
     if not m:
         raise SystemExit("GALAT: penanda kontribusi tidak ditemukan di PEMBAGIAN_TUGAS.md")

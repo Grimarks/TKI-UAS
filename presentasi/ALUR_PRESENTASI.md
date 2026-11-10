@@ -20,7 +20,7 @@ secara proporsional; urutan dan pembicara tetap. Semua gambar diambil dari `anal
 | 12 | Analisis keyphrase | Leonardo | 1:30 | Tabel 5: *absent* sekitar 5%; cakupan 80.5% / 14.0% (qrels padat) vs 81.7% / 71.2% per kueri; yang tidak diukur | Tabel 5 laporan |
 | 13 | Demo dan studi kasus | Surya | 4:00 | `presentasi/SKRIP_DEMO.md` langkah 1–4 | terminal / UI; Tabel 6 laporan |
 | 14 | Kesimpulan, keterbatasan, rencana | Darrell | 1:00 | jawaban RQ1–RQ3; zero-shot, satu encoder kecil, dua koleksi biomedis, keyphrase domain ilmu komputer | Bab 5 laporan |
-| — | Tanya jawab | semua | — | penjawab utama sesuai `PEMBAGIAN_TUGAS.md` (P1–P30) | modul Bab 12 |
+| — | Tanya jawab | semua | — | penjawab utama sesuai dokumen pembagian tugas (P1–P30) | modul Bab 12 |
 
 Total: 22:30. Untuk tepat 20 menit, persingkat slide 2, 6, dan 7 masing-masing 30 detik dan demo menjadi 3 menit (langkah 1–3).
 

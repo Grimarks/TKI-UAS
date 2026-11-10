@@ -35,7 +35,6 @@ scripts/            peta_kode.py (tabel PETA_KODE.md), analisis_uas.py (analisis
 analisis/           tabel CSV/MD dan gambar PNG dari hasil yang sudah ada (sumber angka laporan, modul, slide)
 modul/              modul pembelajaran bab 00–12 + glosarium
 presentasi/         ALUR_PRESENTASI.md, SKRIP_DEMO.md, demo.sh, cadangan/ (keluaran demo asli)
-PEMBAGIAN_TUGAS.md  pembagian tugas, daftar periksa per anggota, teks kontribusi tim untuk laporan
 tests/              157 tes otomatis (154 bila Streamlit belum terpasang; 3 tes UI dilewati)
 ```
 
