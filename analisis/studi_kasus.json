@@ -142,6 +142,32 @@
         "system",
         "transplant"
       ],
+      "frasa_keyphrase_sama": [
+        "kidney paired donation"
+      ],
+      "kata_keyphrase_sama": [
+        "kidney",
+        "paired",
+        "donation",
+        "optimized",
+        "transplantation"
+      ],
+      "kata_bm25_sama": [
+        "health",
+        "care",
+        "system",
+        "save",
+        "million",
+        "patients",
+        "kidney",
+        "transplants",
+        "participate",
+        "optimized",
+        "national",
+        "paired",
+        "donation",
+        "program"
+      ],
       "peringkat": {
         "bm25": 1,
         "semantic": 3,
@@ -149,7 +175,7 @@
         "hybrid_weighted": 1
       }
     },
-    "penjelasan": "Dokumen relevan [16737210] ada di peringkat #3 pada Semantic-only dan naik ke #1 pada Hybrid. Unit keyphrase yang sama dengan query: p:kidney pair donat, t:donat, t:kidney, t:optim, t:pair, t:transplant (s_kp = 0.667); skor semantiknya 0.592. Sinyal keyphrase menambah skor dokumen ini setelah normalisasi min-max, sehingga peringkatnya naik.",
+    "penjelasan": "Dokumen relevan [16737210] ada di peringkat #3 pada Semantic-only dan naik ke #1 pada Hybrid. Keyphrase query dan keyphrase dokumen: frasa yang sama 'kidney paired donation' serta kata yang sama 'kidney', 'paired', 'donation', 'optimized', 'transplantation' (s_kp = 0.667); skor semantiknya 0.592. Sinyal keyphrase menambah skor dokumen ini setelah normalisasi min-max, sehingga peringkatnya naik.",
     "utama": true
   },
   {
@@ -300,6 +326,28 @@
         "lymphoid",
         "regul"
       ],
+      "frasa_keyphrase_sama": [
+        "dendritic cells",
+        "innate lymphoid cells"
+      ],
+      "kata_keyphrase_sama": [
+        "dendritic",
+        "cells",
+        "innate",
+        "lymphoid"
+      ],
+      "kata_bm25_sama": [
+        "crosstalk",
+        "dendritic",
+        "cells",
+        "innate",
+        "lymphoid",
+        "ilcs",
+        "important",
+        "regulation",
+        "intestinal",
+        "homeostasis"
+      ],
       "peringkat": {
         "bm25": 1,
         "semantic": 3,
@@ -307,7 +355,7 @@
         "hybrid_weighted": 1
       }
     },
-    "penjelasan": "Dokumen relevan [20310709] ada di peringkat #3 pada Semantic-only dan naik ke #1 pada Hybrid. Unit keyphrase yang sama dengan query: p:dendrit cell, p:innat lymphoid cell, t:cell, t:dendrit, t:innat, t:lymphoid (s_kp = 0.341); skor semantiknya 0.651. Sinyal keyphrase menambah skor dokumen ini setelah normalisasi min-max, sehingga peringkatnya naik.",
+    "penjelasan": "Dokumen relevan [20310709] ada di peringkat #3 pada Semantic-only dan naik ke #1 pada Hybrid. Keyphrase query dan keyphrase dokumen: frasa yang sama 'dendritic cells', 'innate lymphoid cells' serta kata yang sama 'dendritic', 'cells', 'innate', 'lymphoid' (s_kp = 0.341); skor semantiknya 0.651. Sinyal keyphrase menambah skor dokumen ini setelah normalisasi min-max, sehingga peringkatnya naik.",
     "utama": false
   },
   {
@@ -431,7 +479,7 @@
       ],
       "s_sem": 0.4517500698566437,
       "peringkat_sem_seluruh_korpus": 12,
-      "s_kp": 0.2960277795791626,
+      "s_kp": 0.2960277497768402,
       "s_bm25": 25.869781494140625,
       "unit_keyphrase_bersama": [
         "p:oxid stress",
@@ -448,6 +496,23 @@
         "stem",
         "stress"
       ],
+      "frasa_keyphrase_sama": [
+        "oxidative stress"
+      ],
+      "kata_keyphrase_sama": [
+        "mesenchymal",
+        "cells",
+        "oxidative",
+        "stress"
+      ],
+      "kata_bm25_sama": [
+        "mesenchymal",
+        "stem",
+        "progenitor",
+        "cells",
+        "oxidative",
+        "stress"
+      ],
       "peringkat": {
         "bm25": 2,
         "semantic": 12,
@@ -455,7 +520,7 @@
         "hybrid_weighted": 5
       }
     },
-    "penjelasan": "Dokumen relevan [3863543] ada di peringkat #12 pada Semantic-only dan naik ke #5 pada Hybrid. Unit keyphrase yang sama dengan query: p:oxid stress, t:cell, t:mesenchym, t:oxid, t:stress (s_kp = 0.296); skor semantiknya 0.452. Sinyal keyphrase menambah skor dokumen ini setelah normalisasi min-max, sehingga peringkatnya naik.",
+    "penjelasan": "Dokumen relevan [3863543] ada di peringkat #12 pada Semantic-only dan naik ke #5 pada Hybrid. Keyphrase query dan keyphrase dokumen: frasa yang sama 'oxidative stress' serta kata yang sama 'mesenchymal', 'cells', 'oxidative', 'stress' (s_kp = 0.296); skor semantiknya 0.452. Sinyal keyphrase menambah skor dokumen ini setelah normalisasi min-max, sehingga peringkatnya naik.",
     "utama": false
   },
   {
@@ -591,6 +656,16 @@
         "occur",
         "site"
       ],
+      "frasa_keyphrase_sama": [],
+      "kata_keyphrase_sama": [],
+      "kata_bm25_sama": [
+        "mutations",
+        "occur",
+        "frequently",
+        "ctcf",
+        "anchor",
+        "sites"
+      ],
       "peringkat": {
         "bm25": 1,
         "semantic": 41,
@@ -598,7 +673,7 @@
         "hybrid_weighted": 49
       }
     },
-    "penjelasan": "Dokumen relevan [5373138] ada di peringkat #1 pada BM25 tetapi #49 pada Hybrid (#41 pada Semantic-only). Term query yang cocok persis dengan dokumen: anchor, ctcf, frequent, mutat, occur, site. Unit keyphrase bersama: tidak ada (s_kp = 0.000). BM25 memberi bobot tinggi pada kecocokan kata yang langka, sedangkan embedding (s_sem = 0.434, peringkat 41 di seluruh korpus) dan keyphrase tidak menangkapnya cukup kuat.",
+    "penjelasan": "Dokumen relevan [5373138] ada di peringkat #1 pada BM25 tetapi #49 pada Hybrid (#41 pada Semantic-only). Kata query yang juga muncul di dokumen: 'mutations', 'occur', 'frequently', 'ctcf', 'anchor', 'sites'. Keyphrase query dan keyphrase dokumen: tidak ada frasa maupun kata yang sama (s_kp = 0.000). BM25 memberi bobot tinggi pada kecocokan kata yang langka, sedangkan embedding (s_sem = 0.434, peringkat 41 di seluruh korpus) dan keyphrase tidak menangkapnya cukup kuat.",
     "utama": true
   },
   {
@@ -734,6 +809,16 @@
         "ubc13",
         "ubiquitin"
       ],
+      "frasa_keyphrase_sama": [],
+      "kata_keyphrase_sama": [],
+      "kata_bm25_sama": [
+        "ubiquitin",
+        "ubc13",
+        "k63",
+        "linked",
+        "polyubiquitin",
+        "pcna"
+      ],
       "peringkat": {
         "bm25": 1,
         "semantic": 10,
@@ -741,7 +826,7 @@
         "hybrid_weighted": 12
       }
     },
-    "penjelasan": "Dokumen relevan [20231138] ada di peringkat #1 pada BM25 tetapi #12 pada Hybrid (#10 pada Semantic-only). Term query yang cocok persis dengan dokumen: k63, link, pcna, polyubiquitin, ubc13, ubiquitin. Unit keyphrase bersama: tidak ada (s_kp = 0.000). BM25 memberi bobot tinggi pada kecocokan kata yang langka, sedangkan embedding (s_sem = 0.478, peringkat 10 di seluruh korpus) dan keyphrase tidak menangkapnya cukup kuat.",
+    "penjelasan": "Dokumen relevan [20231138] ada di peringkat #1 pada BM25 tetapi #12 pada Hybrid (#10 pada Semantic-only). Kata query yang juga muncul di dokumen: 'ubiquitin', 'ubc13', 'k63', 'linked', 'polyubiquitin', 'pcna'. Keyphrase query dan keyphrase dokumen: tidak ada frasa maupun kata yang sama (s_kp = 0.000). BM25 memberi bobot tinggi pada kecocokan kata yang langka, sedangkan embedding (s_sem = 0.478, peringkat 10 di seluruh korpus) dan keyphrase tidak menangkapnya cukup kuat.",
     "utama": false
   },
   {
@@ -871,6 +956,13 @@
         "compar",
         "venul"
       ],
+      "frasa_keyphrase_sama": [],
+      "kata_keyphrase_sama": [],
+      "kata_bm25_sama": [
+        "venules",
+        "compared",
+        "arterioles"
+      ],
       "peringkat": {
         "bm25": 1,
         "semantic": 62,
@@ -878,7 +970,7 @@
         "hybrid_weighted": 63
       }
     },
-    "penjelasan": "Dokumen relevan [8290953] ada di peringkat #1 pada BM25 tetapi #63 pada Hybrid (#62 pada Semantic-only). Term query yang cocok persis dengan dokumen: arteriol, compar, venul. Unit keyphrase bersama: tidak ada (s_kp = 0.000). BM25 memberi bobot tinggi pada kecocokan kata yang langka, sedangkan embedding (s_sem = 0.258, peringkat 62 di seluruh korpus) dan keyphrase tidak menangkapnya cukup kuat.",
+    "penjelasan": "Dokumen relevan [8290953] ada di peringkat #1 pada BM25 tetapi #63 pada Hybrid (#62 pada Semantic-only). Kata query yang juga muncul di dokumen: 'venules', 'compared', 'arterioles'. Keyphrase query dan keyphrase dokumen: tidak ada frasa maupun kata yang sama (s_kp = 0.000). BM25 memberi bobot tinggi pada kecocokan kata yang langka, sedangkan embedding (s_sem = 0.258, peringkat 62 di seluruh korpus) dan keyphrase tidak menangkapnya cukup kuat.",
     "utama": false
   },
   {
@@ -992,7 +1084,7 @@
       ],
       "s_sem": 0.3697419762611389,
       "peringkat_sem_seluruh_korpus": 2,
-      "s_kp": 0.3988943099975586,
+      "s_kp": 0.3988942503929138,
       "s_bm25": 21.64227294921875,
       "unit_keyphrase_bersama": [
         "t:betel",
@@ -1002,6 +1094,15 @@
         "betel",
         "nut"
       ],
+      "frasa_keyphrase_sama": [],
+      "kata_keyphrase_sama": [
+        "betel",
+        "nuts"
+      ],
+      "kata_bm25_sama": [
+        "betel",
+        "nuts"
+      ],
       "peringkat": {
         "bm25": 1,
         "semantic": 2,
@@ -1009,7 +1110,7 @@
         "hybrid_weighted": 1
       }
     },
-    "penjelasan": "Dokumen relevan [MED-5017] ada di peringkat #2 pada Semantic-only dan naik ke #1 pada Hybrid. Unit keyphrase yang sama dengan query: t:betel, t:nut (s_kp = 0.399); skor semantiknya 0.370. Sinyal keyphrase menambah skor dokumen ini setelah normalisasi min-max, sehingga peringkatnya naik.",
+    "penjelasan": "Dokumen relevan [MED-5017] ada di peringkat #2 pada Semantic-only dan naik ke #1 pada Hybrid. Keyphrase query dan keyphrase dokumen: tidak ada frasa yang sama utuh, tetapi ada kata yang sama 'betel', 'nuts' (s_kp = 0.399); skor semantiknya 0.370. Sinyal keyphrase menambah skor dokumen ini setelah normalisasi min-max, sehingga peringkatnya naik.",
     "utama": true
   },
   {
@@ -1141,6 +1242,17 @@
         "diet",
         "paleolith"
       ],
+      "frasa_keyphrase_sama": [
+        "paleolithic diets"
+      ],
+      "kata_keyphrase_sama": [
+        "paleolithic",
+        "diets"
+      ],
+      "kata_bm25_sama": [
+        "paleolithic",
+        "diets"
+      ],
       "peringkat": {
         "bm25": 3,
         "semantic": 5,
@@ -1148,7 +1260,7 @@
         "hybrid_weighted": 1
       }
     },
-    "penjelasan": "Dokumen relevan [MED-4299] ada di peringkat #5 pada Semantic-only dan naik ke #1 pada Hybrid. Unit keyphrase yang sama dengan query: p:paleolith diet, t:diet, t:paleolith (s_kp = 0.367); skor semantiknya 0.395. Sinyal keyphrase menambah skor dokumen ini setelah normalisasi min-max, sehingga peringkatnya naik.",
+    "penjelasan": "Dokumen relevan [MED-4299] ada di peringkat #5 pada Semantic-only dan naik ke #1 pada Hybrid. Keyphrase query dan keyphrase dokumen: frasa yang sama 'paleolithic diets' serta kata yang sama 'paleolithic', 'diets' (s_kp = 0.367); skor semantiknya 0.395. Sinyal keyphrase menambah skor dokumen ini setelah normalisasi min-max, sehingga peringkatnya naik.",
     "utama": false
   },
   {
@@ -1282,6 +1394,18 @@
         "free",
         "oil"
       ],
+      "frasa_keyphrase_sama": [],
+      "kata_keyphrase_sama": [
+        "distilled",
+        "fish",
+        "oil"
+      ],
+      "kata_bm25_sama": [
+        "distilled",
+        "fish",
+        "oil",
+        "free"
+      ],
       "peringkat": {
         "bm25": 1,
         "semantic": 2,
@@ -1289,7 +1413,7 @@
         "hybrid_weighted": 1
       }
     },
-    "penjelasan": "Dokumen relevan [MED-4730] ada di peringkat #2 pada Semantic-only dan naik ke #1 pada Hybrid. Unit keyphrase yang sama dengan query: t:distil, t:fish, t:oil (s_kp = 0.276); skor semantiknya 0.563. Sinyal keyphrase menambah skor dokumen ini setelah normalisasi min-max, sehingga peringkatnya naik.",
+    "penjelasan": "Dokumen relevan [MED-4730] ada di peringkat #2 pada Semantic-only dan naik ke #1 pada Hybrid. Keyphrase query dan keyphrase dokumen: tidak ada frasa yang sama utuh, tetapi ada kata yang sama 'distilled', 'fish', 'oil' (s_kp = 0.276); skor semantiknya 0.563. Sinyal keyphrase menambah skor dokumen ini setelah normalisasi min-max, sehingga peringkatnya naik.",
     "utama": false
   },
   {
@@ -1383,6 +1507,11 @@
       "term_bm25_bersama": [
         "kohlrabi"
       ],
+      "frasa_keyphrase_sama": [],
+      "kata_keyphrase_sama": [],
+      "kata_bm25_sama": [
+        "kohlrabi"
+      ],
       "peringkat": {
         "bm25": 1,
         "semantic": null,
@@ -1390,7 +1519,7 @@
         "hybrid_weighted": null
       }
     },
-    "penjelasan": "Dokumen relevan [MED-4455] ada di peringkat #1 pada BM25 tetapi di luar 100 besar pada Hybrid (di luar 100 besar pada Semantic-only). Term query yang cocok persis dengan dokumen: kohlrabi. Unit keyphrase bersama: tidak ada (s_kp = 0.000). BM25 memberi bobot tinggi pada kecocokan kata yang langka, sedangkan embedding (s_sem = 0.112, peringkat 119 di seluruh korpus) dan keyphrase tidak menangkapnya cukup kuat.",
+    "penjelasan": "Dokumen relevan [MED-4455] ada di peringkat #1 pada BM25 tetapi di luar 100 besar pada Hybrid (di luar 100 besar pada Semantic-only). Kata query yang juga muncul di dokumen: 'kohlrabi'. Keyphrase query dan keyphrase dokumen: tidak ada frasa maupun kata yang sama (s_kp = 0.000). BM25 memberi bobot tinggi pada kecocokan kata yang langka, sedangkan embedding (s_sem = 0.112, peringkat 119 di seluruh korpus) dan keyphrase tidak menangkapnya cukup kuat.",
     "utama": true
   },
   {
@@ -1511,6 +1640,12 @@
         "life",
         "shelf"
       ],
+      "frasa_keyphrase_sama": [],
+      "kata_keyphrase_sama": [],
+      "kata_bm25_sama": [
+        "shelf",
+        "life"
+      ],
       "peringkat": {
         "bm25": 1,
         "semantic": 14,
@@ -1518,7 +1653,7 @@
         "hybrid_weighted": 15
       }
     },
-    "penjelasan": "Dokumen relevan [MED-4303] ada di peringkat #1 pada BM25 tetapi #15 pada Hybrid (#14 pada Semantic-only). Term query yang cocok persis dengan dokumen: life, shelf. Unit keyphrase bersama: tidak ada (s_kp = 0.000). BM25 memberi bobot tinggi pada kecocokan kata yang langka, sedangkan embedding (s_sem = 0.335, peringkat 14 di seluruh korpus) dan keyphrase tidak menangkapnya cukup kuat.",
+    "penjelasan": "Dokumen relevan [MED-4303] ada di peringkat #1 pada BM25 tetapi #15 pada Hybrid (#14 pada Semantic-only). Kata query yang juga muncul di dokumen: 'shelf', 'life'. Keyphrase query dan keyphrase dokumen: tidak ada frasa maupun kata yang sama (s_kp = 0.000). BM25 memberi bobot tinggi pada kecocokan kata yang langka, sedangkan embedding (s_sem = 0.335, peringkat 14 di seluruh korpus) dan keyphrase tidak menangkapnya cukup kuat.",
     "utama": false
   },
   {
@@ -1641,6 +1776,13 @@
       "term_bm25_bersama": [
         "grape"
       ],
+      "frasa_keyphrase_sama": [],
+      "kata_keyphrase_sama": [
+        "grapes"
+      ],
+      "kata_bm25_sama": [
+        "grapes"
+      ],
       "peringkat": {
         "bm25": 1,
         "semantic": 15,
@@ -1648,7 +1790,7 @@
         "hybrid_weighted": 13
       }
     },
-    "penjelasan": "Dokumen relevan [MED-2668] ada di peringkat #1 pada BM25 tetapi #13 pada Hybrid (#15 pada Semantic-only). Term query yang cocok persis dengan dokumen: grape. Unit keyphrase bersama: t:grape (s_kp = 0.266). BM25 memberi bobot tinggi pada kecocokan kata yang langka, sedangkan embedding (s_sem = 0.346, peringkat 15 di seluruh korpus) dan keyphrase tidak menangkapnya cukup kuat.",
+    "penjelasan": "Dokumen relevan [MED-2668] ada di peringkat #1 pada BM25 tetapi #13 pada Hybrid (#15 pada Semantic-only). Kata query yang juga muncul di dokumen: 'grapes'. Keyphrase query dan keyphrase dokumen: tidak ada frasa yang sama utuh, tetapi ada kata yang sama 'grapes' (s_kp = 0.266). BM25 memberi bobot tinggi pada kecocokan kata yang langka, sedangkan embedding (s_sem = 0.346, peringkat 15 di seluruh korpus) dan keyphrase tidak menangkapnya cukup kuat.",
     "utama": false
   }
 ]

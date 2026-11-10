@@ -99,7 +99,10 @@ Menang = nDCG@10 Hybrid lebih tinggi pada query itu; seri = sama persis (6 desim
 | Query dengan nDCG@10 Keyphrase-only = 0 | 132 | 133 |
 |   … sebagai proporsi query test | 0.440 | 0.412 |
 | Query dengan nDCG@10 Semantic-only = 0 (pembanding) | 60 | 100 |
+| Rata-rata dokumen relevan per query test | 1.1 | 38.2 |
 | Pasangan (query, dokumen relevan) dengan skor keyphrase > 0 | 0.805 | 0.140 |
+| Query dengan ≥ 1 dokumen relevan berskor keyphrase > 0 | 245 | 230 |
+|   … sebagai proporsi query test | 0.817 | 0.712 |
 
 *Absent* = keyphrase yang setelah `text.normalize_phrase` (huruf kecil, stopword di tepi dibuang, stemming) tidak muncul sebagai urutan kata utuh di judul + abstrak (atau teks query) yang di-`tokenize` dan di-`stem` dengan aturan yang sama.
 
@@ -156,7 +159,7 @@ Dipilih otomatis dari `per_query_ndcg10.csv`: *Hybrid menolong* = selisih nDCG@1
 
 **Dokumen relevan utama:** [16737210] Kidney paired donation and optimizing the use of live donor organs.  
 Keyphrase dokumen: kidney paired donation, optimization, matching algorithms, end-stage renal disease, renal transplantation  
-**Penyebab (dari angka):** Dokumen relevan [16737210] ada di peringkat #3 pada Semantic-only dan naik ke #1 pada Hybrid. Unit keyphrase yang sama dengan query: p:kidney pair donat, t:donat, t:kidney, t:optim, t:pair, t:transplant (s_kp = 0.667); skor semantiknya 0.592. Sinyal keyphrase menambah skor dokumen ini setelah normalisasi min-max, sehingga peringkatnya naik.
+**Penyebab (dari angka):** Dokumen relevan [16737210] ada di peringkat #3 pada Semantic-only dan naik ke #1 pada Hybrid. Keyphrase query dan keyphrase dokumen: frasa yang sama 'kidney paired donation' serta kata yang sama 'kidney', 'paired', 'donation', 'optimized', 'transplantation' (s_kp = 0.667); skor semantiknya 0.592. Sinyal keyphrase menambah skor dokumen ini setelah normalisasi min-max, sehingga peringkatnya naik.
 
 ### Hybrid kalah dari BM25: SciFact query 1024
 
@@ -173,7 +176,7 @@ Keyphrase dokumen: kidney paired donation, optimization, matching algorithms, en
 
 **Dokumen relevan utama:** [5373138] 3D Chromosome Regulatory Landscape of Human Pluripotent Cells.  
 Keyphrase dokumen: pluripotent cells, transcriptional enhancer, insulator, chia-pet, chromosome structure, gene regulation  
-**Penyebab (dari angka):** Dokumen relevan [5373138] ada di peringkat #1 pada BM25 tetapi #49 pada Hybrid (#41 pada Semantic-only). Term query yang cocok persis dengan dokumen: anchor, ctcf, frequent, mutat, occur, site. Unit keyphrase bersama: tidak ada (s_kp = 0.000). BM25 memberi bobot tinggi pada kecocokan kata yang langka, sedangkan embedding (s_sem = 0.434, peringkat 41 di seluruh korpus) dan keyphrase tidak menangkapnya cukup kuat.
+**Penyebab (dari angka):** Dokumen relevan [5373138] ada di peringkat #1 pada BM25 tetapi #49 pada Hybrid (#41 pada Semantic-only). Kata query yang juga muncul di dokumen: 'mutations', 'occur', 'frequently', 'ctcf', 'anchor', 'sites'. Keyphrase query dan keyphrase dokumen: tidak ada frasa maupun kata yang sama (s_kp = 0.000). BM25 memberi bobot tinggi pada kecocokan kata yang langka, sedangkan embedding (s_sem = 0.434, peringkat 41 di seluruh korpus) dan keyphrase tidak menangkapnya cukup kuat.
 
 ### Hybrid menolong dibanding Semantic: NFCorpus query PLAIN-681
 
@@ -190,7 +193,7 @@ Keyphrase dokumen: pluripotent cells, transcriptional enhancer, insulator, chia-
 
 **Dokumen relevan utama:** [MED-5017] Association between betel-nut chewing and chronic kidney disease in men.  
 Keyphrase dokumen: betel-nut chewing, chronic kidney disease, men  
-**Penyebab (dari angka):** Dokumen relevan [MED-5017] ada di peringkat #2 pada Semantic-only dan naik ke #1 pada Hybrid. Unit keyphrase yang sama dengan query: t:betel, t:nut (s_kp = 0.399); skor semantiknya 0.370. Sinyal keyphrase menambah skor dokumen ini setelah normalisasi min-max, sehingga peringkatnya naik.
+**Penyebab (dari angka):** Dokumen relevan [MED-5017] ada di peringkat #2 pada Semantic-only dan naik ke #1 pada Hybrid. Keyphrase query dan keyphrase dokumen: tidak ada frasa yang sama utuh, tetapi ada kata yang sama 'betel', 'nuts' (s_kp = 0.399); skor semantiknya 0.370. Sinyal keyphrase menambah skor dokumen ini setelah normalisasi min-max, sehingga peringkatnya naik.
 
 ### Hybrid kalah dari BM25: NFCorpus query PLAIN-1473
 
@@ -207,7 +210,7 @@ Keyphrase dokumen: betel-nut chewing, chronic kidney disease, men
 
 **Dokumen relevan utama:** [MED-4455] Glucoraphanin and 4-hydroxyglucobrassicin contents in seeds of 59 cultivars of broccoli, raab, kohlrabi, radish, cauliflower, brussels sprouts, kal...  
 Keyphrase dokumen: glucoraphanin, 4-hydroxyglucobrassicin, seeds  
-**Penyebab (dari angka):** Dokumen relevan [MED-4455] ada di peringkat #1 pada BM25 tetapi di luar 100 besar pada Hybrid (di luar 100 besar pada Semantic-only). Term query yang cocok persis dengan dokumen: kohlrabi. Unit keyphrase bersama: tidak ada (s_kp = 0.000). BM25 memberi bobot tinggi pada kecocokan kata yang langka, sedangkan embedding (s_sem = 0.112, peringkat 119 di seluruh korpus) dan keyphrase tidak menangkapnya cukup kuat.
+**Penyebab (dari angka):** Dokumen relevan [MED-4455] ada di peringkat #1 pada BM25 tetapi di luar 100 besar pada Hybrid (di luar 100 besar pada Semantic-only). Kata query yang juga muncul di dokumen: 'kohlrabi'. Keyphrase query dan keyphrase dokumen: tidak ada frasa maupun kata yang sama (s_kp = 0.000). BM25 memberi bobot tinggi pada kecocokan kata yang langka, sedangkan embedding (s_sem = 0.112, peringkat 119 di seluruh korpus) dan keyphrase tidak menangkapnya cukup kuat.
 
 ### Kandidat lain
 

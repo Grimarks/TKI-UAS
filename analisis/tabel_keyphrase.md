@@ -14,7 +14,10 @@
 | Query dengan nDCG@10 Keyphrase-only = 0 | 132 | 133 |
 |   … sebagai proporsi query test | 0.440 | 0.412 |
 | Query dengan nDCG@10 Semantic-only = 0 (pembanding) | 60 | 100 |
+| Rata-rata dokumen relevan per query test | 1.1 | 38.2 |
 | Pasangan (query, dokumen relevan) dengan skor keyphrase > 0 | 0.805 | 0.140 |
+| Query dengan ≥ 1 dokumen relevan berskor keyphrase > 0 | 245 | 230 |
+|   … sebagai proporsi query test | 0.817 | 0.712 |
 
 *Absent* = keyphrase yang setelah `text.normalize_phrase` (huruf kecil, stopword di tepi dibuang, stemming) tidak muncul sebagai urutan kata utuh di judul + abstrak (atau teks query) yang di-`tokenize` dan di-`stem` dengan aturan yang sama.
 

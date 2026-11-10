@@ -62,7 +62,7 @@ LABEL_METRIK = {"ndcg@10": "nDCG@10", "map@100": "MAP@100", "recall@10": "Recall
                 "precision@10": "P@10", "mrr@10": "MRR@10"}
 
 # Warna (palet referensi skill dataviz, mode terang; divalidasi: biru↔oranye ΔE 24.7, biru↔merah ΔE 21.6)
-C = {"surface": "#fcfcfb", "ink": "#0b0b0b", "ink2": "#52514e", "muted": "#898781", "grid": "#e1e0d9",
+C = {"surface": "#ffffff", "ink": "#0b0b0b", "ink2": "#52514e", "muted": "#898781", "grid": "#e1e0d9",
      "axis": "#c3c2b7", "blue": "#2a78d6", "orange": "#eb6834", "red": "#e34948", "neutral": "#c3c2b7",
      "neutral_bar": "#b4b2a9", "tie_bg": "#e9e8e3"}
 
@@ -277,11 +277,20 @@ def keyphrase_stats(ds: str, retriever: HybridRetriever, split, table: ScoreTabl
     # cakupan: pasangan (query, dokumen relevan) yang skor keyphrase-nya > 0
     di = {d: i for i, d in enumerate(retriever.doc_ids)}
     cov_hit = cov_total = 0
+    q_with_hit = 0                      # query yang punya >= 1 dokumen relevan dengan skor keyphrase > 0
+    n_rel_per_q = []
     for q in eval_ids:
+        hit_q = False
+        n_rel = 0
         for d, rel in split.eval_qrels[q].items():
             if rel > 0 and d in di:
+                n_rel += 1
                 cov_total += 1
-                cov_hit += bool(table.kp[table.row[q], di[d]] > 0)
+                h = bool(table.kp[table.row[q], di[d]] > 0)
+                cov_hit += h
+                hit_q = hit_q or h
+        q_with_hit += hit_q
+        n_rel_per_q.append(n_rel)
     stats = {
         "dok_rata_keyphrase": float(np.mean(n_kp_doc)), "dok_median_keyphrase": float(np.median(n_kp_doc)),
         "dok_min_keyphrase": int(min(n_kp_doc)), "dok_maks_keyphrase": int(max(n_kp_doc)),
@@ -299,6 +308,9 @@ def keyphrase_stats(ds: str, retriever: HybridRetriever, split, table: ScoreTabl
         "query_ndcg_semantic_nol": sem_only_zero,
         "pasangan_relevan_skor_kp_positif": cov_hit, "pasangan_relevan_total": cov_total,
         "proporsi_pasangan_relevan_skor_kp_positif": cov_hit / cov_total,
+        "rata_dok_relevan_per_query_test": float(np.mean(n_rel_per_q)),
+        "query_min1_relevan_skor_kp_positif": q_with_hit,
+        "proporsi_query_min1_relevan_skor_kp_positif": q_with_hit / len(eval_ids),
     }
     # --- contoh 5 dokumen (acak deterministik)
     rng = random.Random(SEED)
@@ -326,7 +338,10 @@ def tabel_keyphrase(stats: dict[str, dict], examples: dict[str, list]) -> str:
             ("Query dengan nDCG@10 Keyphrase-only = 0", "query_ndcg_keyphrase_nol", 0),
             ("  … sebagai proporsi query test", "query_proporsi_ndcg_keyphrase_nol", 3),
             ("Query dengan nDCG@10 Semantic-only = 0 (pembanding)", "query_ndcg_semantic_nol", 0),
-            ("Pasangan (query, dokumen relevan) dengan skor keyphrase > 0", "proporsi_pasangan_relevan_skor_kp_positif", 3)]
+            ("Rata-rata dokumen relevan per query test", "rata_dok_relevan_per_query_test", 1),
+            ("Pasangan (query, dokumen relevan) dengan skor keyphrase > 0", "proporsi_pasangan_relevan_skor_kp_positif", 3),
+            ("Query dengan ≥ 1 dokumen relevan berskor keyphrase > 0", "query_min1_relevan_skor_kp_positif", 0),
+            ("  … sebagai proporsi query test", "proporsi_query_min1_relevan_skor_kp_positif", 3)]
     rows = []
     for label, k, nd in keys:
         rows.append([label] + [(f"{stats[ds][k]:.{nd}f}" if nd else str(int(stats[ds][k]))) for ds in stats])
@@ -405,6 +420,8 @@ def case_study(ds: str, qid: str, kind: str, retriever: HybridRetriever, split, 
     d_units = unit_weights(retriever.doc_keyphrases[col], lang, unit)
     shared_units = sorted(set(q_units) & set(d_units))
     shared_terms = sorted(q_terms & set(content_tokens(docs[main_doc].full_text, lang)))
+    frasa_sama, kata_sama = readable_matches(qkps[qid], shared_units, lang)
+    kata_bm25 = surface_words(split.eval[qid], set(shared_terms), lang)
     sem_rank = int((table.sem[row] > table.sem[row, col]).sum()) + 1
     detail = {
         "doc_id": main_doc, "judul": docs[main_doc].title, "relevansi": qrel[main_doc],
@@ -412,6 +429,7 @@ def case_study(ds: str, qid: str, kind: str, retriever: HybridRetriever, split, 
         "s_sem": float(table.sem[row, col]), "peringkat_sem_seluruh_korpus": sem_rank,
         "s_kp": float(table.kp[row, col]), "s_bm25": float(table.bm25[row, col]),
         "unit_keyphrase_bersama": shared_units, "term_bm25_bersama": shared_terms,
+        "frasa_keyphrase_sama": frasa_sama, "kata_keyphrase_sama": kata_sama, "kata_bm25_sama": kata_bm25,
         "peringkat": {s: (pos(main_doc, s) if pos(main_doc, s) < 10_000 else None) for s in SCENARIOS},
     }
     return {"dataset": ds, "qid": qid, "jenis": kind, "query": split.eval[qid],
@@ -422,21 +440,53 @@ def case_study(ds: str, qid: str, kind: str, retriever: HybridRetriever, split, 
             "skenario": scen, "dokumen_relevan_utama": detail, "penjelasan": explain(kind, detail)}
 
 
+def surface_words(text: str, stems: set[str], lang: str) -> list[str]:
+    """Kata asli (belum di-stem) di `text` yang bentuk stem-nya ada di `stems`; urutan kemunculan, tanpa duplikat."""
+    out: list[str] = []
+    for raw, st in zip(content_tokens(text, lang, stemmed=False), content_tokens(text, lang)):
+        if st in stems and raw not in out:
+            out.append(raw)
+    return out
+
+
+def readable_matches(qkps: list, shared_units: list[str], lang: str) -> tuple[list[str], list[str]]:
+    """Ubah unit internal ('p:kidney pair donat', 't:donat') menjadi bahasa biasa dari keyphrase query:
+    (frasa keyphrase query yang sama utuh dengan frasa dokumen, kata keyphrase query yang sama)."""
+    shared = set(shared_units)
+    phrases = [p for p, _ in qkps if "p:" + normalize_phrase(p, lang) in shared]
+    stems = {u[2:] for u in shared if u.startswith("t:")}
+    words: list[str] = []
+    for p, _ in qkps:
+        for w in surface_words(p, stems, lang):
+            if w not in words:
+                words.append(w)
+    return phrases, words
+
+
 def explain(kind: str, d: dict) -> str:
     """Penjelasan otomatis yang hanya menyusun fakta terukur (bukan tafsiran bebas)."""
     pk = d["peringkat"]
     def r(s):
         return f"#{pk[s]}" if pk[s] else "di luar 100 besar"
-    units = ", ".join(u for u in d["unit_keyphrase_bersama"]) or "tidak ada"
-    terms = ", ".join(d["term_bm25_bersama"]) or "tidak ada"
+    def q(xs):
+        return ", ".join(f"'{x}'" for x in xs)
+    if d["frasa_keyphrase_sama"]:
+        units = f"frasa yang sama {q(d['frasa_keyphrase_sama'])}"
+        if d["kata_keyphrase_sama"]:
+            units += f" serta kata yang sama {q(d['kata_keyphrase_sama'])}"
+    elif d["kata_keyphrase_sama"]:
+        units = f"tidak ada frasa yang sama utuh, tetapi ada kata yang sama {q(d['kata_keyphrase_sama'])}"
+    else:
+        units = "tidak ada frasa maupun kata yang sama"
+    terms = q(d["kata_bm25_sama"]) or "tidak ada"
     if kind == "hybrid_menolong":
         return (f"Dokumen relevan [{d['doc_id']}] ada di peringkat {r('semantic')} pada Semantic-only dan naik ke "
-                f"{r('hybrid_weighted')} pada Hybrid. Unit keyphrase yang sama dengan query: {units} "
+                f"{r('hybrid_weighted')} pada Hybrid. Keyphrase query dan keyphrase dokumen: {units} "
                 f"(s_kp = {d['s_kp']:.3f}); skor semantiknya {d['s_sem']:.3f}. Sinyal keyphrase menambah skor "
                 f"dokumen ini setelah normalisasi min-max, sehingga peringkatnya naik.")
     return (f"Dokumen relevan [{d['doc_id']}] ada di peringkat {r('bm25')} pada BM25 tetapi {r('hybrid_weighted')} "
-            f"pada Hybrid ({r('semantic')} pada Semantic-only). Term query yang cocok persis dengan dokumen: {terms}. "
-            f"Unit keyphrase bersama: {units} (s_kp = {d['s_kp']:.3f}). BM25 memberi bobot tinggi pada kecocokan kata "
+            f"pada Hybrid ({r('semantic')} pada Semantic-only). Kata query yang juga muncul di dokumen: {terms}. "
+            f"Keyphrase query dan keyphrase dokumen: {units} (s_kp = {d['s_kp']:.3f}). BM25 memberi bobot tinggi pada kecocokan kata "
             f"yang langka, sedangkan embedding (s_sem = {d['s_sem']:.3f}, peringkat {d['peringkat_sem_seluruh_korpus']} "
             f"di seluruh korpus) dan keyphrase tidak menangkapnya cukup kuat.")
 

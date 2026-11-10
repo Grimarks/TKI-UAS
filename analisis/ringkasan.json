@@ -311,7 +311,10 @@
       "query_ndcg_semantic_nol": 60,
       "pasangan_relevan_skor_kp_positif": 273,
       "pasangan_relevan_total": 339,
-      "proporsi_pasangan_relevan_skor_kp_positif": 0.8053097345132744
+      "proporsi_pasangan_relevan_skor_kp_positif": 0.8053097345132744,
+      "rata_dok_relevan_per_query_test": 1.13,
+      "query_min1_relevan_skor_kp_positif": 245,
+      "proporsi_query_min1_relevan_skor_kp_positif": 0.8166666666666667
     },
     "nfcorpus": {
       "dok_rata_keyphrase": 4.330305532617671,
@@ -362,7 +365,10 @@
       "query_ndcg_semantic_nol": 100,
       "pasangan_relevan_skor_kp_positif": 1721,
       "pasangan_relevan_total": 12334,
-      "proporsi_pasangan_relevan_skor_kp_positif": 0.13953299821631263
+      "proporsi_pasangan_relevan_skor_kp_positif": 0.13953299821631263,
+      "rata_dok_relevan_per_query_test": 38.18575851393189,
+      "query_min1_relevan_skor_kp_positif": 230,
+      "proporsi_query_min1_relevan_skor_kp_positif": 0.7120743034055728
     }
   },
   "studi_kasus": [
