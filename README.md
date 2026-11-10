@@ -147,8 +147,18 @@ Apache-2.0). Model ini **generatif**: bisa menghasilkan keyphrase yang tidak mun
 - `kaggle/_arsip/train_encoder.py`: ARSIP fine-tune encoder (desain lama, bukan bagian desain final; hasilnya di
   `results/_arsip/scifact_ft/`).
 
-Pakai hasilnya: taruh berkas JSONL di `artifacts/keyphrases_<dataset>.jsonl`, lalu
-`hybrid-ir build --config configs/<dataset>_bart.yaml` dan `hybrid-ir evaluate ...`.
+Berkas `artifacts/keyphrases_scifact.jsonl` dan `artifacts/keyphrases_nfcorpus.jsonl` (total ~2 MB, beserta
+`.manifest.json`) **ikut tersimpan di repositori**, jadi setelah clone tidak perlu Kaggle maupun GPU. Untuk mengulang
+evaluasi dari nol (dari folder `hybrid-ir/`):
+
+```bash
+hybrid-ir download scifact && hybrid-ir download nfcorpus          # data BEIR -> data/ (tidak ada di repo)
+hybrid-ir build    --config configs/scifact_bart.yaml               # encode dokumen MiniLM + baca keyphrase dari artifacts/
+hybrid-ir evaluate --config configs/scifact_bart.yaml --out results/ulang_scifact
+```
+
+Lakukan hal yang sama untuk `nfcorpus_bart.yaml`. Simpan ke folder `--out` baru, lalu bandingkan dengan
+`results/scifact_bart/`, karena `results/scifact_bart` dan `results/nfcorpus_bart` adalah sumber angka laporan.
 
 Sudah dijalankan di Kaggle 2×T4 (Oktober 2026; torch 2.11, transformers 5.16, sentence-transformers 5.7):
 

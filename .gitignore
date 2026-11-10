@@ -4,8 +4,7 @@ data/*
 !data/demo/
 indexes/
 models/
-# keyphrase hasil Kaggle (besar); manifest *.manifest.json tetap dicatat
-artifacts/*.jsonl
+# artifacts/keyphrases_*.jsonl (hasil Kaggle, total ~2 MB) SENGAJA dicatat agar evaluasi bisa diulang setelah clone
 kaggle/_build/
 
 # --- rahasia: JANGAN PERNAH di-commit ---
