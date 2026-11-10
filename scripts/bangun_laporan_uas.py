@@ -419,8 +419,9 @@ def bagian_a(b: Builder, D: dict) -> None:
     # salah ketik e-mail Leonardo
     replace(P("@student.unsri.ac.idl"), "@student.unsri.ac.idl", "@student.unsri.ac.id")
     # abstrak: BM25 hanya pembanding
-    replace(P("Kontribusi penelitian ini adalah rancangan pipeline"),
-            "ditambah jalur BM25 sebagai jalur opsional dan pembanding", "dengan BM25 sebagai pembanding")
+    p = P("Kontribusi penelitian ini adalah rancangan pipeline")
+    replace(p, "ditambah jalur BM25 sebagai jalur opsional dan pembanding", "dengan BM25 sebagai pembanding")
+    replace(p, "bobotnya ditala pada data latih", "bobotnya ditala pada data penalaan")
     # Pendahuluan
     replace(P("BM25 disertakan sebagai jalur ketiga"), "BM25 disertakan sebagai jalur ketiga yang opsional sekaligus pembanding.",
             "BM25 disertakan hanya sebagai pembanding leksikal dan tidak ikut digabungkan.")
@@ -615,7 +616,8 @@ def bagian_b(b: Builder, D: dict) -> None:
                f"{f4(H(sf, 'semantic'))} dan {f4(H(nf, 'semantic'))} untuk semantik saja serta {f4(H(sf, 'keyphrase'))} dan "
                f"{f4(H(nf, 'keyphrase'))} untuk keyphrase saja. Hibrida juga memperoleh Recall@100 tertinggi di antara keempat "
                f"skenario ({f4(H(sf, 'hybrid_weighted', 'recall@100'))} dan {f4(H(nf, 'hybrid_weighted', 'recall@100'))}), "
-               f"sehingga sinyal keyphrase ikut memasukkan lebih banyak dokumen relevan ke 100 teratas."),
+               f"meskipun selisihnya dengan semantik saja kecil dan tidak diuji signifikansinya; kenaikan ini kemungkinan "
+               f"karena kandidat dari jalur keyphrase ikut membawa sebagian dokumen relevan ke 100 teratas."),
         b.caption("Tabel", 3, "Hasil keempat skenario pada split test (nilai terbaik per koleksi dicetak tebal)"),
         tab3, b.spacer_p(),
         b.figure(FIG / "g1_ndcg10_skenario.png", "image_uas_g1.png"),
@@ -764,7 +766,8 @@ def bagian_b(b: Builder, D: dict) -> None:
         c4["qid"]: "tidak ada; dokumen tidak memiliki keyphrase kohlrabi",
     }
     rows6 = []
-    for c, jenis in ((c1, "Hibrida menolong"), (c2, "Hibrida menolong"), (c3, "Hibrida kalah"), (c4, "Hibrida kalah")):
+    for c, jenis in ((c1, "Hibrida menolong"), (c2, "Hibrida menolong"), (c3, "Hibrida kalah dari BM25"),
+                     (c4, "Hibrida kalah dari BM25")):
         qtxt = c["query"] if len(c["query"]) <= 70 else c["query"][:67].rstrip() + "..."
         rows6.append([jenis, f"{'SciFact' if c['dataset'] == sf else 'NFCorpus'} {c['qid']}: {qtxt}",
                       fr(c, "bm25"), fr(c, "semantic"), fr(c, "keyphrase"), fr(c, "hybrid_weighted"), match[c["qid"]]])

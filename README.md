@@ -242,5 +242,11 @@ Tabel rinci kotak → berkas → fungsi → baris ada di `docs/PETA_KODE.md`. Ri
   encoder hanya dinormalkan (Unicode, spasi), karena tokenizer encoder menangani sendiri.
 - Perbandingan cosine vs Jaccard untuk keyphrase belum dijalankan otomatis; semua hasil di atas memakai cosine
   (Jaccard tersedia lewat `keyphrase.similarity: jaccard`).
+- Skor keyphrase bisa berbeda pada digit float32 terakhir antar-proses (mis. 0.66745597 vs 0.66745603). Penyebabnya,
+  `text.phrase_units` mengembalikan `set`, dan urutan iterasi `set` string di Python bergantung pada *hash
+  randomization* per proses, sehingga urutan penjumlahan di `KeyphraseIndex.scores` ikut berubah. Berkas
+  `results/*/metrics.json` tetap identik di setiap run yang sudah diuji, tetapi secara teori skor yang seri tepat di
+  batas peringkat bisa terpengaruh. Ini sengaja belum diubah (mis. dengan mengurutkan unit), karena perubahan itu bisa
+  menggeser angka resmi. Untuk run yang benar-benar deterministik, jalankan dengan `PYTHONHASHSEED=0`.
 - UI di Apple Silicon: pencarian di-serialisasi dengan lock karena pemakaian model bersamaan di MPS bisa membuat proses
   crash. Bila tetap crash, set `encoder.device: cpu`.
