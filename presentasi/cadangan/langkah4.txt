@@ -1,0 +1,20 @@
+
+==================== Langkah 4: 'kohlrabi' — bm25 vs keyphrase vs hybrid (NFCorpus) ====================
+Query     : kohlrabi
+Mode      : bm25
+Keyphrase : -
+
+ 1. [MED-4455] Glucoraphanin and 4-hydroxyglucobrassicin contents in seeds of 59 cultivars of broccoli, raab, kohlrabi, radish, cauliflower, brussels sprouts, kal...
+    skor=11.5316  semantik=0.0000  keyphrase=0.0000  bm25=11.5316
+Query     : kohlrabi
+Mode      : keyphrase
+Keyphrase : kohlrabi (1.00)
+
+Query     : kohlrabi
+Mode      : hybrid
+Keyphrase : kohlrabi (1.00)
+
+ 1. [MED-3947] Hibiscus anthocyanins rich extract-induced apoptotic cell death in human promyelocytic leukemia cells.
+    skor=0.9000  semantik=0.2202  keyphrase=0.0000
+ 2. [MED-4660] Variability of iodine content in common commercially available edible seaweeds.
+    skor=0.8746  semantik=0.2173  keyphrase=0.0000

@@ -69,3 +69,12 @@ def test_bad_config_is_clean_error(tmp_path, capsys):
 
 def test_download_rejects_unknown_dataset(tmp_path, capsys):
     assert main(["download", "../../etc/passwd", "--dest", str(tmp_path)]) == 2
+
+
+def test_free_query_without_precomputed_is_clean_error(cfg_file, capsys):
+    """demo.yaml tidak punya fallback BART: kueri bebas harus berhenti dengan pesan singkat, bukan traceback."""
+    assert main(["build", "--config", cfg_file]) == 0
+    capsys.readouterr()
+    assert main(["search", "--config", cfg_file, "kueri bebas yang tidak ada di berkas precomputed"]) == 2
+    err = capsys.readouterr().err
+    assert err.startswith("Galat: 1 dari 1 teks tidak ada di berkas precomputed") and "Traceback" not in err

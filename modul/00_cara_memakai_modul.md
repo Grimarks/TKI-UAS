@@ -50,7 +50,7 @@ Semua perintah dijalankan dari folder `hybrid-ir/`. Python yang dipakai ada di f
 
 ```bash
 cd "Program/hybrid-ir"
-../.venv/bin/python -m pytest                     # 156 tes harus lulus
+../.venv/bin/python -m pytest                     # 157 tes harus lulus
 ../.venv/bin/hybrid-ir search --config configs/scifact_bart.yaml "betel nuts" --top-k 3
 ../.venv/bin/python scripts/analisis_uas.py --tanpa-waktu   # bangkitkan ulang tabel & grafik di analisis/
 ../.venv/bin/python scripts/modul.py --cek        # pastikan modul masih cocok dengan kode

@@ -1,0 +1,25 @@
+
+==================== Langkah 1: 'betel nuts' — semantic vs hybrid (NFCorpus) ====================
+Query     : betel nuts
+Mode      : semantic
+Keyphrase : -
+
+ 1. [MED-2383] The role of nuts in the optimal diet: time for a critical appraisal?
+    skor=0.3877  semantik=0.3877  keyphrase=0.0000
+ 2. [MED-5017] Association between betel-nut chewing and chronic kidney disease in men.
+    skor=0.3697  semantik=0.3697  keyphrase=0.0000
+ 3. [MED-4314] Nuts: anti-atherogenic food?
+    skor=0.3624  semantik=0.3624  keyphrase=0.0000
+Query     : betel nuts
+Mode      : hybrid
+Keyphrase : betel nuts (1.00)
+
+ 1. [MED-5017] Association between betel-nut chewing and chronic kidney disease in men.
+    skor=0.9454  semantik=0.3697  keyphrase=0.3989
+    cocok: betel-nut chewing
+ 2. [MED-2383] The role of nuts in the optimal diet: time for a critical appraisal?
+    skor=0.9375  semantik=0.3877  keyphrase=0.1497
+    cocok: nut
+ 3. [MED-4314] Nuts: anti-atherogenic food?
+    skor=0.8661  semantik=0.3624  keyphrase=0.1712
+    cocok: nuts

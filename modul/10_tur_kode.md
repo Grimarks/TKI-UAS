@@ -53,7 +53,7 @@ cli._cmd_search
 Titik masuk CLI:
 
 <!-- kode: src/hybrid_ir/cli.py#_cmd_search -->
-*Kode asli: `src/hybrid_ir/cli.py`, baris 98–108.*
+*Kode asli: `src/hybrid_ir/cli.py`, baris 101–111.*
 
 ```python
 def _cmd_search(args: argparse.Namespace) -> int:
@@ -218,7 +218,7 @@ pengecualian kecil dicatat di README: skor keyphrase bisa berbeda di digit float
 iterasi `set` di `phrase_units`. Metrik akhir tetap identik; pakai `PYTHONHASHSEED=0` bila perlu run yang benar-benar
 deterministik.
 
-**Tes.** `tests/` berisi 156 tes. Tes memakai encoder pengganti (`HashingEncoder`) dan data mini `data/demo`, sehingga
+**Tes.** `tests/` berisi 157 tes. Tes memakai encoder pengganti (`HashingEncoder`) dan data mini `data/demo`, sehingga
 bisa jalan tanpa unduhan model.
 
 ## Ringkasan

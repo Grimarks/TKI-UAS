@@ -30,8 +30,13 @@ kaggle/             skrip GPU generate keyphrase BART-KPG + pembuat kernel; _ars
 artifacts/          keyphrase BART hasil Kaggle (keyphrases_scifact.jsonl, keyphrases_nfcorpus.jsonl + manifest)
 indexes/, results/  index hasil `build` dan hasil `evaluate`; _arsip/ = hasil desain lama
 docs/               PENJELASAN_PROYEK.md (ringkasan sederhana), PETA_KODE.md (kotak → kode)
-scripts/            peta_kode.py (membangkitkan tabel di PETA_KODE.md dari kode)
-tests/              156 tes otomatis (153 bila Streamlit belum terpasang; 3 tes UI dilewati)
+scripts/            peta_kode.py (tabel PETA_KODE.md), analisis_uas.py (analisis/), bangun_laporan_uas.py + cek_laporan.py
+                    (Laporan_UAS_Kelompok1.docx), modul.py (modul/ + Modul_Pembelajaran_Kelompok1.docx)
+analisis/           tabel CSV/MD dan gambar PNG dari hasil yang sudah ada (sumber angka laporan, modul, slide)
+modul/              modul pembelajaran bab 00–12 + glosarium
+presentasi/         ALUR_PRESENTASI.md, SKRIP_DEMO.md, demo.sh, cadangan/ (keluaran demo asli)
+PEMBAGIAN_TUGAS.md  pembagian tugas, daftar periksa per anggota, teks kontribusi tim untuk laporan
+tests/              157 tes otomatis (154 bila Streamlit belum terpasang; 3 tes UI dilewati)
 ```
 
 ## 2. Instalasi
@@ -232,7 +237,7 @@ Tabel rinci kotak → berkas → fungsi → baris ada di `docs/PETA_KODE.md`. Ri
 
 ## 10. Batasan yang perlu kamu tahu
 
-- 156 tes otomatis memakai encoder pengganti (hashing), keyphrase contoh, dan data mini. Pipeline lengkap juga sudah
+- 157 tes otomatis memakai encoder pengganti (hashing), keyphrase contoh, dan data mini. Pipeline lengkap juga sudah
   dijalankan dengan model nyata pada SciFact dan NFCorpus, dan skrip Kaggle sudah dijalankan di 2×T4 (bagian 6 dan 7).
   Pustaka AI berubah cepat; perbedaan versi mungkin perlu penyesuaian kecil.
 - Hasil hanya untuk dua dataset biomedis/nutrisi berbahasa Inggris dan satu encoder kecil (MiniLM). Kesimpulan bisa

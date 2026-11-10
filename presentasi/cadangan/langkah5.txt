@@ -1,0 +1,15 @@
+
+==================== Langkah 5: kueri bebas 'does coffee raise blood pressure' (BART lokal) ====================
+Query     : does coffee raise blood pressure
+Mode      : hybrid
+Keyphrase : coffee (1.00), blood pressure (0.80)
+
+ 1. [MED-2155] Effects of habitual coffee consumption on cardiometabolic disease, cardiovascular health, and all-cause mortality.
+    skor=0.9860  semantik=0.6350  keyphrase=0.4516
+    cocok: coffee
+ 2. [MED-5244] Effects of habitual coffee consumption on cardiometabolic disease, cardiovascular health, and all-cause mortality.
+    skor=0.9860  semantik=0.6350  keyphrase=0.4516
+    cocok: coffee
+ 3. [MED-878] Acute effects of coffee on endothelial function in healthy subjects.
+    skor=0.9380  semantik=0.6195  keyphrase=0.3300
+    cocok: coffee

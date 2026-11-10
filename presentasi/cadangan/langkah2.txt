@@ -1,0 +1,25 @@
+
+==================== Langkah 2: SciFact 1185 (kidney paired donation) — semantic vs hybrid ====================
+Query     : The US health care system can save up to $750 million if 7% of patients waiting for kidney transplants participate in the optimized national kidney paired donation program.
+Mode      : semantic
+Keyphrase : -
+
+ 1. [21203899] Managing finances of shipping living donor kidneys for donor exchanges.
+    skor=0.6013  semantik=0.6013  keyphrase=0.0000
+ 2. [41774099] Call to Develop a Standard Acquisition Charge Model for Kidney Paired Donation
+    skor=0.6002  semantik=0.6002  keyphrase=0.0000
+ 3. [16737210] Kidney paired donation and optimizing the use of live donor organs.
+    skor=0.5918  semantik=0.5918  keyphrase=0.0000
+Query     : The US health care system can save up to $750 million if 7% of patients waiting for kidney transplants participate in the optimized national kidney paired donation program.
+Mode      : hybrid
+Keyphrase : kidney paired donation (1.00), optimized national kidney transplantation program (0.80)
+
+ 1. [16737210] Kidney paired donation and optimizing the use of live donor organs.
+    skor=0.9868  semantik=0.5918  keyphrase=0.6675
+    cocok: kidney paired donation, optimization, renal transplantation
+ 2. [21859699] Successful three-way kidney paired donation with cross-country live donor allograft transport.
+    skor=0.9808  semantik=0.5872  keyphrase=0.6682
+    cocok: kidney paired donation, transplantation
+ 3. [41774099] Call to Develop a Standard Acquisition Charge Model for Kidney Paired Donation
+    skor=0.9613  semantik=0.6002  keyphrase=0.4194
+    cocok: kidney paired donation, solid organ transplantation

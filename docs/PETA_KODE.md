@@ -42,13 +42,13 @@ Nama kotak mengikuti Gambar 1: dua jalur utama, **A (semantik)** dan **B (keyphr
 |  | `src/hybrid_ir/bm25.py` | `BM25.fit` | 44–66 |
 | (perakit Fase 1) | `src/hybrid_ir/retriever.py` | `HybridRetriever.build` | 126–147 |
 |  | `src/hybrid_ir/retriever.py` | `HybridRetriever.save` | 169–185 |
-| (perintah) | `src/hybrid_ir/cli.py` | `_cmd_build` | 88–95 |
+| (perintah) | `src/hybrid_ir/cli.py` | `_cmd_build` | 91–98 |
 
 ### Fase 2 — Query & retrieval (online), `hybrid-ir search` / `hybrid-ir ui`
 
 | Kotak di Gambar 1 | Berkas | Fungsi | Baris |
 |---|---|---|---|
-| Query pengguna | `src/hybrid_ir/cli.py` | `_cmd_search` | 98–108 |
+| Query pengguna | `src/hybrid_ir/cli.py` | `_cmd_search` | 101–111 |
 |  | `src/hybrid_ir/ui_app.py` | `main` | 76–144 |
 | Pra-pemrosesan | `src/hybrid_ir/retriever.py` | `HybridRetriever.validate_query` | 221–228 |
 | A. Encode query | `src/hybrid_ir/encoders.py` | `SentenceTransformerEncoder.encode_queries` | 149–151 |
@@ -72,7 +72,7 @@ Nama kotak mengikuti Gambar 1: dua jalur utama, **A (semantik)** dan **B (keyphr
 |  | `src/hybrid_ir/fusion.py` | `positive_topk` | 36–42 |
 |  | `src/hybrid_ir/retriever.py` | `HybridRetriever._hits_for_query` | 290–298 |
 |  | `src/hybrid_ir/retriever.py` | `HybridRetriever._make_hit` | 300–308 |
-| Ranking top-k (tampilan) | `src/hybrid_ir/cli.py` | `_print_result` | 69–78 |
+| Ranking top-k (tampilan) | `src/hybrid_ir/cli.py` | `_print_result` | 72–81 |
 |  | `src/hybrid_ir/ui_app.py` | `render_hit` | 64–73 |
 
 ### Fase 3 — Evaluasi, `hybrid-ir evaluate`
@@ -99,7 +99,7 @@ Nama kotak mengikuti Gambar 1: dua jalur utama, **A (semantik)** dan **B (keyphr
 |  | `src/hybrid_ir/evaluation.py` | `_significance_tests` | 242–250 |
 |  | `src/hybrid_ir/evaluation.py` | `write_outputs` | 337–344 |
 | (perakit Fase 3) | `src/hybrid_ir/evaluation.py` | `run_experiment` | 253–282 |
-| (perintah) | `src/hybrid_ir/cli.py` | `_cmd_evaluate` | 111–122 |
+| (perintah) | `src/hybrid_ir/cli.py` | `_cmd_evaluate` | 114–125 |
 
 ### Persamaan di laporan → kode
 

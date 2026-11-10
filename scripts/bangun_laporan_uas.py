@@ -876,15 +876,13 @@ def bagian_b(b: Builder, D: dict) -> None:
 
 def bagian_c(b: Builder) -> None:
     d = b.d
-    # Kontribusi tiap tim (draf dari usulan pembagian tugas; disinkronkan lagi pada Fase 5)
+    # Kontribusi tiap tim: satu sumber kebenaran di PEMBAGIAN_TUGAS.md (antara penanda kontribusi:mulai/selesai)
+    sumber = (ROOT / "PEMBAGIAN_TUGAS.md").read_text(encoding="utf-8")
+    m = re.search(r"<!-- kontribusi:mulai -->\n(.+?)\n<!-- kontribusi:selesai -->", sumber, re.S)
+    if not m:
+        raise SystemExit("GALAT: penanda kontribusi tidak ditemukan di PEMBAGIAN_TUGAS.md")
     p = d.find_p("Semua penulis berkontribusi setara pada penulisan makalah ini.")
-    set_paragraph(p, "Darrell Satriano (ketua): arsitektur dan integrasi sistem serta fusi skor; menulis Abstrak, "
-                     "Pendahuluan, Subbab 3.1, 3.7, 4.3, dan Kesimpulan, serta menyunting naskah akhir. Jordi Abrar Satria: "
-                     "pemuatan data dan evaluasi (metrik dan uji bootstrap); menulis Subbab 3.2, 3.8, 3.9, 4.1, dan 4.2. "
-                     "M. Rabyndra Janitra Binello: jalur semantik (encoder, indeks vektor, dan prapemrosesan teks); menulis "
-                     "Subbab 3.3 dan 3.6. Leonardo Gunawan: jalur keyphrase (pembangkitan BART-KPG di Kaggle dan indeks "
-                     "keyphrase); menulis Subbab 3.4 dan 4.4. Surya Andika: BM25 pembanding, antarmuka Streamlit, dan studi "
-                     "kasus; menulis Subbab 3.5 dan 4.5. Semua penulis telah membaca dan menyetujui naskah akhir.")
+    set_paragraph(p, " ".join(m.group(1).split()))
     # Singkatan: tambah yang kini muncul, urut alfabet
     anchor = d.find_p("BART: Bidirectional and Auto-Regressive Transformers")
     proto = anchor

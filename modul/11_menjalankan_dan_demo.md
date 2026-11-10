@@ -16,7 +16,7 @@ cd "Program"
 python3 -m venv .venv
 .venv/bin/pip install -e "./hybrid-ir[models,ui,dev]"
 cd hybrid-ir
-../.venv/bin/python -m pytest        # harus: 156 passed
+../.venv/bin/python -m pytest        # harus: 157 passed
 ```
 
 Dataset BEIR tidak ada di repositori. Unduh dengan:
@@ -82,7 +82,7 @@ hasil teratas sama persis, itu berasal dari data, bukan bug.
 |---|---|---|
 | `Galat: indeks tidak ditemukan di indexes/...` | belum `build` | jalankan `hybrid-ir build --config ...` |
 | `encoder berbeda ... build ulang indeks` | konfigurasi encoder diubah setelah build | samakan konfigurasi atau build ulang |
-| *traceback* `MissingPrecomputed` di `demo.yaml` | kueri bebas, padahal demo tidak punya fallback BART | pakai salah satu kueri demo, atau konfigurasi `*_bart.yaml` |
+| `Galat: 1 dari 1 teks tidak ada di berkas precomputed` di `demo.yaml` | kueri bebas, padahal demo tidak punya fallback BART | pakai salah satu kueri demo, atau konfigurasi `*_bart.yaml` |
 | UI crash / *Metal assertion* di Mac | pemakaian model bersamaan di GPU Apple | sudah dicegah dengan lock; bila tetap terjadi, set `encoder.device: cpu` |
 | Lambat / mencoba mengunduh model | tidak ada internet | tambahkan `HF_HUB_OFFLINE=1` |
 | `streamlit belum terpasang` | instalasi tanpa `[ui]` | `pip install -e ".[ui]"` |
@@ -90,7 +90,7 @@ hasil teratas sama persis, itu berasal dari data, bukan bug.
 
 ## Ringkasan
 
-- Pasang dengan `pip install -e "./hybrid-ir[models,ui,dev]"`, lalu pastikan 156 tes lulus.
+- Pasang dengan `pip install -e "./hybrid-ir[models,ui,dev]"`, lalu pastikan 157 tes lulus.
 - Urutan kerja: `download` → `build` → `search`/`ui` → `evaluate` (ke folder baru).
 - Demo terbaik: "betel nuts" (semantic vs hybrid) dan kueri 1185; kueri bebas memperlihatkan BART lokal.
 
@@ -100,7 +100,8 @@ hasil teratas sama persis, itu berasal dari data, bukan bug.
 
 **Soal 2.** Perintah apa yang menampilkan hasil keempat skenario berdampingan?
 
-**Soal 3.** Kamu mengetik kueri bebas di `configs/demo.yaml` dan muncul `MissingPrecomputed`. Kenapa?
+**Soal 3.** Kamu mengetik kueri bebas dengan `configs/demo.yaml` dan muncul "Galat: 1 dari 1 teks tidak ada di berkas
+precomputed". Kenapa?
 
 ## Kunci jawaban
 
@@ -110,5 +111,5 @@ Menimpanya bisa merusak keterlacakan angka.
 **Jawaban 2.** `hybrid-ir ui --config ...`, lalu buka tab "Bandingkan mode".
 
 **Jawaban 3.** `demo.yaml` sengaja memakai `query_fallback: none`, supaya demo jalan tanpa mengunduh BART. Keyphrase
-hanya tersedia untuk 8 kueri demo di `data/demo/keyphrases_demo.jsonl`, sehingga kueri lain berhenti dengan galat
-`MissingPrecomputed`. Pesannya menjelaskan sebabnya, walaupun CLI menampilkannya sebagai *traceback*.
+hanya tersedia untuk 8 kueri demo di `data/demo/keyphrases_demo.jsonl`, sehingga kueri lain berhenti dengan pesan
+`Galat: 1 dari 1 teks tidak ada di berkas precomputed ...` (kode keluar 2).

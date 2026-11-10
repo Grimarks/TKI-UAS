@@ -28,10 +28,13 @@ from .config import MODES, AppConfig, ConfigError, load_config
 from .data import DataError, load_beir_dir
 from .download import DownloadError, download_beir
 from .evaluation import format_markdown, run_experiment, write_outputs
+from .keyphrases import MissingPrecomputed
 from .retriever import HybridRetriever, IndexMismatchError, QueryError, SearchResult
 
 log = logging.getLogger("hybrid_ir")
-USER_ERRORS = (ConfigError, DataError, DownloadError, IndexMismatchError, QueryError, FileNotFoundError)
+# Galat yang disebabkan masukan/konfigurasi pengguna: dicetak singkat tanpa traceback (kode keluar 2).
+USER_ERRORS = (ConfigError, DataError, DownloadError, IndexMismatchError, QueryError, FileNotFoundError,
+               MissingPrecomputed)
 
 
 def _parser() -> argparse.ArgumentParser:
@@ -170,7 +173,9 @@ def main(argv: list[str] | None = None) -> int:
     try:
         return handlers[args.command](args)
     except USER_ERRORS as exc:
-        print(f"Galat: {exc}", file=sys.stderr)
+        # KeyError (induk MissingPrecomputed) membungkus pesannya dengan tanda kutip; ambil pesan aslinya
+        msg = exc.args[0] if isinstance(exc, KeyError) and exc.args else exc
+        print(f"Galat: {msg}", file=sys.stderr)
         return 2
 
 
