@@ -12,7 +12,7 @@ Fakta studi kasus dijaga dengan assert: bila pemilihan kasus berubah, skrip berh
 Format: paragraf/tabel/gambar baru dibuat dengan MENIRU prototipe di template (pPr dan rPr disalin), sehingga
 font, ukuran, spasi, gaya tabel, dan keterangan tetap sama dengan template.
 
-    ../.venv/bin/python scripts/bangun_laporan_uas.py
+    ../.venv/bin/python scripts/bangun_laporan_uas.py [--dasar /path/ke/laporan_dasar_(2).docx]
 """
 from __future__ import annotations
 
@@ -913,9 +913,17 @@ def bagian_c(b: Builder) -> None:
         prev = np_
 
 
-def main() -> int:
+def main(argv: list[str] | None = None) -> int:
+    import argparse
+    ap = argparse.ArgumentParser(description="Bangun Laporan_UAS_Kelompok1.docx dari laporan dasar (2).")
+    ap.add_argument("--dasar", type=Path, default=BASE,
+                    help="lokasi 'Hybrid Semantic-Keyphrase Retrieval (2).docx' (bawaan: Laporan/)")
+    args = ap.parse_args(argv)
+    if not args.dasar.is_file():
+        raise SystemExit(f"GALAT: laporan dasar tidak ditemukan: {args.dasar}\n"
+                         "Berikan lokasinya dengan --dasar /path/ke/'Hybrid Semantic-Keyphrase Retrieval (2).docx'")
     D = load_data()
-    doc = Docx(BASE)
+    doc = Docx(args.dasar)
     b = Builder(doc)
     bagian_a(b, D)
     bagian_b(b, D)
