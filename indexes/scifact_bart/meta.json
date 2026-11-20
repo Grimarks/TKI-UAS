@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "created_utc": "2026-10-03T16:02:35+00:00",
+  "n_docs": 5183,
+  "encoder": {
+    "backend": "sentence-transformers",
+    "model_name": "sentence-transformers/all-MiniLM-L6-v2",
+    "revision": null,
+    "query_prefix": "",
+    "doc_prefix": "",
+    "max_seq_length": 256,
+    "dim": 384
+  },
+  "doc_extractor": {
+    "method": "precomputed",
+    "entries": 6288
+  },
+  "keyphrase_index": {
+    "language": "en",
+    "unit": "both",
+    "similarity": "cosine"
+  },
+  "versions": {
+    "hybrid_ir": "0.1.0",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1"
+  }
+}

@@ -82,6 +82,21 @@ Unduhan pertama model `all-MiniLM-L6-v2` terjadi saat `build`. Keyphrase dokumen
 `artifacts/keyphrases_scifact.jsonl`; query bebas (UI/CLI) yang tidak ada di berkas itu dibuat lokal oleh model BART
 yang sama (`query_fallback: seq2seq`).
 
+### Deploy UI ke Streamlit Community Cloud
+
+Indeks final (`indexes/scifact_bart`, `indexes/nfcorpus_bart`) ikut di repositori, jadi UI bisa jalan tanpa `build`.
+
+1. Buat app dari repositori ini: *Main file path* `src/hybrid_ir/ui_app.py`; di *Advanced settings* pilih Python 3.12.
+2. Di *Secrets* isi lokasi konfigurasi (secret tingkat atas otomatis menjadi variabel lingkungan):
+   ```toml
+   HYBRID_IR_CONFIG = "configs/scifact_bart.yaml"     # atau configs/nfcorpus_bart.yaml
+   ```
+3. Model `all-MiniLM-L6-v2` diunduh saat app pertama kali dimuat. Query bebas memuat BART di CPU server, jadi query
+   pertama bisa lambat.
+
+Catatan: di komputer lokal `hybrid-ir ui` hanya membuka UI di 127.0.0.1; versi cloud bisa dibuka siapa pun yang punya
+tautannya (tidak ada unggah berkas; panjang query dibatasi konfigurasi).
+
 ### Mode pencarian
 
 | Mode | Isi skor | Catatan |

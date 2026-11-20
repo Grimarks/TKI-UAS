@@ -2,7 +2,11 @@
 # data/demo (24 KB) tetap dicatat karena dipakai tes dan demo offline.
 data/*
 !data/demo/
-indexes/
+# indexes/scifact_bart dan indexes/nfcorpus_bart (total ~29 MB) SENGAJA dicatat agar UI bisa di-deploy (Streamlit Cloud)
+# tanpa membangun indeks ulang; indeks lain tetap diabaikan.
+indexes/*
+!indexes/scifact_bart/
+!indexes/nfcorpus_bart/
 models/
 # artifacts/keyphrases_*.jsonl (hasil Kaggle, total ~2 MB) SENGAJA dicatat agar evaluasi bisa diulang setelah clone
 kaggle/_build/
