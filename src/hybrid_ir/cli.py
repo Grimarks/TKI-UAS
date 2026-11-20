@@ -50,7 +50,11 @@ def _parser() -> argparse.ArgumentParser:
     for name, helptext in (("build", "bangun indeks"), ("evaluate", "evaluasi skenario"),
                            ("ui", "jalankan antarmuka web lokal")):
         s = sub.add_parser(name, help=helptext)
-        s.add_argument("--config", required=True)
+        if name == "ui":   # boleh lebih dari satu: UI menampilkan pilihan dataset
+            s.add_argument("--config", required=True, action="append",
+                           help="berkas konfigurasi; ulangi --config untuk beberapa dataset")
+        else:
+            s.add_argument("--config", required=True)
         if name == "evaluate":
             s.add_argument("--out", default=None, help="folder keluaran (bawaan: results/<nama dataset>)")
             s.add_argument("--alphas", default=None, help="daftar alpha dipisah koma, mis. 0,0.25,0.5,0.75,1")
@@ -126,15 +130,21 @@ def _cmd_evaluate(args: argparse.Namespace) -> int:
 
 
 def _cmd_ui(args: argparse.Namespace) -> int:
-    """Fase 2 lewat UI: jalankan Streamlit hanya di 127.0.0.1, konfigurasi diteruskan lewat env HYBRID_IR_CONFIG."""
-    load_config(args.config)  # validasi dini
+    """Fase 2 lewat UI: jalankan Streamlit hanya di 127.0.0.1, konfigurasi diteruskan lewat env HYBRID_IR_CONFIG
+    (beberapa konfigurasi dipisah koma; UI lalu menampilkan pilihan dataset)."""
+    paths = [Path(c).resolve() for c in args.config]
+    for p in paths:
+        if "," in str(p):
+            print(f"Galat: lokasi konfigurasi tidak boleh mengandung koma: {p}", file=sys.stderr)
+            return 2
+        load_config(p)  # validasi dini
     try:
         import streamlit  # noqa: F401
     except ImportError:
         print("Galat: streamlit belum terpasang. Jalankan: pip install -e \".[ui]\"", file=sys.stderr)
         return 2
     app = Path(__file__).with_name("ui_app.py")
-    env = dict(os.environ, HYBRID_IR_CONFIG=str(Path(args.config).resolve()))
+    env = dict(os.environ, HYBRID_IR_CONFIG=",".join(str(p) for p in paths))
     cmd = [sys.executable, "-m", "streamlit", "run", str(app),
            "--server.address", "127.0.0.1",            # hanya bisa diakses dari komputer ini
            "--server.port", str(args.port),

@@ -4,11 +4,13 @@ Peran di pipeline (Gambar 1)
     Fase 2 — kotak "Ranking top-k" (hasil di UI Streamlit). Tab "Pencarian" menjalankan satu mode;
     tab "Bandingkan mode" menampilkan BM25 | Semantic | Keyphrase | Hybrid berdampingan (empat skenario).
 
-Masukan  : query dari pengguna, mode, α (slider; bawaan = retrieval.alpha di konfigurasi), jumlah hasil.
+Masukan  : dataset (bila ada lebih dari satu konfigurasi), query dari pengguna, mode, α (slider; bawaan =
+           retrieval.alpha di konfigurasi), jumlah hasil.
 Keluaran : daftar dokumen dengan skor tiap jalur, keyphrase dokumen, dan keyphrase yang cocok dengan query.
 
-Dijalankan lewat `hybrid-ir ui --config <yaml>` (yang meneruskan lokasi konfigurasi lewat variabel
-lingkungan HYBRID_IR_CONFIG). Pertimbangan keamanan:
+Dijalankan lewat `hybrid-ir ui --config <yaml> [--config <yaml> ...]`, yang meneruskan lokasi konfigurasi lewat
+variabel lingkungan HYBRID_IR_CONFIG (beberapa lokasi dipisah koma). Di Streamlit Cloud variabel itu diisi lewat
+Secrets. Bila ada lebih dari satu konfigurasi, sidebar menampilkan pilihan dataset. Pertimbangan keamanan:
   * Server hanya mendengarkan 127.0.0.1 (lihat cli.py), tidak terbuka ke jaringan.
   * Tidak ada unggah berkas dan tidak ada input path dari pengguna; lokasi indeks hanya dari konfigurasi.
   * Tidak memakai unsafe_allow_html. Semua teks dari dokumen/query di-escape agar Markdown/HTML di
@@ -16,19 +18,34 @@ lingkungan HYBRID_IR_CONFIG). Pertimbangan keamanan:
 """
 from __future__ import annotations
 
+import dataclasses
 import os
 import re
 import threading
+from pathlib import Path
 
 import streamlit as st
 
-from hybrid_ir.config import ConfigError, load_config
-from hybrid_ir.keyphrases import MissingPrecomputed
+from hybrid_ir.config import AppConfig, ConfigError, KeyphraseConfig, load_config
+from hybrid_ir.encoders import Encoder, build_encoder
+from hybrid_ir.keyphrases import FallbackExtractor, MissingPrecomputed, Seq2SeqKeyphraseGenerator, build_extractor
 from hybrid_ir.retriever import Hit, HybridRetriever, IndexMismatchError, QueryError, SearchResult
 
 MODE_TITLES = {"hybrid": "Hybrid", "semantic": "Semantic saja", "keyphrase": "Keyphrase saja", "bm25": "BM25 saja"}
 COMPARE_MODES = ("bm25", "semantic", "keyphrase", "hybrid")
+DATASET_TITLES = {"scifact_bart": "SciFact", "nfcorpus_bart": "NFCorpus"}
 _MD_SPECIAL = re.compile(r"([\\`*_{}\[\]()#+\-.!|<>~$&])")
+
+
+def config_paths() -> list[str]:
+    """Lokasi konfigurasi dari HYBRID_IR_CONFIG: satu lokasi, atau beberapa lokasi dipisah koma."""
+    return [p.strip() for p in os.environ.get("HYBRID_IR_CONFIG", "").split(",") if p.strip()]
+
+
+def dataset_title(config_path: str) -> str:
+    """Nama dataset untuk pilihan di sidebar, mis. 'configs/nfcorpus_bart.yaml' -> 'NFCorpus'."""
+    stem = Path(config_path).stem
+    return DATASET_TITLES.get(stem, stem)
 
 
 def esc(text: str) -> str:
@@ -41,11 +58,32 @@ def chips(items: list[str]) -> str:
     return ", ".join(f"`{i.replace('`', '')}`" for i in items) if items else "-"
 
 
+# Model dimuat SEKALI dan dipakai bersama oleh semua dataset yang pengaturannya sama (SciFact dan NFCorpus memakai
+# encoder dan BART yang sama), supaya memori tidak berlipat saat UI melayani dua dataset. Argumen berawalan "_" tidak
+# ikut kunci cache Streamlit; kuncinya adalah `key` (repr pengaturan model).
+@st.cache_resource(show_spinner="Memuat model encoder ...")
+def load_encoder(key: str, _cfg: AppConfig) -> Encoder:
+    """Encoder untuk pengaturan `key` (dibagi antar-dataset)."""
+    return build_encoder(_cfg.encoder, _cfg.keyphrase.language)
+
+
+@st.cache_resource(show_spinner="Memuat BART-KPG untuk keyphrase query ...")
+def load_query_generator(key: str, _kcfg: KeyphraseConfig) -> Seq2SeqKeyphraseGenerator:
+    """BART-KPG untuk query bebas (dibagi antar-dataset); dimuat saat query bebas pertama."""
+    return Seq2SeqKeyphraseGenerator(_kcfg)
+
+
 @st.cache_resource(show_spinner="Memuat indeks dan model ...")
 def load_retriever(config_path: str) -> HybridRetriever:
-    """Muat indeks dan model SEKALI untuk semua sesi (di-cache oleh Streamlit)."""
+    """Muat indeks satu dataset SEKALI untuk semua sesi (di-cache oleh Streamlit)."""
     cfg = load_config(config_path)
-    return HybridRetriever.load(cfg)
+    encoder = load_encoder(repr((cfg.encoder, cfg.keyphrase.language)), cfg)
+    query_extractor = build_extractor(cfg.keyphrase, "query")
+    if isinstance(query_extractor, FallbackExtractor):
+        kcfg = cfg.keyphrase
+        gen_key = repr(sorted((k, v) for k, v in dataclasses.asdict(kcfg).items() if k != "precomputed_files"))
+        query_extractor = FallbackExtractor(query_extractor.primary, lambda: load_query_generator(gen_key, kcfg))
+    return HybridRetriever.load(cfg, encoder=encoder, query_extractor=query_extractor)
 
 
 @st.cache_resource
@@ -80,10 +118,14 @@ def main() -> None:
     st.caption("Pencarian dokumen akademik: embedding (semantik) + keyphrase dengan bobot alpha yang bisa diatur. "
                "BM25 tersedia sebagai pembanding.")
 
-    config_path = os.environ.get("HYBRID_IR_CONFIG")
-    if not config_path:
+    paths = config_paths()
+    if not paths:
         st.error("Variabel HYBRID_IR_CONFIG belum diatur. Jalankan lewat: hybrid-ir ui --config <berkas.yaml>")
         return
+    with st.sidebar:
+        st.header("Pengaturan")
+        # Indeks tiap dataset dimuat saat pertama kali dipilih, lalu disimpan cache (load_retriever).
+        config_path = st.selectbox("Dataset", paths, format_func=dataset_title) if len(paths) > 1 else paths[0]
     try:
         retriever = load_retriever(config_path)
     except (ConfigError, FileNotFoundError, IndexMismatchError) as exc:
@@ -92,7 +134,6 @@ def main() -> None:
 
     cfg = retriever.cfg
     with st.sidebar:
-        st.header("Pengaturan")
         modes = ["hybrid", "semantic", "keyphrase", "bm25"]
         mode = st.radio("Mode", modes, index=modes.index(cfg.retrieval.mode), format_func=MODE_TITLES.get)
         alpha = st.slider("alpha (bobot semantik; Hybrid)", 0.0, 1.0, float(cfg.retrieval.alpha), 0.05,

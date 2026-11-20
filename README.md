@@ -87,12 +87,15 @@ yang sama (`query_fallback: seq2seq`).
 Indeks final (`indexes/scifact_bart`, `indexes/nfcorpus_bart`) ikut di repositori, jadi UI bisa jalan tanpa `build`.
 
 1. Buat app dari repositori ini: *Main file path* `src/hybrid_ir/ui_app.py`; di *Advanced settings* pilih Python 3.12.
-2. Di *Secrets* isi lokasi konfigurasi (secret tingkat atas otomatis menjadi variabel lingkungan):
+2. Di *Secrets* isi lokasi konfigurasi (secret tingkat atas otomatis menjadi variabel lingkungan). Beberapa konfigurasi
+   dipisah koma; sidebar lalu menampilkan pilihan **Dataset**:
    ```toml
-   HYBRID_IR_CONFIG = "configs/scifact_bart.yaml"     # atau configs/nfcorpus_bart.yaml
+   HYBRID_IR_CONFIG = "configs/scifact_bart.yaml,configs/nfcorpus_bart.yaml"
    ```
 3. Model `all-MiniLM-L6-v2` diunduh saat app pertama kali dimuat. Query bebas memuat BART di CPU server, jadi query
-   pertama bisa lambat.
+   pertama bisa lambat. Encoder dan BART dimuat sekali dan dipakai bersama oleh kedua dataset.
+
+Di komputer lokal, dua dataset sekaligus: `hybrid-ir ui --config configs/scifact_bart.yaml --config configs/nfcorpus_bart.yaml`.
 
 Catatan: di komputer lokal `hybrid-ir ui` hanya membuka UI di 127.0.0.1; versi cloud bisa dibuka siapa pun yang punya
 tautannya (tidak ada unggah berkas; panjang query dibatasi konfigurasi).
